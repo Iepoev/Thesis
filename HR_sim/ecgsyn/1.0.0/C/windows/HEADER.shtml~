@@ -1,0 +1,16 @@
+<!--#set var="TITLE" value="ECGSYN for MS-Windows"-->
+<!--#include virtual="/head.shtml"-->
+
+
+<p>
+The executable <tt>ecgsyn.exe</tt> file in this directory was compiled from
+these <a href="../src/">ECGSYN sources</a> with Cygwin 1.5.5-1/gcc 3.3.1-3
+under MS-Windows 2000.  It is known to work under MS-Windows 2000 and XP,
+and may also work under other versions of MS-Windows.
+
+<p>
+Note that you will need to have the Cygwin DLLs installed in your PATH in
+order to run this program successfully.  The simplest and most reliable
+way to do this is to install the free
+<a href="http://www.cygwin.com/" target="other">Cygwin development toolkit</a>.
+
