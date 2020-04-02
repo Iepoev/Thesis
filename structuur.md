@@ -8,21 +8,28 @@
  - Analvsis of Heart Rate Dynamics During Exkrcise
  - Exercise and the autonomic nervous system.
 
-Er wordt een overzicht gegeven over de functionaliteit van het hart, en een introductie in de termen die verder in de thesis gebruikt worden. Er wordt extra focus gelegd op het effect van fysieke inspanning op hartslag, en andere relevante info om het concept "fitheid" te verduidelijken. 
+Er wordt een overzicht gegeven over de functionaliteit van het hart, en een introductie in de termen die verder in de thesis gebruikt worden. Er wordt extra focus gelegd op het effect van fysieke inspanning op hartslag, en andere relevante info om het concept "fitheid" te verduidelijken.
+
+### Parasympathische werking
+
+### Orthosympatische werking
+
+
 
 ## metrieken
 
 ### Accelerometer
 
-Dit is een moeilijke metriek om te betrekken, aangezien dit bijna enkel bruikbaar is in het geval van lopen. In deze sectie onderzoeken we in welke mate de accelerometer gebruikt kan worden in andere gevallen, en of dit een substantieel voordeel is om te betrekken in het algoritme.
+Dit is een moeilijke metriek om te betrekken, aangezien dit heel afhankelijk is van het type van de trainingsessie. In deze sectie onderzoeken we in welke mate de accelerometer gebruikt kan worden in andere gevallen, en of dit een substantieel voordeel is om te betrekken in de fitnesscoach.
 
 ### Verschillende soorten heartrate
 
-Hartslag kunnen we zelf meten. Momenteel nog niet accuraat genoeg om HRV te bepalen, maar in het onderzoek gaan we er van uit dat het wel mogelijk is. Zie sectie `Gevolgen van inaccurate metingen`
+Hartslag kunnen we zelf meten. Momenteel zijn smartwatches zelden accuraat genoeg om HRV te bepalen, maar in het onderzoek gaan we er van uit dat het wel mogelijk is. Zie sectie `Gevolgen van inaccurate metingen`. High-end borstkas hartmetingen zijn wel in staat om HRV te meden.
 
 Dit zijn allemaal vaak gebruikte metrieken in medische literatuur, en komen vaak terug in het bepalen van inspanning en fysieke fitheid. Deze sectie overloopt ze allemaal, hun significantie in de context van dit onderzoek, en waar ze gebruikt worden.
 
 #### Heart Rate 
+ - RR Interval
 
 #### Resting Heart Rate
  - Determining target heart rate for exercising in a cardiac rehabilitation program: a retrospective study.
@@ -35,8 +42,6 @@ Target heart rate opstellen met Karvonen method
  - Heart rate variability and aerobic fitness
  - Deep neural heart rate variability analysis
  - The relationship between resting heart rate variability and heart rate recovery
-
-RR interval
 
 RMSSD: Root mean square of the successive differences RMSSD is strongly backed by research and is considered the most relevant and accurate measure of Autonomic Nervous System activity over the short-term. Here are a few studies referencing its use: 
 ln(RMSSD): log van RMSSD
