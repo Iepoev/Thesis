@@ -9,6 +9,12 @@ STYLEDIR=$(BASEDIR)/style
 
 BIBFILE=$(INPUTDIR)/library.bib
 
+watch:
+	while true; do \
+		make $(WATCHMAKE); \
+		inotifywait -qre close_write .; \
+	done
+
 help:
 	@echo ' 																	  '
 	@echo 'Makefile for the Markdown thesis                                       '
