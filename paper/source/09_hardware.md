@@ -24,4 +24,3 @@ Zelfs als de berekeningen offloaded worden, gaat er nog steeds rekening gehouden
  - Stressing the accuracy: Wrist-worn wearable sensor validation over different conditions
 
 wearables zijn niet altijd even accuraat en kunnen een niveau van onzekerheid in de metingen bevatten. (specifiek, niet accuraat genoeg voor HRV en RR-interval te meten tijdens fysieke inspanning). Om dit te vermijden wordt de abstractie gemaakt naar "ideale" gesimuleerde hartmetingen, en doen we een onderzoek naar de verschillen tussen deze ideale simulatie en de reele metingen. Zo is de uiteindelijke fitnesscoach tevens futureproof aangezien het niet onrealistisch is dat toekomstige wearables wel deze accuraatheid bevatten.
-

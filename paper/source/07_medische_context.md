@@ -1,7 +1,9 @@
 # Medical Background
 
 ## Anatomy of the heart
-The heart is the organ responsible for pumping blood into the arteries and veins of the human body. It is located within the thorax (chest) in between the lungs, oriented slightly towards the lefthand side in its so called mediastinum. The pumping action is provided by the 4 chambers; left and right side each have an *atrium* and a *ventricle*. The atria act as a receiving chamber which contracts to push blood to the ventricles, which will in act as the primary pumping mechanism and propel it to either the lungs or the rest of the body. The atria receive blood on a nearly continuous basis, preventing flow from stopping while the ventricles are contracting. 
+The heart is the organ responsible for pumping blood into the arteries and veins of the human body. It is located within the thorax (chest) in between the lungs, oriented slightly towards the lefthand side in its so called mediastinum. The shape is slightly triangular, pointing towards the feet. The superior portion is called the base, and the inferior portion is called the apex.
+
+The pumping action is provided by the 4 chambers; left and right side each have an *atrium* and a *ventricle*. The atria act as a receiving chamber which contracts to push blood to the ventricles, which will in act as the primary pumping mechanism and propel it to either the lungs or the rest of the body. The atria receive blood on a nearly continuous basis, preventing flow from stopping while the ventricles are contracting. 
 
 Both sides of the heart have their distinct function. The righthand side delivers deoxygenated blood into the pulmonary trunk, which leads toward the capillaries in the lungs, where gas exchange occurs: Carbon dioxide exits the blood and oxygen enters. Highly oxygenated blood returning from these capillaries passes through a series of vessels that join together to conduct blood into the left atrium, which pumps the blood into the left ventricle, which in turn pumps oxygenated blood into the aorta and on to the many branches of the systemic circuit. Eventually, these vessels will lead to the various capillaries, where exchange with the cells of the muscles occurs. Oxygen and nutrients exit the capillaries to be used by the cells in their metabolic processes, and carbon dioxide and waste products (such as potassium, lactic acid and ADP) will enter the blood.
 
@@ -11,18 +13,20 @@ Not every muscle in the heart is equal. The atria only need to pump blood into t
 
 ![An anatomical overview of the heart \label{ana_heart}](source/figures/ana_heart.jpg){ width=100% }
 
-
 ## Innervation of the heart
 
-Normal cardiac rhythm is established by the sinoatrial (SA) node, also known as the pacemaker of the heart. It initiates the *sinus rhythm*, or normal electrical pattern followed by contraction of the heart. The impulse is conducted from the SA node through a specialized internodal pathways, to the atrioventricular (AV) node. In addition, the interatrial band conducts the impulse directly from the right atrium to the left atrium. The wave of the electrical impulse spreads across the attria from the top to the bottom portions, pumping blood down into the ventricle. It takes approximately 50 ms (milliseconds) to travel from SA to AV node.
+Normal cardiac rhythm is established by the sinoatrial (SA) node, also known as the pacemaker of the heart. It initiates the *sinus rhythm*, or normal electrical pattern followed by contraction of the heart. The impulse is conducted from the SA node through a specialized internodal pathways, to the atrioventricular (AV) node. In addition, the interatrial band conducts the impulse directly from the right atrium to the left atrium. The wave of the electrical impulse spreads across the attria from the top to the bottom portions, pumping blood down into the ventricle. It takes approximately 50 ms (milliseconds) to travel from SA to AV node (figure \ref{inn_heart}, step 2 and 3).
 
-There is a critical pause before the AV node depolarizes and transmits the impulse to the atrioventricular bundle. This delay in transmission is partially attributable to the small diameter of the cells of the node, which slow the impulse. Also, conduction between nodal cells is less efficient than between conducting cells. These factors mean that it takes the impulse approximately 100 ms to pass through the node. This pause is critical to heart function, as it allows the atrial cardiomyocytes to complete their contraction that pumps blood into the ventricles before the impulse is transmitted to the cells of the ventricle itself. With extreme stimulation by the SA node, the AV node can transmit impulses maximally at 220 per minute. This establishes the typical maximum heart rate in a healthy young individual. Damaged hearts or those stimulated by drugs can contract at higher rates, but at these rates, the heart can no longer effectively pump blood.
+The next step in the chain is the atrioventricular bundle. There is a critical pause before the AV node transmits the impulse to the AV bundle, partially attributable to the small diameter of the cells of the node, which slow the impulse. This results in an approximately 100ms delay for the impulse to pass through the node. This pause is critical to heart function, as it allows the atrial muscles to complete their contraction that pumps blood into the ventricles before the impulse is transmitted to the cells of the ventricle itself (figure \ref{inn_heart}, step 4). 
 
-Arising from the AV node, the atrioventricular bundle, or bundle of His, proceeds through the interventricular septum before dividing into two atrioventricular bundle branches, Both bundle branches descend and reach the apex of the heart where they connect with the Purkinje fibers (see Figure 19.19, step 4). This passage takes approximately 25 ms.
+The AV bundle devides into two atrioventricular bundle branches, Both bundle branches descend and reach the apex of the heart where they connect with the Purkinje fibers. This passage takes approximately 25 ms. The Purkinje fibers are additional conductive fibers that spread the impulse to the muscles in the ventricles. They extend from the apex of the heart toward the wall between the atrium and the ventricle, continues to the base of the heart. The Purkinje fibers have a fast inherent conduction rate, and the electrical impulse reaches all of the ventricular muscle cells in about 75 ms. Since the electrical stimulus begins at the apex, the contraction also begins at the apex and travels toward the base of the heart, similar to squeezing a tube of toothpaste from the bottom. This allows the blood to be pumped out of the ventricles. The total time elapsed from the initiation of the impulse in the SA node until relaxation of the ventricles is approximately 225ms (figure \ref{inn_heart}, step 5).
 
-The Purkinje fibers are additional myocardial conductive fibers that spread the impulse to the myocardial contractile cells in the ventricles. They extend throughout the myocardium from the apex of the heart toward the atrioventricular septum and the base of the heart. The Purkinje fibers have a fast inherent conduction rate, and the electrical impulse reaches all of the ventricular muscle cells in about 75 ms (see Figure 19.19, step 5). Since the electrical stimulus begins at the apex, the contraction also begins at the apex and travels toward the base of the heart, similar to squeezing a tube of toothpaste from the bottom. This allows the blood to be pumped out of the ventricles and into the aorta and pulmonary trunk. The total time elapsed from the initiation of the impulse in the SA node until depolarization of the ventricles is approximately 225 ms.
+The SA node, without external control, would initiate a heart impulse approximately 80–100 times per minute. While a few exceptionally trained aerobic athletes demonstrate resting heart rates in the range of 30–40 beats per minute, rates lower than 50 beats per minute would indicate a condition called bradycardia. With extreme stimulation by the SA node, the AV node can transmit impulses maximally at 220 per minute. This establishes the typical maximum heart rate in a healthy young individual. Higher rates are possibly by damaged hearts or those stimulated by drugs, but the heart can no longer effectively pump blood at these rates 
+
 
 [@Openstax]
+
+![the innervation and pumping mechanism of the heart \label{inn_heart}](source/figures/inn_heart.jpg){ width=100% }
 
 ## Fysiologische werking van het hart
  - Modelling heart rate kinetics
@@ -37,7 +41,26 @@ Er wordt een overzicht gegeven over de functionaliteit van het hart, en een intr
 
 ### Orthosympatische werking
 
-## ECG readings
+
+## Measuring heart rate
+
+### Phonocardiogram (PCG) measurement
+
+The phonocardiograph will measure heart pulse data by listening to the sound of the beating heart. In a normal, healthy heart, there are two distinctly audible heart sounds. The first sound is created by the closing of the valves between the atrium and the ventricle during ventricular contraction. The second heart sound, is the sound of the closing of the valves between the ventricle and the aortae during ventricular relaxation [@Openstax].  This method of measurement has some novel applications and is showing potential to be as accurate as optical measurement, but has not yet been brought to market as a consumer wearable [@Sharma2019] [@Abbasi-Kesbi2018].
+
+### Electrocardiogram (ECG) measurement
+
+By careful placement of surface electrodes on the body, it is possible to record the complex, compound electrical signal of the heart. This tracing of the electrical signal is the electrocardiogram (ECG). There are five prominent points on the ECG (see figure \ref{ecg}): the P wave, the QRS complex, and the T wave. The small P wave represents the impulse in the atria. The atria begin contracting approximately 25 ms after the start of the P wave. The large QRS complex represents the impulse in the ventricles, which will begin to contract as R wave reaches its peak. Lastly, the T wave represents the end of the impulse in the ventricles (the end of the impulse in the atria is obfuscated by the QRS complex). Segments are defined as the regions between two waves. Intervals include one segment plus one or more waves. In this thesis the most notable interval is the RR interval, or the interval between the peaks of the QRS complex. [@Openstax]
+
+The standard electrocardiograph uses multiple electrodes to obtain 3, 5, or 12 leads. The greater the number of leads an electrocardiograph uses, the more information the ECG provides. The term “lead” typically describes the voltage difference between two of the electrodes. Electrocardiographs are also available in small, portable, battery-operated devices known as a Holter monitor, or simply a Holter, that continuously monitors heart electrical activity. Chest strap heart rate monitors, such as the polar H-series are a rudimentary electrocardiograph.
+
+![an example ECG tracing \label{ecg}](source/figures/ecg.jpg){ width=100% }
+
+### Photoplethysmogram (PPG) measurement
+
+Various biological tissue types (bone, blood, pigments in the skin,...) reflect and absorb light in different ways. The pumping action of the heart has a large effect on the pressure and corresponding presence of blood in the arteries. The peak of this pressure wave is called "systole" and the valley is called "diastole". Note that this pulse is very strong in the arteriers, being directly connected to the output of the pump. Deeper inside the system this pulse gradually weakens to a static pressure in the veins. The pulsing of blood flow and blood pressure can be determined easily using a pulse rate monitor. The principle behind PPG sensors is the optical detection of this pulse using a sensor system consisting of a light source and a detector. The sensor monitors changes in the light intensity via reflection from or transmission through the tissue. The changes in light intensity can be mapped to the diastole and systole to provide information on the pulse rate of the heart. [@Tamura2014]
+
+PPG sensors are fairly simple devices and have found their way to various wrist-based wearables, where they measure the pulse rate of the arteries in the wrist.
 
 ## Fitheid
 

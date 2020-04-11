@@ -14,25 +14,23 @@ and add the centred logo
         \vspace*{2.5cm}
         
         \huge
-        This is the title of the thesis
+        Assessing the physical capabilities of sportsman using wearables and machine learning
         
         \vspace{1.5cm}
         
         \Large
-        Firstname Surname
+        De Clerck Jeroen
 
         \vspace{1.5cm}
 
         \normalsize
-        A thesis presented for the degree of\\
-        Doctor of Philosophy
+        Master's dissertation submitted in order to obtain the academic degree of Master of Science in de informatica
         
         \vfill
         
         \normalsize
-        Supervised by:\\
-        Professor Louis Fage\\
-        Captain J. Y. Cousteau
+        Supervisor:\\
+        Councellors: Prof. dr. ir Toon De Pessemier, Kris Vanhecke
 
         \vspace{0.8cm}
 
@@ -41,8 +39,7 @@ and add the centred logo
         % \includegraphics[width=0.4\textwidth]{style/univ_logo.eps}
         
         \normalsize
-        University College London, UK\\
-        January 2015
+        Academic year 2019-2020
 
         % Except where otherwise noted, content in this thesis is licensed under a Creative Commons Attribution 4.0 License (http://creativecommons.org/licenses/by/4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited. Copyright 2015,Tom Pollard.
 
