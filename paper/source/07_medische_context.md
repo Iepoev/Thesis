@@ -33,14 +33,68 @@ The SA node, without external control, would initiate a heart impulse approximat
  - Analvsis of Heart Rate Dynamics During Exkrcise
  - Exercise and the autonomic nervous system.
 
-
-
 Er wordt een overzicht gegeven over de functionaliteit van het hart, en een introductie in de termen die verder in de thesis gebruikt worden. Er wordt extra focus gelegd op het effect van fysieke inspanning op hartslag, en andere relevante info om het concept "fitheid" te verduidelijken.
 
-### Parasympathische werking
+### Cardiac output and Heart Rate
 
-### Orthosympatische werking
+In the context of fitness, one of the most important factors is Cardiac Output (CO). CO is the measurement of the volume of blood pumped by each ventricle per minute, and is calculated by multiplying Heart Rate with Stroke Volume (the amount of blood pumped by each ventricle). It is fairly easy to conclude that an increase in CO means an increase in oxygenated blood reaching the muscles, which increases the potential maximum energy output of a muscle. Note that SV is not the same as the volume of a ventricle. There is always a certain volume of blood (the so-called End Systolic Volume or offload) present in the ventricles. During the cardiac cycle the ventricles fill up to a maximum volume (called the End Diastolic Volume or preload) after which the SV is ejected to return to the ESV. An average heart at rest has approx 130 mL EDV and 50-60 mL ESV, which result in an SV of 70-80 mL.
 
+As mentioned before, the average heart rate is around 75bpm at rest and is capped at 220 bpm. Due to age this maximum heart rate will slowly deteriorate and can be approximated by taking this 220 bpm maximum and subtracting the age of the subject. It is clear that a higher heart rate will result in a higher Cardiac Output, but its not just a matter of multiplying Heart Rate with Stroke Volume. SV will initially be able to keep up with an increase in HR, but at around 120 bpm there is not enough time between contractions for the ventricles to fill up with blood. Up until 160bpm the rate at which SV decreases is lower than the rate at which HR increases, so CO will continue to increase. As HR rises above 160 bpm, this balance shifts and CO starts to decrease. Therefor individuals performing aerobic exercises are cautioned to monitor their HR to ensure they stay within the target heart rate range. The target HR is loosely defined as the range in which both the heart and lungs receive the maximum benefit from the aerobic workout and is dependent upon age.
+
+[@Openstax]
+
+<!-- volume kunnen we niet meten -->
+<!-- HR gebruiken als benadering/approximation -->
+
+### Nerval stimulation
+
+The human body is a complex balancing act of various electrical and/or hormonal impulses.
+
+The nerval system is can be split up in hierarchy: Starting from teh full nerval system we can split 2 subsytems based on their location; the central nervous system in the brain and spinal cord, and the peripheral nervous system in the rest of the body. The peripheral nervous system can again be split up into 2 subsystems based on the control that we have over it: the somatic nerval system which handles voluntary signals and the autonomic nerval system which handles involuntary signals. The autonomic nerval system can again be split up based on the context in which signals are sent: the sympathetic nerval system which handles "fight-and-flight" reactions and the parasympathetic nerval system which handles "rest-and-digest" reactions.
+
+Nervous control starts with two paired centers in the brainstem. The cardioaccelerator regions stimulate activity via sympathetic stimulation, and the cardioinhibitory centers decrease heart activity via parasympathetic stimulation. During rest, both centers provide stimulation to the heart, with a slight predomination for cardioinhibitory stimulation as the SA node left to its own devices would initiate a sinus rhythm of approximately 100 bpm. This means that simply stopping parasympathetic stimulation would let the heart rate to increase to approx. 100 bpm, but a further increase requires sympathetic stimulation.
+
+These (para-)sympathetic stimulations are fired upon various sensoric impulses, which are summed up in table \ref{hr_increase} and table \ref{hr_decrease}
+
+[@Openstax]
+
+\newpage
+
+Factor               Effect Trigger             
+-------              -------------------
+n. Cardioaccelerator Release of norepinephrine by cardioinhibitory nerves
+Proprioreceptors     Increased firing rates of positional sensors
+Chemoreceptors       detection of decreased levels of O2
+Chemoreceptors       detection of increased levels of H+, CO2 and lactic acid
+Baroreceptors        falling blood volume/pressure
+Limbic system        Anticipation of physical exercise or strong emotions
+Catecholamines       Increased epinephrine and norepinephrine release
+Thyroid hormones     Increased T3 and T4 in the blood (released by thyroid)
+Calcium              Increase in calcium ions in the blood
+Potassium            Decrease in potassium ions in the blood
+Sodium               Decrease in sodium ions in the blood
+Body temperature     Increase in body temperature
+Stimulants           Presence of nicotine, caffeine or other stimulants
+
+Table: Major Factors decreasing Heart Rate and force of contraction. [@Openstax] \label{hr_increase}
+
+Factor               Effect Trigger             
+-------              -------------------
+n. Cardioinhibitor   Release of acetylcholine by cardioaccelerator nerves
+Proprioreceptors     Increased firing rates of positional sensors
+Chemoreceptors       detection of increased levels of O2
+Chemoreceptors       detection of decreased levels of H+, CO2 and lactic acid
+Baroreceptors        rising blood volume/pressure
+Limbic system        Anticipation of relaxation by the limbic system
+Catecholamines       Increased (nor-)epinephrine release by the adrenal glands
+Thyroid hormones     Decreased T3 and T4 in the blood (released by thyroid)
+Calcium              Increase in calcium ions in the blood
+Potassium            Increase in potassium ions in the blood
+Sodium               Increase in sodium ions in the blood
+Body temperature     Decrease in body temperature
+Tranquilizers        Presence of opiates, tranquilizers or other depressants
+
+Table: Major Factors decreasing Heart Rate and force of contraction. [@Openstax] \label{hr_decrease}
 
 ## Measuring heart rate
 
