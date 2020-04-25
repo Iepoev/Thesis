@@ -21,25 +21,31 @@ The next step in the chain is the atrioventricular bundle. There is a critical p
 
 The AV bundle devides into two atrioventricular bundle branches, Both bundle branches descend and reach the apex of the heart where they connect with the Purkinje fibers. This passage takes approximately 25 ms. The Purkinje fibers are additional conductive fibers that spread the impulse to the muscles in the ventricles. They extend from the apex of the heart toward the wall between the atrium and the ventricle, continues to the base of the heart. The Purkinje fibers have a fast inherent conduction rate, and the electrical impulse reaches all of the ventricular muscle cells in about 75 ms. Since the electrical stimulus begins at the apex, the contraction also begins at the apex and travels toward the base of the heart, similar to squeezing a tube of toothpaste from the bottom. This allows the blood to be pumped out of the ventricles. The total time elapsed from the initiation of the impulse in the SA node until relaxation of the ventricles is approximately 225ms (figure \ref{inn_heart}, step 5).
 
-The SA node, without external control, would initiate a heart impulse approximately 80–100 times per minute. While a few exceptionally trained aerobic athletes demonstrate resting heart rates in the range of 30–40 beats per minute, rates lower than 50 beats per minute would indicate a condition called bradycardia. With extreme stimulation by the SA node, the AV node can transmit impulses maximally at 220 per minute. This establishes the typical maximum heart rate in a healthy young individual. Higher rates are possibly by damaged hearts or those stimulated by drugs, but the heart can no longer effectively pump blood at these rates 
+The SA node, without external control, would initiate a heart impulse approximately 80–100 times per minute. While possibly in some healthy indivituals, rates lower than 50 beats per minute would indicate a condition called bradycardia. With extreme stimulation by the SA node, the AV node can transmit impulses maximally at 220 per minute. This establishes the typical maximum heart rate in a healthy young individual. Higher rates are possibly by damaged hearts or those stimulated by drugs, but the heart can no longer effectively pump blood at these rates.
 
 
 [@Openstax]
 
 ![the innervation and pumping mechanism of the heart \label{inn_heart}](source/figures/inn_heart.jpg){ width=100% }
 
-## Fysiologische werking van het hart
- - Modelling heart rate kinetics
- - Analvsis of Heart Rate Dynamics During Exkrcise
- - Exercise and the autonomic nervous system.
+## Fysiological function of the heart
 
-Er wordt een overzicht gegeven over de functionaliteit van het hart, en een introductie in de termen die verder in de thesis gebruikt worden. Er wordt extra focus gelegd op het effect van fysieke inspanning op hartslag, en andere relevante info om het concept "fitheid" te verduidelijken.
+### Heart Rate kinetics
+The maximum heart rate that a healty individual can attain is around 220 bpm. This maximum heart rate is a hard limit due to physiological phenomena (the maximum throughput of the SA node) and will remain constant for a subject, regardless of increased/decreased fitness level or other factors. Due to age this maximum heart rate will slowly deteriorate and can be approximated by taking this 220 bpm maximum and subtracting the age of the subject. 
 
-### Cardiac output and Heart Rate
+The lowest heart rate that a healthy individual can attain is called the Resting Heart Rate. It is the heart rate of the subject when it is at complete rest, relaxed but awake, with no external stress factors such as recent exercise, environmental temperature,... For an average person this lies within the interval of 60 to 100 beats per minute, but a few exceptionally trained aerobic athletes demonstrate resting heart rates in the range of 30–40 beats per minute. This is lower for fit individuals because the body has adapted to maintain basic functionality on these lower heart rates.
+
+Performing any kind of movement will place a circulatory demand on the heart, and the heart rate will change to meet this demand. If demand is higher than what HR_max allows, the heart rate will plateau at HR_max until the body can no longer sustain the exercise. For a constant exercise that doesn't reach this boundary the demand will also remain constant, so an equilibrium will be reached at a certain heart rate. An important distiction to make is that of the lactate threshold. Lactate is a substance in the blood that increases in concentration when performing heavy exercise. 
+
+Heart rate will quickly reach the equilibrium as described as long as blood lactate levels remain under a threshold (the value of which depends on the individual). At higher levels of exertion blood lactate levels will rise but plateau after 10-20 minutes above the resting lactate levels. This means that the heart rate equilibrium will only be reached after 10-20 minutes of sustained exercise; this is called the slow component of cardiovascular kinetics. At severe levels of exercise lactate levels will not plateau but rise steeply until the subject is too exhausted to continue, no equilibrium will be reached.
+
+[@Zakynthinaki2015]
+
+### Cardiac Output
 
 In the context of fitness, one of the most important factors is Cardiac Output (CO). CO is the measurement of the volume of blood pumped by each ventricle per minute, and is calculated by multiplying Heart Rate with Stroke Volume (the amount of blood pumped by each ventricle). It is fairly easy to conclude that an increase in CO means an increase in oxygenated blood reaching the muscles, which increases the potential maximum energy output of a muscle. Note that SV is not the same as the volume of a ventricle. There is always a certain volume of blood (the so-called End Systolic Volume or offload) present in the ventricles. During the cardiac cycle the ventricles fill up to a maximum volume (called the End Diastolic Volume or preload) after which the SV is ejected to return to the ESV. An average heart at rest has approx 130 mL EDV and 50-60 mL ESV, which result in an SV of 70-80 mL.
 
-As mentioned before, the average heart rate is around 75bpm at rest and is capped at 220 bpm. Due to age this maximum heart rate will slowly deteriorate and can be approximated by taking this 220 bpm maximum and subtracting the age of the subject. It is clear that a higher heart rate will result in a higher Cardiac Output, but its not just a matter of multiplying Heart Rate with Stroke Volume. SV will initially be able to keep up with an increase in HR, but at around 120 bpm there is not enough time between contractions for the ventricles to fill up with blood. Up until 160bpm the rate at which SV decreases is lower than the rate at which HR increases, so CO will continue to increase. As HR rises above 160 bpm, this balance shifts and CO starts to decrease. Therefor individuals performing aerobic exercises are cautioned to monitor their HR to ensure they stay within the target heart rate range. The target HR is loosely defined as the range in which both the heart and lungs receive the maximum benefit from the aerobic workout and is dependent upon age.
+It is clear that a higher heart rate will result in a higher Cardiac Output, but its not just a matter of multiplying Heart Rate with Stroke Volume. SV will initially be able to keep up with an increase in HR, but at around 120 bpm there is not enough time between contractions for the ventricles to fill up with blood. Up until 160bpm the rate at which SV decreases is lower than the rate at which HR increases, so CO will continue to increase. As HR rises above 160 bpm, this balance shifts and CO starts to decrease. Therefor individuals performing aerobic exercises are cautioned to monitor their HR to ensure they stay within the target heart rate range. The target HR is loosely defined as the range in which both the heart and lungs receive the maximum benefit from the aerobic workout and is dependent upon age.
 
 [@Openstax]
 
@@ -106,7 +112,7 @@ The phonocardiograph will measure heart pulse data by listening to the sound of 
 
 By careful placement of surface electrodes on the body, it is possible to record the complex, compound electrical signal of the heart. This tracing of the electrical signal is the electrocardiogram (ECG). There are five prominent points on the ECG (see figure \ref{ecg}): the P wave, the QRS complex, and the T wave. The small P wave represents the impulse in the atria. The atria begin contracting approximately 25 ms after the start of the P wave. The large QRS complex represents the impulse in the ventricles, which will begin to contract as R wave reaches its peak. Lastly, the T wave represents the end of the impulse in the ventricles (the end of the impulse in the atria is obfuscated by the QRS complex). Segments are defined as the regions between two waves. Intervals include one segment plus one or more waves. In this thesis the most notable interval is the RR interval, or the interval between the peaks of the QRS complex. [@Openstax]
 
-The standard electrocardiograph uses multiple electrodes to obtain 3, 5, or 12 leads. The greater the number of leads an electrocardiograph uses, the more information the ECG provides. The term “lead” typically describes the voltage difference between two of the electrodes. Electrocardiographs are also available in small, portable, battery-operated devices known as a Holter monitor, or simply a Holter, that continuously monitors heart electrical activity. Chest strap heart rate monitors, such as the polar H-series are a rudimentary electrocardiograph.
+The standard electrocardiograph uses multiple electrodes to obtain 3, 5, or 12 leads. The greater the number of leads an electrocardiograph uses, the more information the ECG provides. The term “lead” typically describes the voltage difference between two of the electrodes. Electrocardiographs are also available in small, portable, battery-operated devices known as a Holter monitor, or simply a Holter, that continuously monitors heart electrical activity. Chest strap heart rate monitors, such as the polar H-series are rudimentary electrocardiographs.
 
 ![an example ECG tracing \label{ecg}](source/figures/ecg.jpg){ width=100% }
 
@@ -127,6 +133,8 @@ PPG sensors are fairly simple devices and have found their way to various wrist-
  - Resting heart rate variability and heart rate recovery after submaximal exercise
 
 We onderzoeken het verschil tussen een fitte persoon en een onfitte persoon op fysiologisch vlak, en trekken conclusies over wat wel en niet relevant is voor ons programma
+
+Heart rate kinetics: . Because ofthe existence ofthe slow component, there is a wide range of exercise intensities (which depend on the physical condition ofthe individual) for which a steady state in the heart rate values cannot be attained. As the slow component is linked to the process of fatigue, the higher the intensity that can be sustained in the absence of slow component, the better the prospects for endurance. Endurance training will have the ef- fect of elevating the value oflactate threshold ofan individual and thus eliminate the slow com- ponent for some exercise intensities. This way exercise intensities which were initially severe for the particular person might become heavy or even moderate following training
 
 ### Hoe wordt fitheid getrained
  - Recovery and performance in sport: Consensus statement
