@@ -30,28 +30,6 @@ The SA node, without external control, would initiate a heart impulse approximat
 
 ## Fysiological function of the heart
 
-### Heart Rate kinetics
-The maximum heart rate that a healty individual can attain is around 220 bpm. This maximum heart rate is a hard limit due to physiological phenomena (the maximum throughput of the SA node) and will remain constant for a subject, regardless of increased/decreased fitness level or other factors. Due to age this maximum heart rate will slowly deteriorate and can be approximated by taking this 220 bpm maximum and subtracting the age of the subject. 
-
-The lowest heart rate that a healthy individual can attain is called the Resting Heart Rate. It is the heart rate of the subject when it is at complete rest, relaxed but awake, with no external stress factors such as recent exercise, environmental temperature,... For an average person this lies within the interval of 60 to 100 beats per minute, but a few exceptionally trained aerobic athletes demonstrate resting heart rates in the range of 30–40 beats per minute. This is lower for fit individuals because the body has adapted to maintain basic functionality on these lower heart rates.
-
-Performing any kind of movement will place a circulatory demand on the heart, and the heart rate will change to meet this demand. If demand is higher than what HR_max allows, the heart rate will plateau at HR_max until the body can no longer sustain the exercise. For a constant exercise that doesn't reach this boundary the demand will also remain constant, so an equilibrium will be reached at a certain heart rate. An important distiction to make is that of the lactate threshold. Lactate is a substance in the blood that increases in concentration when performing heavy exercise. 
-
-Heart rate will quickly reach the equilibrium as described as long as blood lactate levels remain under a threshold (the value of which depends on the individual). At higher levels of exertion blood lactate levels will rise but plateau after 10-20 minutes above the resting lactate levels. This means that the heart rate equilibrium will only be reached after 10-20 minutes of sustained exercise; this is called the slow component of cardiovascular kinetics. At severe levels of exercise lactate levels will not plateau but rise steeply until the subject is too exhausted to continue, no equilibrium will be reached.
-
-[@Zakynthinaki2015]
-
-### Cardiac Output
-
-In the context of fitness, one of the most important factors is Cardiac Output (CO). CO is the measurement of the volume of blood pumped by each ventricle per minute, and is calculated by multiplying Heart Rate with Stroke Volume (the amount of blood pumped by each ventricle). It is fairly easy to conclude that an increase in CO means an increase in oxygenated blood reaching the muscles, which increases the potential maximum energy output of a muscle. Note that SV is not the same as the volume of a ventricle. There is always a certain volume of blood (the so-called End Systolic Volume or offload) present in the ventricles. During the cardiac cycle the ventricles fill up to a maximum volume (called the End Diastolic Volume or preload) after which the SV is ejected to return to the ESV. An average heart at rest has approx 130 mL EDV and 50-60 mL ESV, which result in an SV of 70-80 mL.
-
-It is clear that a higher heart rate will result in a higher Cardiac Output, but its not just a matter of multiplying Heart Rate with Stroke Volume. SV will initially be able to keep up with an increase in HR, but at around 120 bpm there is not enough time between contractions for the ventricles to fill up with blood. Up until 160bpm the rate at which SV decreases is lower than the rate at which HR increases, so CO will continue to increase. As HR rises above 160 bpm, this balance shifts and CO starts to decrease. Therefor individuals performing aerobic exercises are cautioned to monitor their HR to ensure they stay within the target heart rate range. The target HR is loosely defined as the range in which both the heart and lungs receive the maximum benefit from the aerobic workout and is dependent upon age.
-
-[@Openstax]
-
-<!-- volume kunnen we niet meten -->
-<!-- HR gebruiken als benadering/approximation -->
-
 ### Nerval stimulation
 
 The human body is a complex balancing act of various electrical and/or hormonal impulses.
@@ -102,6 +80,68 @@ Tranquilizers        Presence of opiates, tranquilizers or other depressants
 
 Table: Major Factors decreasing Heart Rate and force of contraction. [@Openstax] \label{hr_decrease}
 
+### Heart Rate
+The maximum heart rate that a healty individual can attain is around 220 bpm. This maximum heart rate is a hard limit due to physiological phenomena (the maximum throughput of the SA node) and will remain constant for a subject, regardless of increased/decreased fitness level or other factors. Due to age this maximum heart rate will slowly deteriorate and can be approximated by taking this 220 bpm maximum and subtracting the age of the subject. 
+
+The lowest heart rate that a healthy individual can attain is called the Resting Heart Rate. It is the heart rate of the subject when it is at complete rest, relaxed but awake, with no external stress factors such as recent exercise, environmental temperature,... For an average person this lies within the interval of 60 to 100 beats per minute, but a few exceptionally trained aerobic athletes demonstrate resting heart rates in the range of 30–40 beats per minute. This is lower for fit individuals because the body has adapted to maintain basic functionality on these lower heart rates.
+
+Performing any kind of movement will place a circulatory demand on the heart, and the heart rate will change to meet this demand. If demand is higher than what HR_max allows, the heart rate will plateau at HR_max until the body can no longer sustain the exercise. For a constant exercise that doesn't reach this boundary the demand will also remain constant, so an equilibrium will be reached at a certain heart rate. An important distiction to make is that of the lactate threshold. Lactate is a substance in the blood that increases in concentration when performing heavy exercise. 
+
+Heart rate will quickly reach the equilibrium as described as long as blood lactate levels remain under a threshold (the value of which depends on the individual). At higher levels of exertion blood lactate levels will rise but plateau after 10-20 minutes above the resting lactate levels. This means that the heart rate equilibrium will only be reached after 10-20 minutes of sustained exercise; this is called the slow component of cardiovascular kinetics. At severe levels of exercise lactate levels will not plateau but rise steeply until the subject is too exhausted to continue, no equilibrium will be reached.
+
+[@Zakynthinaki2015]
+
+### Heart Rate variability
+
+TODO: de paper [@Shaffer2017] is heel uitgebreid, later terugkeren om de relevante informatie uit te filteren
+
+The time between heartbeats (the RR interval) is not constant but fluctuates ever so slightly between beats. The difference between these intervals is not random but is the result of a multitude of complex interactions between various organs of the body and is best described as "mathematical chaos". 
+
+#### Time domain
+
+A way to measure HRV is in the time domain, meaning that we look at the time in between heart beats and derive metrics from the difference.
+
+ - SDNN
+ - SDRR
+ - SDANN
+ - SDNNI
+ - RMSSD
+ - HTI
+
+#### Frequency domain
+
+Various oscillations have been measured with a frequency ranging from seconds to >24 hours and can be roughly grouped into different bands (see table \ref{hrv_freq}). The LF and HF bands are significant because their oscillations can be affected by breathing rythm. More specifically, the LF band is affected by slow breaths (3 to 9 per minute) and the HF band is affected by fast breathing (9 to 24 per minut)e
+
+Name                            Period                  Actors
+----                            ------                  ------
+Ultra Low (ULF)                 5 min - 24 hrs          
+Very Low (VLF)                  25 sec - 300 sec
+Low (LF)                        7 sec - 25 sec
+High (HF) or Respiratory band   <7 sec
+
+Table: frequency bands of Heart Rate variability. \label{hrv_freq}
+
+ - LF/HF ratio
+
+#### Contextual Factors
+
+#### Subject Variables
+
+### Heart Rate Recovery
+
+Heart Rate Recovery takes time between the end of exercise and the return to the Resting Heart Rate. As mentioned before, the heart rate is influenced by the two distinct nervous systems; parasympathetic (PNS) and sympathetic (SNS). This balancing act has a significant effect on HRR, because the impulses of these systems are delivered independently from each other. At first the PNS, responsible for reducing heart rate, will kick into gear resulting in a sharp decrease in HR. The SNS, responsible for increasing heart rate, reacts slower and winds down the impulses given to the heart gradually. The combination will result in Heart Rate Recovery Curve, split into a fast phase and a slow phase. The transition between these phases denotes the border where the SNS takes over the mediation of HR from the PNS [@Bartels2018]. Studies show that this curve becomes steeper as the subject ages, so window of at least 2 minutes between measurements is recommended for achieving age-independent HRR metrics [@SuzicLazic2017]
+
+### Cardiac Output
+
+In the context of fitness, one of the most important factors is Cardiac Output (CO). CO is the measurement of the volume of blood pumped by each ventricle per minute, and is calculated by multiplying Heart Rate with Stroke Volume (the amount of blood pumped by each ventricle). It is fairly easy to conclude that an increase in CO means an increase in oxygenated blood reaching the muscles, which increases the potential maximum energy output of a muscle. Note that SV is not the same as the volume of a ventricle. There is always a certain volume of blood (the so-called End Systolic Volume or offload) present in the ventricles. During the cardiac cycle the ventricles fill up to a maximum volume (called the End Diastolic Volume or preload) after which the SV is ejected to return to the ESV. An average heart at rest has approx 130 mL EDV and 50-60 mL ESV, which result in an SV of 70-80 mL.
+
+It is clear that a higher heart rate will result in a higher Cardiac Output, but its not just a matter of multiplying Heart Rate with Stroke Volume. SV will initially be able to keep up with an increase in HR, but at around 120 bpm there is not enough time between contractions for the ventricles to fill up with blood. Up until 160bpm the rate at which SV decreases is lower than the rate at which HR increases, so CO will continue to increase. As HR rises above 160 bpm, this balance shifts and CO starts to decrease. Therefor individuals performing aerobic exercises are cautioned to monitor their HR to ensure they stay within the target heart rate range. The target HR is loosely defined as the range in which both the heart and lungs receive the maximum benefit from the aerobic workout and is dependent upon age.
+
+[@Openstax]
+
+<!-- volume kunnen we niet meten -->
+<!-- HR gebruiken als benadering/approximation -->
+
 ## Measuring heart rate
 
 ### Phonocardiogram (PCG) measurement
@@ -124,7 +164,7 @@ PPG sensors are fairly simple devices and have found their way to various wrist-
 
 ## Fitheid
 
-### Hoe manifesteert fitheid zichzelf
+### Hoe manifesteert fitheid zichzelf TODO
  - Heart rate variability and aerobic fitness
  - Post-exercise heart-rate recovery correlates to resting heart-rate variability in healthy men
  - Heart rate recovery fast-to-slow phase transition: Influence of physical fitness and exercise intensity
@@ -136,7 +176,7 @@ We onderzoeken het verschil tussen een fitte persoon en een onfitte persoon op f
 
 Heart rate kinetics: . Because ofthe existence ofthe slow component, there is a wide range of exercise intensities (which depend on the physical condition ofthe individual) for which a steady state in the heart rate values cannot be attained. As the slow component is linked to the process of fatigue, the higher the intensity that can be sustained in the absence of slow component, the better the prospects for endurance. Endurance training will have the ef- fect of elevating the value oflactate threshold ofan individual and thus eliminate the slow com- ponent for some exercise intensities. This way exercise intensities which were initially severe for the particular person might become heavy or even moderate following training
 
-### Hoe wordt fitheid getrained
+### Hoe wordt fitheid getrained TODO
  - Recovery and performance in sport: Consensus statement
  - Overtraining syndrome
  - Overtraining in Resistance Exercise: An Exploratory Systematic Review and Methodological Appraisal of the Literature
@@ -154,6 +194,10 @@ Heart rate kinetics: . Because ofthe existence ofthe slow component, there is a 
 Functional overreaching
 Overtraining
 trainingsritme
+
+### functional overreaching
+
+### overtraining syndrome
 
 ### muscle fatigue
 
