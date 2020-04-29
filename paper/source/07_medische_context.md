@@ -95,7 +95,7 @@ Heart rate will quickly reach the equilibrium as described as long as blood lact
 
 TODO: de paper [@Shaffer2017] is heel uitgebreid, later terugkeren om de relevante informatie uit te filteren
 
-The time between heartbeats (the RR interval) is not constant but fluctuates ever so slightly between beats. The difference between these intervals is not random but is the result of a multitude of complex interactions between various organs of the body and is best described as "mathematical chaos". 
+The time between heartbeats (the RR interval) is not constant but fluctuates ever so slightly between beats. The difference between these intervals is not random but is the result of a multitude of complex interactions between various organs of the body and is best described as "mathematical chaos". HRV dimishes with age and is a marker for parasympathetic activity, with a higher value being in general considered "more healthy". Lower HRV values have been linked to Myocardial Infarction and Myocardial Dysfunction, while raising HRV through exercise to battle cardiovascular mortality risk has been proven beneficial. [@Malik1996]
 
 #### Time domain
 
@@ -129,7 +129,7 @@ Table: frequency bands of Heart Rate variability. \label{hrv_freq}
 
 ### Heart Rate Recovery
 
-Heart Rate Recovery takes time between the end of exercise and the return to the Resting Heart Rate. As mentioned before, the heart rate is influenced by the two distinct nervous systems; parasympathetic (PNS) and sympathetic (SNS). This balancing act has a significant effect on HRR, because the impulses of these systems are delivered independently from each other. At first the PNS, responsible for reducing heart rate, will kick into gear resulting in a sharp decrease in HR. The SNS, responsible for increasing heart rate, reacts slower and winds down the impulses given to the heart gradually. The combination will result in Heart Rate Recovery Curve, split into a fast phase and a slow phase. The transition between these phases denotes the border where the SNS takes over the mediation of HR from the PNS [@Bartels2018]. Studies show that this curve becomes steeper as the subject ages, so window of at least 2 minutes between measurements is recommended for achieving age-independent HRR metrics [@SuzicLazic2017]
+Heart Rate Recovery takes time between the end of exercise and the return to the Resting Heart Rate. As mentioned before, the heart rate is influenced by the two distinct nervous systems; parasympathetic (PNS) and sympathetic (SNS). This balancing act has a significant effect on HRR, because the impulses of these systems are delivered independently from each other. At first the PNS, responsible for reducing heart rate, will kick into gear resulting in a sharp decrease in HR. The SNS, responsible for increasing heart rate, reacts slower and winds down the impulses given to the heart gradually. The combination will result in Heart Rate Recovery Curve, split into a fast phase and a slow phase. The transition between these phases denotes the border where the SNS takes over the mediation of HR from the PNS [@Bartels2018]. Studies show that this curve becomes steeper as the subject transition to adulthood, so a window of at least 2, preferrably 3 minutes between measurements is recommended for achieving age-independent HRR metrics [@SuzicLazic2017] [@Molina2016]
 
 ### Cardiac Output
 
@@ -164,17 +164,47 @@ PPG sensors are fairly simple devices and have found their way to various wrist-
 
 ## Fitheid
 
+
 ### Hoe manifesteert fitheid zichzelf TODO
- - Heart rate variability and aerobic fitness
- - Post-exercise heart-rate recovery correlates to resting heart-rate variability in healthy men
- - Heart rate recovery fast-to-slow phase transition: Influence of physical fitness and exercise intensity
- - Recovery and performance in sport: Consensus statement
- - The development of functional overreaching is associated with a faster heart rate recovery in endurance athletes
- - Resting heart rate variability and heart rate recovery after submaximal exercise
+ x Heart rate variability and aerobic fitness
+ x Post-exercise heart-rate recovery correlates to resting heart-rate variability in healthy men
+ x Heart rate recovery fast-to-slow phase transition: Influence of physical fitness and exercise intensity
+ x Resting heart rate variability and heart rate recovery after submaximal exercise
 
 We onderzoeken het verschil tussen een fitte persoon en een onfitte persoon op fysiologisch vlak, en trekken conclusies over wat wel en niet relevant is voor ons programma
 
+#### Baeke Score
+
+#### VO2 Max
+
+#### Aerobic capacity
+
+Distinctie tussen fitheid en cardiovascular health, intrisiek gelinkt maar gezondheid != fysieke capaciteit
+
+In this sense, it has been demonstrated that high- intensity exercises delay both parasympathetic reactivation and sympathetic withdrawal [@Bartels2018]
+
+HRRPT was higher in HI than MI, confirming a slower cardiac autonomic recovery after a high- intensity exercise. On the other hand, there was no difference in HRRFP between HI and MI, and HRRSP was increased in HI compared with MI, which diverge from the study’s hypothesis [@Bartels2018]
+
+The normalized analysis also reveals that HRRFP accounts for almost all of the HR decay seen in MI session (≈ 98%), remaining only a minor portion of the decay for HRRSP (≈ 2%). On the other hand, slightly different contributions are observed in HI session (91% and 9%). For these reasons, percentage values of HRRFP and HRRSP might provide complementary information when comparing different exer- cise intensities.  [@Bartels2018]
+
+The main finding of this research is that habitual aerobic exercise appears to play a role in the maintenance of augmented HRV in active men when compared with age- and weight-matched sedentary control subjects. [@DeMeersman]
+
 Heart rate kinetics: . Because ofthe existence ofthe slow component, there is a wide range of exercise intensities (which depend on the physical condition ofthe individual) for which a steady state in the heart rate values cannot be attained. As the slow component is linked to the process of fatigue, the higher the intensity that can be sustained in the absence of slow component, the better the prospects for endurance. Endurance training will have the ef- fect of elevating the value oflactate threshold ofan individual and thus eliminate the slow com- ponent for some exercise intensities. This way exercise intensities which were initially severe for the particular person might become heavy or even moderate following training
+
+geen significante correlatie tussen HRR en HRV [@Esco2010] [@Molina2016] [@Esco2010]
+
+HRR (vooral de fast phase) correleert met parasympathetic modulation [@Danieli2014]
+
+HRV correleert met VO2, betere stats voor hoge (cardiovasculaire) fitness [@Buchheit2006]
+
+We found that HRR was statistically significantly faster in athletes than in controls at all examination time points (p\0.05).[@Danieli2014]
+
+HF, SDNN and RMSSD were statisti- cally significantly higher in athletes than in controls (p\0.05), but other resting HRV parameters were not statistically different between groups [@Danieli2014]
+
+HRR correleert met Baeke score, snellere recovery voor "getrained (hogere training load)/meer spieren" [@Buchheit2006]
+
+In this current opinion, we suggest that longitudinal monitoring is required to understand each athlete’s optimal HRV to R–R interval fingerprint (i.e., Fig. 3). The possible indices ofHRV that are practically useful for monitoring training status in elite ath- letes include weekly and 7-day rolling averaged Ln rMSSD, and the Ln rMSSD to R–R interval ratio, using the individual SWC to represent a meaningful change in fatigue and/or fitness [1]. Further, weencourage practitioners to use just one HRV index for analysis; research suggests Ln rMSSD pro- vides the most reliable and practically applicable measure for day-to-day monitoring. In the case of elite athletes, increasing HRV values (as competition approaches) may be a sign ofpositive adaptation and/or coping with training load, while reductions in HRV in the week/days before pinnacle events may represent increasing freshness and readiness to perform. [@Plews2013]
+
 
 ### Hoe wordt fitheid getrained TODO
  - Recovery and performance in sport: Consensus statement
@@ -190,14 +220,21 @@ Heart rate kinetics: . Because ofthe existence ofthe slow component, there is a 
  - Assessing overreaching with heart-rate recovery: What is the minimal exercise intensity required?
  - Is heart rate a convenient tool to monitor overreaching? A systematic review of the literature
  - Overtraining syndrome
+ - The development of functional overreaching is associated with a faster heart rate recovery in endurance athletes
+
 
 Functional overreaching
 Overtraining
 trainingsritme
 
-### functional overreaching
 
-### overtraining syndrome
+#### Detraining
+
+#### functional overreaching
+
+HRR is geen metriek voor f-OR [@Aubry2015]
+
+#### overtraining syndrome
 
 ### muscle fatigue
 
