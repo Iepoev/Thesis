@@ -108,6 +108,9 @@ A way to measure HRV is in the time domain, meaning that we look at the time in 
  - RMSSD
  - HTI
 
+
+Therefore, 60 seconds appears to be an acceptable recording time for lnRMSSD data collection in col- legiate athletes. [@Esco2014]
+
 #### Frequency domain
 
 Various oscillations have been measured with a frequency ranging from seconds to >24 hours and can be roughly grouped into different bands (see table \ref{hrv_freq}). The LF and HF bands are significant because their oscillations can be affected by breathing rythm. More specifically, the LF band is affected by slow breaths (3 to 9 per minute) and the HF band is affected by fast breathing (9 to 24 per minut)e
@@ -162,24 +165,45 @@ Various biological tissue types (bone, blood, pigments in the skin,...) reflect 
 
 PPG sensors are fairly simple devices and have found their way to various wrist-based wearables, where they measure the pulse rate of the arteries in the wrist.
 
-## Fitheid
+## Physical fitness
 
+To model our fitness coach we need to know the distint differences between a fit and unfit subject. We also have to make the distiction between a trained and untrained subject, because these concepts are inherently linked but are not synonyms. To be "fit" is to have a large aerobic capacity, the body has adapted to be able to deliver more oxygen to the muscles which improves aerobic ability. To be "trained" is having the extra muscle and nerval impulses te be able to use this oxygen, converting it into more power than an untrained subject.
 
-### Hoe manifesteert fitheid zichzelf TODO
- x Heart rate variability and aerobic fitness
- x Post-exercise heart-rate recovery correlates to resting heart-rate variability in healthy men
- x Heart rate recovery fast-to-slow phase transition: Influence of physical fitness and exercise intensity
- x Resting heart rate variability and heart rate recovery after submaximal exercise
+Another aspect that is closely linked to "fitness" is cardiovascular health. It is common knowledge that being more fit results in a lesser change to contract cardiovascular problems such as infarcts, but being in good cardiovascular health doesn't necessarily imply being fit. Attempting to alleviate poor cardivascular health through fitness training is however a widely acknowledged and applied therapy.
 
-We onderzoeken het verschil tussen een fitte persoon en een onfitte persoon op fysiologisch vlak, en trekken conclusies over wat wel en niet relevant is voor ons programma
+### Fitness metrics
+
+Due to the large amounts of ways to parametrize "fitness", calculating a fitness score involves carefully selecting which metrics to incorporate and which to ignore.
 
 #### Baeke Score
 
-#### VO2 Max
+The Baeke Score is a tried and tested [@Florindo2003] self-administered questionaire to evaluate the activity level of the subject. It is a quick way to determine a rudimentary score for the fitness level of an individual, but requires validation from measurements to be a reliable metric.
 
-#### Aerobic capacity
+#### VO2 Max & Aerobic capacity
 
-Distinctie tussen fitheid en cardiovascular health, intrisiek gelinkt maar gezondheid != fysieke capaciteit
+VO2 Max is the gold standard measure of integrated cardiorespiratory capacity reflecting the capacity of the circulatory and respiratory systems to deliver oxygen to skeletal muscle during exercise,
+
+The results revealed that
+V_O2 max may be pre-dicted from RPE:VO2 during PRET in different popula- tions and in various PRET modalities, regardless of the subgroup outcomes. To obtain greater accuracy of predic- tions, extrapolation to RPE20 during a retest may be recommended. [@Coquart2016]
+
+#### Heart Rate variability
+
+The main finding of this research is that habitual aerobic exercise appears to play a role in the maintenance of augmented HRV in active men when compared with age- and weight-matched sedentary control subjects. [@DeMeersman]
+
+HRV correleert met VO2, betere stats voor hoge (cardiovasculaire) fitness [@Buchheit2006]
+
+HF, SDNN and RMSSD were statistically significantly higher in athletes than in controls, but other resting HRV parameters were not statistically different between groups [@Danieli2014]
+
+Ratings of Perceived Exertion!!
+
+In this current opinion, we suggest that longitudinal monitoring is required to understand each athlete’s optimal HRV to R–R interval fingerprint (i.e., Fig. 3). The possible indices ofHRV that are practically useful for monitoring training status in elite ath- letes include weekly and 7-day rolling averaged Ln rMSSD, and the Ln rMSSD to R–R interval ratio, using the individual SWC to represent a meaningful change in fatigue and/or fitness [1]. Further, weencourage practitioners to use just one HRV index for analysis; research suggests Ln rMSSD pro- vides the most reliable and practically applicable measure for day-to-day monitoring. In the case of elite athletes, increasing HRV values (as competition approaches) may be a sign ofpositive adaptation and/or coping with training load, while reductions in HRV in the week/days before pinnacle events may represent increasing freshness and readiness to perform. [@Plews2013]
+
+
+#### Heart Rate Recovery
+
+HRR differs alot from subject to subject, depending on the type of sport the subject is trained in, his/her age, the intensity of the training regime, etc. [@Durmic2019] It is important to use the change in HRR over time as a measure of increased fitness, instead of using it as a baseline fitness metric. 
+
+
 
 In this sense, it has been demonstrated that high- intensity exercises delay both parasympathetic reactivation and sympathetic withdrawal [@Bartels2018]
 
@@ -187,23 +211,23 @@ HRRPT was higher in HI than MI, confirming a slower cardiac autonomic recovery a
 
 The normalized analysis also reveals that HRRFP accounts for almost all of the HR decay seen in MI session (≈ 98%), remaining only a minor portion of the decay for HRRSP (≈ 2%). On the other hand, slightly different contributions are observed in HI session (91% and 9%). For these reasons, percentage values of HRRFP and HRRSP might provide complementary information when comparing different exer- cise intensities.  [@Bartels2018]
 
-The main finding of this research is that habitual aerobic exercise appears to play a role in the maintenance of augmented HRV in active men when compared with age- and weight-matched sedentary control subjects. [@DeMeersman]
-
-Heart rate kinetics: . Because ofthe existence ofthe slow component, there is a wide range of exercise intensities (which depend on the physical condition ofthe individual) for which a steady state in the heart rate values cannot be attained. As the slow component is linked to the process of fatigue, the higher the intensity that can be sustained in the absence of slow component, the better the prospects for endurance. Endurance training will have the ef- fect of elevating the value oflactate threshold ofan individual and thus eliminate the slow com- ponent for some exercise intensities. This way exercise intensities which were initially severe for the particular person might become heavy or even moderate following training
-
-geen significante correlatie tussen HRR en HRV [@Esco2010] [@Molina2016] [@Esco2010]
+Heart rate kinetics: . Because of the existence of the slow component, there is a wide range of exercise intensities (which depend on the physical condition ofthe individual) for which a steady state in the heart rate values cannot be attained. As the slow component is linked to the process of fatigue, the higher the intensity that can be sustained in the absence of slow component, the better the prospects for endurance. Endurance training will have the ef- fect of elevating the value oflactate threshold ofan individual and thus eliminate the slow com- ponent for some exercise intensities. This way exercise intensities which were initially severe for the particular person might become heavy or even moderate following training
 
 HRR (vooral de fast phase) correleert met parasympathetic modulation [@Danieli2014]
 
-HRV correleert met VO2, betere stats voor hoge (cardiovasculaire) fitness [@Buchheit2006]
-
 We found that HRR was statistically significantly faster in athletes than in controls at all examination time points (p\0.05).[@Danieli2014]
 
-HF, SDNN and RMSSD were statisti- cally significantly higher in athletes than in controls (p\0.05), but other resting HRV parameters were not statistically different between groups [@Danieli2014]
+geen significante correlatie tussen HRR en HRV [@Esco2010] [@Molina2016] [@Esco2010]
+
+. Fast HRR is associated not only with better athletic performance, but also with cardiac functional adaptation physical activities of various durations and intensities. 
 
 HRR correleert met Baeke score, snellere recovery voor "getrained (hogere training load)/meer spieren" [@Buchheit2006]
 
-In this current opinion, we suggest that longitudinal monitoring is required to understand each athlete’s optimal HRV to R–R interval fingerprint (i.e., Fig. 3). The possible indices ofHRV that are practically useful for monitoring training status in elite ath- letes include weekly and 7-day rolling averaged Ln rMSSD, and the Ln rMSSD to R–R interval ratio, using the individual SWC to represent a meaningful change in fatigue and/or fitness [1]. Further, weencourage practitioners to use just one HRV index for analysis; research suggests Ln rMSSD pro- vides the most reliable and practically applicable measure for day-to-day monitoring. In the case of elite athletes, increasing HRV values (as competition approaches) may be a sign ofpositive adaptation and/or coping with training load, while reductions in HRV in the week/days before pinnacle events may represent increasing freshness and readiness to perform. [@Plews2013]
+HRR, specifiek HRI (zijnde HRmax – 1-min post-exercise HR (HRrec1), aka fast phase HRR) correleert met VO2 Max, aangezien VO2Max correleert met [@Durmic2019]
+
+Another importance ofour results is the significant positive correlation between VO2max
+values and HRI, implicating that HRR pattern may be a potentially useful cardiovascular fitness level measuring parameter in elite athletes. In addition, the results of this study proposed an optimal cut-off value that could be used as an indicator of the level of aerobic capacity in elite athletes. The usefulness ofthe proposed cut-offvalue is even more important considering that, according to the results of this study, there was a strong positive correlation between VO2max values and HRI values. Thus, our results put HRR pattern in elite athletes into a different perception. Namely, previous studies showed that HRR represents a complex interaction between autonomic and numerous humoral factors (6). The fact that HRR is associated with a fine autonomic balance, while VO2max is mostly connected with enhanced sympathetic activity, put HRI into a different perspective. Namely, fine autonomic balance, with the parasympathetic predomination, represents not only the main difference between athletes and sedentary people, but also could be used in training-induced disturbances and as a training prescription method in elite athletes [@Durmic2019]
+
 
 
 ### Hoe wordt fitheid getrained TODO
