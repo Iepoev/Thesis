@@ -179,31 +179,21 @@ Due to the large amounts of ways to parametrize "fitness", calculating a fitness
 
 The Baeke Score is a tried and tested [@Florindo2003] self-administered questionaire to evaluate the activity level of the subject. It is a quick way to determine a rudimentary score for the fitness level of an individual, but requires validation from measurements to be a reliable metric.
 
-#### VO2 Max & Aerobic capacity
+#### VO2 Max & Aerobic capacity TODO
 
-VO2 Max is the gold standard measure of integrated cardiorespiratory capacity reflecting the capacity of the circulatory and respiratory systems to deliver oxygen to skeletal muscle during exercise,
+Aerobic capacity is the ability to take in oxygen and deliver it to skeletal muscle during exercise. It uses VO2 Max (or Peak Oxygen Uptake), the maximum rate of oxygen consumption in mL/(kg\*min), as a measure because it reflects the capabilities of the circulatory and respiratory systems. It is a gold standard measure for comparing individual subjects and training methods because it correlates with cardiorespiratory fitness and endurance capacity.
 
-The results revealed that
-V_O2 max may be pre-dicted from RPE:VO2 during PRET in different popula- tions and in various PRET modalities, regardless of the subgroup outcomes. To obtain greater accuracy of predic- tions, extrapolation to RPE20 during a retest may be recommended. [@Coquart2016]
+Measuring VO_2max is difficult/impossible without specialized medical equipment, but a meta-study revealed that V_O2 max may be stimulated/extrapolated from Rating of Perceived Exertion (RPE) during a Perceptually Regulated Exercise Test (PRET) test. RPE is a standardised 6-20 scale with 6 meaning no exertion at all and 20 meaning maximal exertion. These ratings can informally be described as "exercise resulting in a heartrate of rating times 10".
 
 #### Heart Rate variability
 
-The main finding of this research is that habitual aerobic exercise appears to play a role in the maintenance of augmented HRV in active men when compared with age- and weight-matched sedentary control subjects. [@DeMeersman]
+Heart Rate variability is the variation in time between each heartbeat. This variation is affected by the autonomic nervous system and will increase from parasympathetic/rest-and-digest activity and decrease from sympathetic/fight-or-flight activity. A healthy ANS is one that can quickly activate or deactivate either stimuli, so being able to quickly change from low to high variation and vice-versa is a measure of good physical and mental health and high stress resilience [@Dong2018]. Habitual aerobic exercise appears to aid the maintenance of higher HRV in active subjects when compared with age- and weight-matched sedentary subjects [@DeMeersman], and correlates with VO2 Max [@Buchheit2006]. 
 
-HRV correleert met VO2, betere stats voor hoge (cardiovasculaire) fitness [@Buchheit2006]
-
-HF, SDNN and RMSSD were statistically significantly higher in athletes than in controls, but other resting HRV parameters were not statistically different between groups [@Danieli2014]
-
-Ratings of Perceived Exertion!!
-
-In this current opinion, we suggest that longitudinal monitoring is required to understand each athlete’s optimal HRV to R–R interval fingerprint (i.e., Fig. 3). The possible indices ofHRV that are practically useful for monitoring training status in elite ath- letes include weekly and 7-day rolling averaged Ln rMSSD, and the Ln rMSSD to R–R interval ratio, using the individual SWC to represent a meaningful change in fatigue and/or fitness [1]. Further, weencourage practitioners to use just one HRV index for analysis; research suggests Ln rMSSD pro- vides the most reliable and practically applicable measure for day-to-day monitoring. In the case of elite athletes, increasing HRV values (as competition approaches) may be a sign ofpositive adaptation and/or coping with training load, while reductions in HRV in the week/days before pinnacle events may represent increasing freshness and readiness to perform. [@Plews2013]
-
+Not all HRV measures are created equal; HF, SDNN and RMSSD were statistically significantly higher in athletes than in controls, but other resting HRV parameters were not statistically different between groups [@Danieli2014]. It is equally important to compare HRV measures not in a vaccuum but when measured in longitudinal monitoring. In the case of elite athletes training for an upcoming event, another study found weekly and 7-day rolling averaged Ln rMSSD and the Ln rMSSD to R–R interval ratio, using the individual SWC (smallest worthwhile change) are practically useful to represent a meaningful change in fatigue and/or fitness. In the same study, increasing HRV values were show to be a possible sign of positive adaptation and/or coping with training load, while reductions in HRV in the week/days before pinnacle events may represent increasing freshness and readiness to perform [@Plews2013].
 
 #### Heart Rate Recovery
 
 HRR differs alot from subject to subject, depending on the type of sport the subject is trained in, his/her age, the intensity of the training regime, etc. [@Durmic2019] It is important to use the change in HRR over time as a measure of increased fitness, instead of using it as a baseline fitness metric. 
-
-
 
 In this sense, it has been demonstrated that high- intensity exercises delay both parasympathetic reactivation and sympathetic withdrawal [@Bartels2018]
 
@@ -221,7 +211,7 @@ geen significante correlatie tussen HRR en HRV [@Esco2010] [@Molina2016] [@Esco2
 
 . Fast HRR is associated not only with better athletic performance, but also with cardiac functional adaptation physical activities of various durations and intensities. 
 
-HRR correleert met Baeke score, snellere recovery voor "getrained (hogere training load)/meer spieren" [@Buchheit2006]
+HRR correleert met Baeke score, snellere recovery voor "getrained (hogere training load)/meer spieren/actieve lifestyle" [@Buchheit2006]
 
 HRR, specifiek HRI (zijnde HRmax – 1-min post-exercise HR (HRrec1), aka fast phase HRR) correleert met VO2 Max, aangezien VO2Max correleert met [@Durmic2019]
 
