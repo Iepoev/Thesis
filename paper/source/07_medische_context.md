@@ -185,6 +185,10 @@ Aerobic capacity is the ability to take in oxygen and deliver it to skeletal mus
 
 Measuring VO_2max is difficult/impossible without specialized medical equipment, but a meta-study revealed that V_O2 max may be stimulated/extrapolated from Rating of Perceived Exertion (RPE) during a Perceptually Regulated Exercise Test (PRET) test. RPE is a standardised 6-20 scale with 6 meaning no exertion at all and 20 meaning maximal exertion. These ratings can informally be described as "exercise resulting in a heartrate of rating times 10".
 
+#### Blood Lactate levels
+
+Fatigue has an apparent impact on the slow phase of the blood lactate level increase, the higher the intensity that can be sustained without a significant presence of the slow component, the better the prospects for endurance. Endurance training will have the effect of elevating the value of lactate threshold of an individual and thus eliminate the slow com- ponent for some exercise intensities. This way exercise intensities which were initially severe for the particular person might become heavy or even moderate following training [@Zakynthinaki2015]
+
 #### Heart Rate variability
 
 Heart Rate variability is the variation in time between each heartbeat. This variation is affected by the autonomic nervous system and will increase from parasympathetic/rest-and-digest activity and decrease from sympathetic/fight-or-flight activity. A healthy ANS is one that can quickly activate or deactivate either stimuli, so being able to quickly change from low to high variation and vice-versa is a measure of good physical and mental health and high stress resilience [@Dong2018]. Habitual aerobic exercise appears to aid the maintenance of higher HRV in active subjects when compared with age- and weight-matched sedentary subjects [@DeMeersman], and correlates with VO2 Max [@Buchheit2006]. 
@@ -195,28 +199,9 @@ Not all HRV measures are created equal; HF, SDNN and RMSSD were statistically si
 
 HRR has become a significant, non-invasive measure of cardiovascular-parasympathetic influence and general cardiovascular health. A large number of studies suggest that slowed HRR is an independent predictor of all-cause mortality [@Qiu2017]. Fast HRR is statistically significantly faster in athletes [@Danieli2014], and is associated with cardiac adaptation to physical activities of various durations and intensities [@Durmic2019]. HRR differs alot from subject to subject, depending on the type of sport the subject is trained in, his/her age, the intensity of the training regime, etc. [@Durmic2019] It is important to use the change in HRR over time as a measure of increased fitness, instead of using it as a baseline fitness metric. 
 
-HRR has a fast phase and a slow phase (see also section \ref{hrr}). Analysis revealed that the fast phase accounts for almost all of the HR decay after a intermediate intensity sessions (≈ 98%), remaining only a minor portion of the decay falling in the slow phase (≈ 2%). On the other hand, slightly different contributions are observed in High Intensity sessions (91% and 9%). For these reasons, percentage values of slow and fast phase might provide complementary information when comparing different exercise intensities. This same study also demonstrated that high-intensity exertion delays both parasympathetic reactivation and sympathetic withdrawal, resulting in a flatter curve [@Bartels2018]. 
+HRR has a fast phase and a slow phase (see also section \ref{hrr}). Analysis revealed that the fast phase accounts for almost all of the HR decay after a intermediate intensity sessions (≈ 98%), remaining only a minor portion of the decay falling in the slow phase (≈ 2%). On the other hand, slightly different contributions are observed in High Intensity sessions (91% and 9%). For these reasons, percentage values of slow and fast phase might provide complementary information when comparing different exercise intensities. This same study also demonstrated that high-intensity exertion delays both parasympathetic reactivation and sympathetic withdrawal, resulting in a flatter curve [@Bartels2018]. The fast phase HRR correlates with parasympathetic modulation [@Danieli2014]
 
-
-
-
-Heart rate kinetics: . Because of the existence of the slow component, there is a wide range of exercise intensities (which depend on the physical condition ofthe individual) for which a steady state in the heart rate values cannot be attained. As the slow component is linked to the process of fatigue, the higher the intensity that can be sustained in the absence of slow component, the better the prospects for endurance. Endurance training will have the ef- fect of elevating the value oflactate threshold ofan individual and thus eliminate the slow com- ponent for some exercise intensities. This way exercise intensities which were initially severe for the particular person might become heavy or even moderate following training [@Zakynthinaki2015]
-
-HRR (vooral de fast phase) correleert met parasympathetic modulation [@Danieli2014]
-
-
-geen significante correlatie tussen HRR en HRV [@Esco2010] [@Molina2016]
-
-
-
-HRR correleert met Baeke score, snellere recovery voor "getrained (hogere training load)/meer spieren/actieve lifestyle" [@Buchheit2006]
-
-HRR, specifiek HRI (zijnde HRmax – 1-min post-exercise HR (HRrec1), aka fast phase HRR) correleert met VO2 Max, aangezien VO2Max correleert met [@Durmic2019]
-
-Another importance ofour results is the significant positive correlation between VO2max
-values and HRI, implicating that HRR pattern may be a potentially useful cardiovascular fitness level measuring parameter in elite athletes. In addition, the results of this study proposed an optimal cut-off value that could be used as an indicator of the level of aerobic capacity in elite athletes. The usefulness ofthe proposed cut-offvalue is even more important considering that, according to the results of this study, there was a strong positive correlation between VO2max values and HRI values. Thus, our results put HRR pattern in elite athletes into a different perception. Namely, previous studies showed that HRR represents a complex interaction between autonomic and numerous humoral factors (6). The fact that HRR is associated with a fine autonomic balance, while VO2max is mostly connected with enhanced sympathetic activity, put HRI into a different perspective. Namely, fine autonomic balance, with the parasympathetic predomination, represents not only the main difference between athletes and sedentary people, but also could be used in training-induced disturbances and as a training prescription method in elite athletes [@Durmic2019]
-
-
+Studies have shown no correlation between HRR and HRV [@Esco2010] [@Molina2016], but a correlation exists between HRR and Baeke score [@Buchheit2006], which means that having an active lifestyle results in faster HRR. Fast phase HRR (specifically, the Heart Rate Index, being HR_max minus Heart rate after 1 minute of recovery) also correlates with VO2 Max. As VO2 max is primarily influenced by sympathetic activity, this means that an incread in fitness not only means higher parasympathetic modulation, but also enhanced sympathetic activity. In general, HRR can be used as a measure of Autonomic Nervous System adaptation [@Durmic2019]. 
 
 ### Hoe wordt fitheid getrained TODO
  - Recovery and performance in sport: Consensus statement
