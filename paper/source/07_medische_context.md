@@ -34,7 +34,7 @@ The SA node, without external control, would initiate a heart impulse approximat
 
 The human body is a complex balancing act of various electrical and/or hormonal impulses.
 
-The nerval system is can be split up in hierarchy: Starting from teh full nerval system we can split 2 subsytems based on their location; the central nervous system in the brain and spinal cord, and the peripheral nervous system in the rest of the body. The peripheral nervous system can again be split up into 2 subsystems based on the control that we have over it: the somatic nerval system which handles voluntary signals and the autonomic nerval system which handles involuntary signals. The autonomic nerval system can again be split up based on the context in which signals are sent: the sympathetic nerval system which handles "fight-and-flight" reactions and the parasympathetic nerval system which handles "rest-and-digest" reactions.
+The nerval system is can be split up in hierarchy: Starting from the full nerval system we can split 2 subsytems based on their location; the central nervous system in the brain and spinal cord, and the peripheral nervous system in the rest of the body. The peripheral nervous system can again be split up into 2 subsystems based on the control that we have over it: the somatic nerval system which handles voluntary signals and the autonomic nerval system which handles involuntary signals. The autonomic nerval system can again be split up based on the context in which signals are sent: the sympathetic nerval system which handles "fight-and-flight" reactions and the parasympathetic nerval system which handles "rest-and-digest" reactions.
 
 Nervous control starts with two paired centers in the brainstem. The cardioaccelerator regions stimulate activity via sympathetic stimulation, and the cardioinhibitory centers decrease heart activity via parasympathetic stimulation. During rest, both centers provide stimulation to the heart, with a slight predomination for cardioinhibitory stimulation as the SA node left to its own devices would initiate a sinus rhythm of approximately 100 bpm. This means that simply stopping parasympathetic stimulation would let the heart rate to increase to approx. 100 bpm, but a further increase requires sympathetic stimulation.
 
@@ -85,7 +85,7 @@ The maximum heart rate that a healty individual can attain is around 220 bpm. Th
 
 The lowest heart rate that a healthy individual can attain is called the Resting Heart Rate. It is the heart rate of the subject when it is at complete rest, relaxed but awake, with no external stress factors such as recent exercise, environmental temperature,... For an average person this lies within the interval of 60 to 100 beats per minute, but a few exceptionally trained aerobic athletes demonstrate resting heart rates in the range of 30–40 beats per minute. This is lower for fit individuals because the body has adapted to maintain basic functionality on these lower heart rates.
 
-Performing any kind of movement will place a circulatory demand on the heart, and the heart rate will change to meet this demand. If demand is higher than what HR_max allows, the heart rate will plateau at HR_max until the body can no longer sustain the exercise. For a constant exercise that doesn't reach this boundary the demand will also remain constant, so an equilibrium will be reached at a certain heart rate. An important distiction to make is that of the lactate threshold. Lactate is a substance in the blood that increases in concentration when performing heavy exercise. 
+Performing any kind of movement will place a circulatory demand on the heart, and the heart rate will change to meet this demand. If demand is higher than what HR$_{max}$ allows, the heart rate will plateau at HR$_{max}$ until the body can no longer sustain the exercise. For a constant exercise that doesn't reach this boundary the demand will also remain constant, so an equilibrium will be reached at a certain heart rate. An important distiction to make is that of the lactate threshold. Lactate is a substance in the blood that increases in concentration when performing heavy exercise. 
 
 Heart rate will quickly reach the equilibrium as described as long as blood lactate levels remain under a threshold (the value of which depends on the individual). At higher levels of exertion blood lactate levels will rise but plateau after 10-20 minutes above the resting lactate levels. This means that the heart rate equilibrium will only be reached after 10-20 minutes of sustained exercise; this is called the slow component of cardiovascular kinetics. At severe levels of exercise lactate levels will not plateau but rise steeply until the subject is too exhausted to continue, no equilibrium will be reached.
 
@@ -179,11 +179,16 @@ Due to the large amounts of ways to parametrize "fitness", calculating a fitness
 
 The Baeke Score is a tried and tested [@Florindo2003] self-administered questionaire to evaluate the activity level of the subject. It is a quick way to determine a rudimentary score for the fitness level of an individual, but requires validation from measurements to be a reliable metric.
 
-#### VO2 Max & Aerobic capacity TODO
+#### VO$_{2max}$ & Aerobic capacity TODO
 
-Aerobic capacity is the ability to take in oxygen and deliver it to skeletal muscle during exercise. It uses VO2 Max (or Peak Oxygen Uptake), the maximum rate of oxygen consumption in mL/(kg\*min), as a measure because it reflects the capabilities of the circulatory and respiratory systems. It is a gold standard measure for comparing individual subjects and training methods because it correlates with cardiorespiratory fitness and endurance capacity.
+Aerobic capacity is the ability to take in oxygen and deliver it to skeletal muscle during exercise. It uses VO$_{2max}$ (or Peak Oxygen Uptake), the maximum rate of oxygen consumption in mL/(kg\*min) - volume of oxygen delivered per minute, per kilogram of body mass - , as a measure because it reflects the capabilities of the circulatory and respiratory systems. It is a gold standard measure for comparing individual subjects and training methods because it correlates with cardiorespiratory fitness and endurance capacity. Erythropoietin (EPO) can significantly increase VO$_{2max}$, so it is no surprise that it has been used extensively as a Performance-Enhancing Drug in aerobic sports such as cycling. Note that higher VO$_{2max}$ doesn't necessarily mean a higher volume of oxygen in the blood. In fact, most VO$_{2max}$ increases can be attributed to a higher capacity of the body to extract the oxygen already present in the blood.
 
-Measuring VO_2max is difficult/impossible without specialized medical equipment, but a meta-study revealed that V_O2 max may be stimulated/extrapolated from Rating of Perceived Exertion (RPE) during a Perceptually Regulated Exercise Test (PRET) test. RPE is a standardised 6-20 scale with 6 meaning no exertion at all and 20 meaning maximal exertion. These ratings can informally be described as "exercise resulting in a heartrate of rating times 10".
+Accurately measuring VO$_{2max}$ is difficult/impossible without specialized medical equipment, but a meta-study revealed that VO$_{2max}$ may be stimulated/extrapolated from Rating of Perceived Exertion (RPE) during a Perceptually Regulated Exercise Test (PRET) test. RPE is a standardised 6-20 scale with 6 meaning no exertion at all and 20 meaning maximal exertion. These ratings can informally be described as "exercise resulting in a heartrate of rating times 10". Furthermore, performance during a Cooper test (maximum distance covered by foot during 12 minutes) can be extrapolated to VO$_{2max}$ using the formula
+
+$VO_{2max} \approx \dfrac{dist - 504.9}{44.73}$
+
+Where $dist$ is the distance covered in meters in 12 minutes.
+
 
 #### Blood Lactate levels
 
@@ -191,7 +196,7 @@ Fatigue has an apparent impact on the slow phase of the blood lactate level incr
 
 #### Heart Rate variability
 
-Heart Rate variability is the variation in time between each heartbeat. This variation is affected by the autonomic nervous system and will increase from parasympathetic/rest-and-digest activity and decrease from sympathetic/fight-or-flight activity. A healthy ANS is one that can quickly activate or deactivate either stimuli, so being able to quickly change from low to high variation and vice-versa is a measure of good physical and mental health and high stress resilience [@Dong2018]. Habitual aerobic exercise appears to aid the maintenance of higher HRV in active subjects when compared with age- and weight-matched sedentary subjects [@DeMeersman], and correlates with VO2 Max [@Buchheit2006]. 
+Heart Rate variability is the variation in time between each heartbeat. This variation is affected by the autonomic nervous system and will increase from parasympathetic/rest-and-digest activity and decrease from sympathetic/fight-or-flight activity. A healthy ANS is one that can quickly activate or deactivate either stimuli, so being able to quickly change from low to high variation and vice-versa is a measure of good physical and mental health and high stress resilience [@Dong2018]. Habitual aerobic exercise appears to aid the maintenance of higher HRV in active subjects when compared with age- and weight-matched sedentary subjects [@DeMeersman], and correlates with VO$_{2max}$ [@Buchheit2006]. 
 
 Not all HRV measures are created equal; HF, SDNN and RMSSD were statistically significantly higher in athletes than in controls, but other resting HRV parameters were not statistically different between groups [@Danieli2014]. It is equally important to compare HRV measures not in a vaccuum but from longitudinal monitoring. In the case of elite athletes training for an upcoming event, another study found weekly and 7-day rolling averaged Ln rMSSD and the Ln rMSSD to R–R interval ratio as practically useful to represent a meaningful change in fatigue and/or fitness. In the same study, increasing HRV values were shown to be a possible sign of positive adaptation and/or coping with training load, while reductions in HRV in the week/days before pinnacle events may represent increasing freshness and readiness to perform [@Plews2013].
 
@@ -201,7 +206,7 @@ HRR has become a significant, non-invasive measure of cardiovascular-parasympath
 
 HRR has a fast phase and a slow phase (see also section \ref{hrr}). Analysis revealed that the fast phase accounts for almost all of the HR decay after a intermediate intensity sessions (≈ 98%), remaining only a minor portion of the decay falling in the slow phase (≈ 2%). On the other hand, slightly different contributions are observed in High Intensity sessions (91% and 9%). For these reasons, percentage values of slow and fast phase might provide complementary information when comparing different exercise intensities. This same study also demonstrated that high-intensity exertion delays both parasympathetic reactivation and sympathetic withdrawal, resulting in a flatter curve [@Bartels2018]. The fast phase HRR correlates with parasympathetic modulation [@Danieli2014]
 
-Studies have shown no correlation between HRR and HRV [@Esco2010] [@Molina2016], but a correlation exists between HRR and Baeke score [@Buchheit2006], which means that having an active lifestyle results in faster HRR. Fast phase HRR (specifically, the Heart Rate Index, being HR_max minus Heart rate after 1 minute of recovery) also correlates with VO2 Max. As VO2 max is primarily influenced by sympathetic activity, this means that an incread in fitness not only means higher parasympathetic modulation, but also enhanced sympathetic activity. In general, HRR can be used as a measure of Autonomic Nervous System adaptation [@Durmic2019]. 
+Studies have shown no correlation between HRR and HRV [@Esco2010] [@Molina2016], but a correlation exists between HRR and Baeke score [@Buchheit2006], which means that having an active lifestyle results in faster HRR. Fast phase HRR (specifically, the Heart Rate Index, being HR_max minus Heart rate after 1 minute of recovery) also correlates with VO$_{2max}$. As VO$_{2max}$ is primarily influenced by sympathetic activity, this means that an incread in fitness not only means higher parasympathetic modulation, but also enhanced sympathetic activity. In general, HRR can be used as a measure of Autonomic Nervous System adaptation [@Durmic2019]. 
 
 ### Hoe wordt fitheid getrained TODO
  - Recovery and performance in sport: Consensus statement
@@ -220,12 +225,20 @@ Studies have shown no correlation between HRR and HRV [@Esco2010] [@Molina2016],
  - The development of functional overreaching is associated with a faster heart rate recovery in endurance athletes
 
 
-Functional overreaching
-Overtraining
-trainingsritme
+Fitness training is based on three principles [@Powers1995]: 
+ - a training effect occurs when the tissue is stressed at a level beyond it is accustomed to (overload)
+ - a training effect is limited to the tissue involved in the activity (specifity)
+ - the effect of training is quickly lost when training is stopped (reversibility)
+
+These principles aren't limited to muscular tissue, but can also be applied to aerobic capacity. VO$_{2max}$ increases after consistent training sessions of 20 to 60 minutes, at an intensity of 50% to 85% VO$_{2max}$. Recall that VO$_{2max}$ is measured as volume over time (per kg of body mass), which means that an increased Cardiac Output (due to higher preload and lower afterload) accounts for 50% of the VO$_{2max}$ increase. The remaining 50% is due to an increased oxygen intake by organ tissue, resulting from a greater capillary density in the trained tissue [@Powers1995].
+
+If an amount of muscle fibers are insufficient to accomplish a task, more fibers will be recruited, which increases the sympathetic nervous response, heart rate response and ventilation response to sustain the metabolic rate of these extra fibers. Fitness training results in an increased presence of mitochondrial cells in the muscle, which means that overall less muscle fibers need to be recruited which decreases the aformentioned responses [@Powers1995].
 
 
 #### Detraining
+
+Detraining is the rapid declination of the benefits gained from training. A fast decrease of
+
 
 #### functional overreaching
 
