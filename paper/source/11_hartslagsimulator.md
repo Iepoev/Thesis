@@ -1,5 +1,7 @@
 
-## Overzicht van de Hartslag-simulator
+# Hartslag-simulator
+
+## Overzicht
 https://archive.physionet.org/challenge/2002/generators/
 https://archive.physionet.org/physiobank/database/nsrdb/
 https://physionet.org/content/ecgsyn/1.0.0/

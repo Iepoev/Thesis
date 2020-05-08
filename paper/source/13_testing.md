@@ -1,4 +1,4 @@
 
-# Validation of the model
+# Validation
 
 

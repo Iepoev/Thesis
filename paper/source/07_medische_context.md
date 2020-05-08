@@ -11,7 +11,7 @@ Not every muscle in the heart is equal. The atria only need to pump blood into t
 
 [@Openstax]
 
-![An anatomical overview of the heart \label{ana_heart}](source/figures/ana_heart.jpg){ width=100% }
+![An anatomical overview of the heart [@Openstax] \label{ana_heart}](source/figures/ana_heart.jpg){ width=100% }
 
 ## Innervation of the heart
 
@@ -26,7 +26,7 @@ The SA node, without external control, would initiate a heart impulse approximat
 
 [@Openstax]
 
-![the innervation and pumping mechanism of the heart \label{inn_heart}](source/figures/inn_heart.jpg){ width=100% }
+![the innervation and pumping mechanism of the heart [@Openstax] \label{inn_heart}](source/figures/inn_heart.jpg){ width=100% }
 
 ## Fysiological function of the heart
 
@@ -97,7 +97,7 @@ TODO: de paper [@Shaffer2017] is heel uitgebreid, later terugkeren om de relevan
 
 The time between heartbeats (the RR interval) is not constant but fluctuates ever so slightly between beats. The difference between these intervals is not random but is the result of a multitude of complex interactions between various organs of the body and is best described as "mathematical chaos". HRV dimishes with age and is a marker for parasympathetic activity, with a higher value being in general considered "more healthy". Lower HRV values have been linked to Myocardial Infarction and Myocardial Dysfunction, while raising HRV through exercise to battle cardiovascular mortality risk has been proven beneficial. [@Malik1996]
 
-#### Time domain
+#### Time domain TODO
 
 A way to measure HRV is in the time domain, meaning that we look at the time in between heart beats and derive metrics from the difference.
 
@@ -111,7 +111,7 @@ A way to measure HRV is in the time domain, meaning that we look at the time in 
 
 Therefore, 60 seconds appears to be an acceptable recording time for lnRMSSD data collection in col- legiate athletes. [@Esco2014]
 
-#### Frequency domain
+#### Frequency domain TODO
 
 Various oscillations have been measured with a frequency ranging from seconds to >24 hours and can be roughly grouped into different bands (see table \ref{hrv_freq}). The LF and HF bands are significant because their oscillations can be affected by breathing rythm. More specifically, the LF band is affected by slow breaths (3 to 9 per minute) and the HF band is affected by fast breathing (9 to 24 per minut)e
 
@@ -126,9 +126,9 @@ Table: frequency bands of Heart Rate variability. \label{hrv_freq}
 
  - LF/HF ratio
 
-#### Contextual Factors
+#### Contextual Factors TODO
 
-#### Subject Variables
+#### Subject Variables TODO
 
 ### Heart Rate Recovery \label{hrr}
 
@@ -141,9 +141,6 @@ In the context of fitness, one of the most important factors is Cardiac Output (
 It is clear that a higher heart rate will result in a higher Cardiac Output, but its not just a matter of multiplying Heart Rate with Stroke Volume. SV will initially be able to keep up with an increase in HR, but at around 120 bpm there is not enough time between contractions for the ventricles to fill up with blood. Up until 160bpm the rate at which SV decreases is lower than the rate at which HR increases, so CO will continue to increase. As HR rises above 160 bpm, this balance shifts and CO starts to decrease. Therefor individuals performing aerobic exercises are cautioned to monitor their HR to ensure they stay within the target heart rate range. The target HR is loosely defined as the range in which both the heart and lungs receive the maximum benefit from the aerobic workout and is dependent upon age.
 
 [@Openstax]
-
-<!-- volume kunnen we niet meten -->
-<!-- HR gebruiken als benadering/approximation -->
 
 ## Measuring heart rate
 
@@ -189,7 +186,6 @@ $VO_{2max} \approx \dfrac{dist - 504.9}{44.73}$
 
 Where $dist$ is the distance covered in meters in 12 minutes.
 
-
 #### Blood Lactate levels
 
 Fatigue has an apparent impact on the slow phase of the blood lactate level increase, the higher the intensity that can be sustained without a significant presence of the slow component, the better the prospects for endurance. Endurance training will have the effect of elevating the value of lactate threshold of an individual and thus eliminate the slow com- ponent for some exercise intensities. This way exercise intensities which were initially severe for the particular person might become heavy or even moderate following training [@Zakynthinaki2015]
@@ -209,21 +205,6 @@ HRR has a fast phase and a slow phase (see also section \ref{hrr}). Analysis rev
 Studies have shown no correlation between HRR and HRV [@Esco2010] [@Molina2016], but a correlation exists between HRR and Baeke score [@Buchheit2006], which means that having an active lifestyle results in faster HRR. Fast phase HRR (specifically, the Heart Rate Index, being HR_max minus Heart rate after 1 minute of recovery) also correlates with VO$_{2max}$. As VO$_{2max}$ is primarily influenced by sympathetic activity, this means that an incread in fitness not only means higher parasympathetic modulation, but also enhanced sympathetic activity. In general, HRR can be used as a measure of Autonomic Nervous System adaptation [@Durmic2019]. 
 
 ### Hoe wordt fitheid getrained TODO
- - Recovery and performance in sport: Consensus statement
- - Overtraining syndrome
- - Overtraining in Resistance Exercise: An Exploratory Systematic Review and Methodological Appraisal of the Literature
- - Functional overreaching: The key to peak performance during the taper?
- - Diagnosis and prevention of overtraining syndrome: an opinion on education strategies
- - Effect of overreaching on cognitive performance and related cardiac autonomic control
- - Does overtraining exist? An analysis of overreaching and overtraining research
- - Training adaptation and heart rate variability in elite endurance athletes: Opening the door to effective monitoring
- - The Multimodal Nature of High-Intensity Functional Training: Potential Applications to Improve Sport Performance
- - Heart rate recovery in elite athletes: the impact of age and exercise capacity
- - Assessing overreaching with heart-rate recovery: What is the minimal exercise intensity required?
- - Is heart rate a convenient tool to monitor overreaching? A systematic review of the literature
- - Overtraining syndrome
- - The development of functional overreaching is associated with a faster heart rate recovery in endurance athletes
-
 
 Fitness training is based on three principles [@Powers1995]: 
  - a training effect occurs when the tissue is stressed at a level beyond it is accustomed to (overload)
@@ -234,18 +215,35 @@ These principles aren't limited to muscular tissue, but can also be applied to a
 
 If an amount of muscle fibers are insufficient to accomplish a task, more fibers will be recruited, which increases the sympathetic nervous response, heart rate response and ventilation response to sustain the metabolic rate of these extra fibers. Fitness training results in an increased presence of mitochondrial cells in the muscle, which means that overall less muscle fibers need to be recruited which decreases the aformentioned responses [@Powers1995].
 
+Carefully applied cycles of overload and adequate recovery are an important concept in fitness training. If the subject maintains or increases their exercise performance after the overload training period (despite having high perceived fatigue), he/she is considered Acutely Fatigued (AF). If the subject has decreased performance, he/she is considered overreached.
+
+We would like to be able to detect the current state of our subject, but for heart rate no differences between FOR and AF were observed. A study concludes that heart rate is inadequate to prescribe and monitor intensified training. Subjective rating of fatigue and readiness to train on visual analogue scales were most powerful to distinguish between AF and FOR. In a the same study these 2 parameters correctly predicted 78% of the subjects as AF or FOR [@TenHaaf2018]
+
 
 #### Detraining
 
-Detraining is the rapid declination of the benefits gained from training. A fast decrease of
+Detraining is the rapid declination of the benefits gained from training. A fast initial decrease of VO$_{2max}$ is largely attributed to a decrease of blood plasma volume, which decreases Stroke Volume (It is shown that a plasma infusion can largely alleviate detraining symptoms within 12 days of the cessation of training). Another factor of aerobic capacity decreasing is the drop of muscular mitochondrial cells. A single week of detraining resulted in the loss of 50% of the gains during a 5 week training period [@Powers1995]. Capillary density remained roughly constant during detraining.
 
 
-#### functional overreaching
+#### overreaching spectrum
 
-HRR is geen metriek voor f-OR [@Aubry2015]
+The overreached state can be further split up into Functional overreachting (FOR) and Non-Functional Overreaching. FOR Is when a subject reaches a short-term decrement of performance, without signs of maladaptation as a consequence. When followed by a time period of adequate recovery this state will reach an overall result in performance enhancement (termed supercompensation). Non-functional overreaching (NFOR) is a dangerous cascade of insufficient recovery and excessive demand, resulting in a downward spiral marked by negative hormonal and psychological alterations. When left unchecked it will result in overtraining syndrome (OTS). Early-stage NFOR can be compensated by a quick response in recovery strategies; more rest and better adapted sleep schedule, diet and social activities [@Kellmann2018].
 
-#### overtraining syndrome
+Supercompensation is a popular term, but a meta-analysis [@TenHaaf2018] [@Bellinger2020] shows that similar improvement can be gained purely by AF instead of going into FOR:
 
-### muscle fatigue
+"One of the challenges of research on the training-overtraining spectrum is to distinguish between AF and FOR. Some important differences exist between these two stages of the overtraining spectrum. Firstly, intensified training which results in AF leads to increased performance. In FOR athletes, however, the increase in performance after intensified training and a taper period is smaller or even absent (Aubry et al. 2014). Secondly, disturbed sleep and an increased illness incidence in FOR compared to AF athletes has been shown (Hausswirth et al. 2014). Thirdly, continuation of imbalanced training- recovery in FOR athletes results eventually in NFOR or OTS. These stages must be prevented because of the severe symptoms and long recovery times (Meeusen et al. 2013). In conclusion, it is the difference between AF and FOR that is very relevant for athletes, because it represents the thin border between effective and too much training." [@TenHaaf2018]
 
-#### neural fatigue
+"It is clear that endurance athletes are required to undertake periodised increases in training load to provide an overload stimulus [31] and induce physiological adaptations to training. However, there is no evidence to suggest that inducing a state of FOR is necessary or required to pro- mote these adaptations and improve exercise performance." [@Bellinger2020]
+
+
+#### Overtraining syndrome
+
+Overtraining, meaning the negative effects of training sessions that are too long and/or to strenous, are a significant detriment to the physical and mental health of the subject. The majority of aerobic training injuries can be attributed to overtraining. The general symptoms of overtraining are an increased heartrate, continued muscle soreness, loss of appetite, chronic fatigue, decrease in performance, psychological staleness, etc. [@Kellmann2018][@Powers1995] Compared to NFOR, recovering from OTS requires a continuous restoration consisting of long rest and recovery periods lasting from weeks to months accompanied by reduced performance. [@Kellmann2018] 
+
+Diagnosis of OTS can only be made after proper clinical evaluation and exclusion of the much more common medical conditions of endurance athletes. Common conditions with presentations similar to OTS include asthma, anemia, hypothyroidism, immunodeficiency, hypocortisolemia, chronic fatigue syndrome, and depression among others. To accurately diagnose OTS, additional blood screening tests are required to look for markers such as the following: testosterone:cortisol ratio, overnight urinary cortisol:cortisone ratio, maximal heart rate at lactate threshold, and/or decreased maximal lactate concentration [@Kreher2016]. It is therefor advised to take preventive measures to avoid OTS altogether, a general rule in prevention is that training intensity or duration should not increase more than 10% week over week.
+
+
+### Components of a Training session
+
+ - voordelen van warmup
+ - interval training vs continuous low-intensity vs continuous high-intensity

@@ -1,4 +1,4 @@
-# Research containing a figure
+# Hardware
 
 
 ##  smartwatches in context plaatsen

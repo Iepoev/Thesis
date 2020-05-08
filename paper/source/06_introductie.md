@@ -1,4 +1,4 @@
-# Introduction, with a citation
+# Introduction
 
 ## Summary of chapters
 
