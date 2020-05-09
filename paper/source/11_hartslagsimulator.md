@@ -1,5 +1,5 @@
 
-# Hartslag-simulator
+# Hartslag-simulator \label{ch:hr_sim}
 
 ## Overzicht
 https://archive.physionet.org/challenge/2002/generators/

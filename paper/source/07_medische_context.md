@@ -1,4 +1,4 @@
-# Medical Background
+# Medical Background \label{ch:med}
 
 ## Anatomy of the heart
 The heart is the organ responsible for pumping blood into the arteries and veins of the human body. It is located within the thorax (chest) in between the lungs, oriented slightly towards the lefthand side in its so called mediastinum. The shape is slightly triangular, pointing towards the feet. The superior portion is called the base, and the inferior portion is called the apex.
@@ -93,42 +93,8 @@ Heart rate will quickly reach the equilibrium as described as long as blood lact
 
 ### Heart Rate variability
 
-TODO: de paper [@Shaffer2017] is heel uitgebreid, later terugkeren om de relevante informatie uit te filteren
+The time between heartbeats (the RR interval) is not constant but fluctuates ever so slightly between beats. The difference between these intervals is not random but is the result of a multitude of complex interactions between various organs of the body and is best described as "mathematical chaos". HRV diminishes with age and is a marker for parasympathetic activity, with a higher value being in general considered "more healthy". Lower HRV values have been linked to Myocardial Infarction and Myocardial Dysfunction, while raising HRV through exercise to battle cardiovascular mortality risk has been proven beneficial. [@Malik1996]
 
-The time between heartbeats (the RR interval) is not constant but fluctuates ever so slightly between beats. The difference between these intervals is not random but is the result of a multitude of complex interactions between various organs of the body and is best described as "mathematical chaos". HRV dimishes with age and is a marker for parasympathetic activity, with a higher value being in general considered "more healthy". Lower HRV values have been linked to Myocardial Infarction and Myocardial Dysfunction, while raising HRV through exercise to battle cardiovascular mortality risk has been proven beneficial. [@Malik1996]
-
-#### Time domain TODO
-
-A way to measure HRV is in the time domain, meaning that we look at the time in between heart beats and derive metrics from the difference.
-
- - SDNN
- - SDRR
- - SDANN
- - SDNNI
- - RMSSD
- - HTI
-
-
-Therefore, 60 seconds appears to be an acceptable recording time for lnRMSSD data collection in col- legiate athletes. [@Esco2014]
-
-#### Frequency domain TODO
-
-Various oscillations have been measured with a frequency ranging from seconds to >24 hours and can be roughly grouped into different bands (see table \ref{hrv_freq}). The LF and HF bands are significant because their oscillations can be affected by breathing rythm. More specifically, the LF band is affected by slow breaths (3 to 9 per minute) and the HF band is affected by fast breathing (9 to 24 per minut)e
-
-Name                            Period                  Actors
-----                            ------                  ------
-Ultra Low (ULF)                 5 min - 24 hrs          
-Very Low (VLF)                  25 sec - 300 sec
-Low (LF)                        7 sec - 25 sec
-High (HF) or Respiratory band   <7 sec
-
-Table: frequency bands of Heart Rate variability. \label{hrv_freq}
-
- - LF/HF ratio
-
-#### Contextual Factors TODO
-
-#### Subject Variables TODO
 
 ### Heart Rate Recovery \label{hrr}
 
