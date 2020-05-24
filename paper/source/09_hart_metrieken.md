@@ -1,5 +1,5 @@
 
-# Metrics
+# Metrics \label{ch:metrics}
 
 ## metrieken
 
@@ -34,11 +34,54 @@ NN50: The number of pairs of successive NN (R-R) intervals that differ by more t
 PNN50: The proportion of NN50 divided by the total number of NN (R-R) intervals
 SDNN: Standard deviation of the NN (R-R) intervals
 
+
+TODO: de paper [@Shaffer2017] is heel uitgebreid, later terugkeren om de relevante informatie uit te filteren
+
+
+
+#### Time domain TODO
+
+A way to measure HRV is in the time domain, meaning that we look at the time in between heart beats and derive metrics from the difference.
+
+ - SDNN
+ - SDRR
+ - SDANN
+ - SDNNI
+ - RMSSD
+ - HTI
+
+
+Therefore, 60 seconds appears to be an acceptable recording time for lnRMSSD data collection in col- legiate athletes. [@Esco2014]
+
+#### Frequency domain TODO
+
+Various oscillations have been measured with a frequency ranging from seconds to >24 hours and can be roughly grouped into different bands (see table \ref{hrv_freq}). The LF and HF bands are significant because their oscillations can be affected by breathing rythm. More specifically, the LF band is affected by slow breaths (3 to 9 per minute) and the HF band is affected by fast breathing (9 to 24 per minut)e
+
+Name                            Period                  Actors
+----                            ------                  ------
+Ultra Low (ULF)                 5 min - 24 hrs          
+Very Low (VLF)                  25 sec - 300 sec
+Low (LF)                        7 sec - 25 sec
+High (HF) or Respiratory band   <7 sec
+
+Table: frequency bands of Heart Rate variability. \label{hrv_freq}
+
+ - LF/HF ratio
+
+
+
+#### Contextual Factors TODO
+
+#### Subject Variables TODO
+
+
+
 #### Heart Rate Recovery
  - Heart rate recovery fast-to-slow phase transition: Influence of physical fitness and exercise intensity
  - Post-exercise heart-rate recovery correlates to resting heart-rate variability in healthy men
  - The relationship between resting heart rate variability and heart rate recovery
  - Estimation of heart rate recovery after stair climbing using a wrist-worn device
+
 
 
 Ectopic beat

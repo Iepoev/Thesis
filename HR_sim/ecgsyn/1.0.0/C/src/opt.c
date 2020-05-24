@@ -76,6 +76,8 @@ confuse it with the version available from LANL.
 #endif
 #endif
 
+#include <stdlib.h>
+
 static char gstr[160];	/* generally useful global string */
 /* opt.h */
 /*

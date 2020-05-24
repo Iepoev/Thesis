@@ -1,4 +1,4 @@
-# fitnesscoach
+# fitnesscoach \label{ch:fitnesscoach}
 
 ## Overzicht van de fitnesscoach
 

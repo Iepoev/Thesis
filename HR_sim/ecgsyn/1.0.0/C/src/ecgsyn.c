@@ -639,7 +639,11 @@ int dorun()
 
    /* output ECG file */
    fp = fopen(outfile,"w");
-   for(i=1;i<=Nts;i++) fprintf(fp,"%f %f %d\n",(i-1)*tstep,zts[i],(int)ipeak[i]);
+   for(i=1;i<=Nts;i++) {
+    if (ipeak[i] == 3) {
+      fprintf(fp,"%f;%f\n",(i-1)*tstep,zts[i]);
+    }
+   }
    fclose(fp);
 
 
