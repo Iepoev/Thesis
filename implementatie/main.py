@@ -1,8 +1,14 @@
 
 import string
 
+from user import User
+
 def main():
-  baecke()
+  (work_index,sport_index,leisure_index) = baecke()
+
+  u = User(work_index,sport_index,leisure_index)
+
+  print(u)
 
 def baecke():
 
@@ -13,15 +19,13 @@ def baecke():
 
   if user_input == "a":
     sport_score = determine_simple_sport_score()
-  else
+  else:
     sport_score = 0
 
   sport_index = determine_sport_index(sport_score)
   leisure_index = determine_leisure_index()
 
-  print("work index: {0}\nsport index: {1}\nleisure index: {2}".format(work_index, sport_index, leisure_index))
-
-
+  return(work_index,sport_index,leisure_index)
 
 def determine_work_index():
   work_index_questionnaire = [
@@ -112,7 +116,7 @@ def determine_simple_sport_score():
     return 3
   elif score >= 0.01:
     return 2
-  else
+  else:
     return 1
 
 
