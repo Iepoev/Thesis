@@ -1,3 +1,5 @@
+import h5py
+
 class User:
   """A simple example class"""
   baeke_work = 0
@@ -11,3 +13,17 @@ class User:
 
   def __str__(self):
     return 'User(baeke_work={0}, baeke_sport={1}, baeke_leisure={2})'.format(self.baeke_work,self.baeke_sport,self.baeke_leisure)
+
+  def export_hdf5(self, fname = 'userdata.hdf5'):
+    f = h5py.File(fname, 'a')
+    dset = f.create_dataset("model", (100,), dtype='i')
+    dset.attrs['baeke_work'] = self.baeke_work
+    dset.attrs['baeke_leisure'] = self.baeke_leisure
+    dset.attrs['baeke_sport'] = self.baeke_sport
+
+  def import_hdf5(self, fname = 'userdata.hdf5'):
+    f = h5py.File(fname, 'r')
+    dset = f.create_dataset("model", (100,), dtype='i')
+    dset.attrs['baeke_work'] = self.baeke_work
+    dset.attrs['baeke_leisure'] = self.baeke_leisure
+    dset.attrs['baeke_sport'] = self.baeke_sport
