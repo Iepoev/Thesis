@@ -25,3 +25,8 @@ class User:
     dset.attrs['baeke_work'] = self.baeke_work
     dset.attrs['baeke_leisure'] = self.baeke_leisure
     dset.attrs['baeke_sport'] = self.baeke_sport
+
+  def determine_heartrates():
+    with io.open('stream', mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True) as f:
+      for line in f:
+        print(line.encode('hex'))  # Don't mess up my terminal

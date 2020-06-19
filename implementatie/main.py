@@ -4,6 +4,18 @@ import argparse
 from user import User
 from baecke import baecke
 
+def tensorflow():
+  # TensorFlow and tf.keras
+  import tensorflow as tf
+  from tensorflow import keras
+
+  # Helper libraries
+  import numpy as np
+  import matplotlib.pyplot as plt
+
+  print(tf.__version__)
+
+
 def main():
   parser = argparse.ArgumentParser(description='Fitness coach.')
 
@@ -34,6 +46,8 @@ def main():
       u = User(4.5, 5.0, 4.0)
       print(u)
       u.export_hdf5()
+
+  tensorflow()
 
 if __name__ == "__main__":
   main()

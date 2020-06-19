@@ -8,11 +8,31 @@
 Streamed, labeled data voor te initialiseren. Streamed, unlabeled data voor de rest
 
 met behulp van permanente monitoring en andere variabelen zoals besproken in onderdeel `metrieken`. Dit onderdeel moet in staat zijn om het _verbeteren_ van de Base Level Fitness te detecteren.
+ - Resting Heart Rate
+ - Max Heart Rate
+ - 
 
 ### detectie van huidige status
  - Implicit Context-aware Learning and Discovery for Streaming Data Analytics
  - Detection of functional overreaching in endurance athletes using proteomics
  - On the physiological and psychological differences between functional overreaching and acute fatigue
+
+Ectopic beats uitfilteren
+
+multi-dimensional:
+ - HRV laatste 5 beats
+ - HRV laatste 20 beats
+ - HRV laatste  beats
+ - HRV LF is een exercise indicator
+ - Parasympathic activity (Ln rMSSD)
+ - Current Heart Rate (10s window)
+ - Current Heart Rate (30s window)
+ - Current Heart Rate (60s window)
+ - Current Heart Rate (120s window)
+ - Max Heart Rate
+ - Resting Heart Rate
+ - Heart Recovery rate (60s) [@Hug2014]
+
 
 in rust, actief, hoge fysieke inspanning, (slapen?)
 
@@ -47,3 +67,13 @@ Classification probleem: gestreamde hearbeat met een rolling window zegt of de i
 Na afronden van een trainingsessie wordt de intensiteit van de sessie berekend en wordt bijgehouden in de historiek zodat er rekening gehouden mee kan worden in het aanbevelingsysteem
 
 ### gebruikte technieken
+
+Concept drift [@Mulinka2018]
+
+Adaptive learning
+
+RNN -> LSTM -> Transformers?
+
+Neural history compressor
+
+Sequence Classification
