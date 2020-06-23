@@ -38,7 +38,6 @@ SDNN: Standard deviation of the NN (R-R) intervals
 TODO: de paper [@Shaffer2017] is heel uitgebreid, later terugkeren om de relevante informatie uit te filteren
 
 
-
 #### Time domain TODO
 
 A way to measure HRV is in the time domain, meaning that we look at the time in between heart beats and derive metrics from the difference.
@@ -70,6 +69,7 @@ Table: frequency bands of Heart Rate variability. \label{hrv_freq}
 
 
 
+
 #### Contextual Factors TODO
 
 #### Subject Variables TODO
@@ -81,8 +81,6 @@ Table: frequency bands of Heart Rate variability. \label{hrv_freq}
  - Post-exercise heart-rate recovery correlates to resting heart-rate variability in healthy men
  - The relationship between resting heart rate variability and heart rate recovery
  - Estimation of heart rate recovery after stair climbing using a wrist-worn device
-
-
 
 Ectopic beat
 
