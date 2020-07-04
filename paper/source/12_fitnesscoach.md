@@ -77,3 +77,5 @@ RNN -> LSTM -> Transformers?
 Neural history compressor
 
 Sequence Classification
+
+FitzHugh Nagumo model [@Madl2016]
