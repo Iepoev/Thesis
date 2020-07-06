@@ -138,44 +138,10 @@ class Datareader():
         while len(ms_7beat_window) >= 7:
           print(f"{ms_7beat_window}, hrv:{self.current_hrv}")
 
-          checking_ms = ms_7beat_window[3]
           ms_diff = abs(ms_7beat_window[2]-ms_7beat_window[3])
 
           if ms_diff >= 30 or (self.current_hrv >=10 and ms_diff >= self.current_hrv * 2):
-            future_avg = np.average(ms_7beat_window[4:])
-            incorrect_beat = (ms_7beat_window[2] + checking_ms) / 2
-            incorrect_with_missed_beat = (ms_7beat_window[2] + checking_ms) / 3
-            
-            if future_avg*(1-ACCEPTABLE_RANGE) <= checking_ms <= future_avg*(1+ACCEPTABLE_RANGE):
-              print(f"missed ms: {checking_ms}, diff: {ms_diff}, queue avg: {np.average(ms_7beat_window)}, SUDDEN CHANGE: {future_avg}")
-            
-            elif future_avg*(1-ACCEPTABLE_RANGE) <= incorrect_beat <= future_avg*(1+ACCEPTABLE_RANGE):
-              print(f"missed ms: {checking_ms}, diff: {ms_diff}, queue avg: {np.average(ms_7beat_window)}, INCORRECT BEAT: {incorrect_beat}")
-              ms_7beat_window[2] = incorrect_beat
-              ms_7beat_window[3] = incorrect_beat
-            
-            elif future_avg*(1-ACCEPTABLE_RANGE) <= incorrect_with_missed_beat <= future_avg*(1+ACCEPTABLE_RANGE):
-              print(f"missed ms: {checking_ms}, diff: {ms_diff}, queue avg: {np.average(ms_7beat_window)}, INCORRECT WITH MISSED BEAT: {incorrect_with_missed_beat}")
-              ms_7beat_window[2] = incorrect_with_missed_beat
-              ms_7beat_window[3] = incorrect_with_missed_beat
-              ms_7beat_window.insert(3, incorrect_with_missed_beat)
-
-            elif future_avg*(1-ACCEPTABLE_RANGE) <= checking_ms/2 <= future_avg*(1+ACCEPTABLE_RANGE):
-              print(f"missed ms: {checking_ms}, diff: {ms_diff}, queue avg: {np.average(ms_7beat_window)}, MISSED BEAT: {checking_ms/2}")
-              ms_7beat_window[3] = checking_ms/2
-              ms_7beat_window.insert(3, checking_ms/2)
-
-            elif future_avg*(1-ACCEPTABLE_RANGE) <= checking_ms/3 <= future_avg*(1+ACCEPTABLE_RANGE):
-              print(f"missed ms: {checking_ms}, diff: {ms_diff}, queue avg: {np.average(ms_7beat_window)}, DOUBLE MISSED BEAT: {checking_ms/3}")
-              ms_7beat_window[3] = checking_ms/3
-              ms_7beat_window.insert(3, checking_ms/3)
-              ms_7beat_window.insert(3, checking_ms/3)
-
-            else:
-              print(f"missed ms: {checking_ms}, diff: {ms_diff}, queue avg: {np.average(ms_7beat_window)}, incorrect_beat: {incorrect_beat}, triple_incorrect_beat: {incorrect_with_missed_beat}, missed_beat: {ms_7beat_window[3]/2}, future_avg: {future_avg} ?????????")
-              #TODO: fix total_ms
-              #self.total_ms += ms_7beat_window.pop(3)
-              pass
+            ms_7beat_window = self.find_correction(ms_7beat_window)
 
           ms = ms_7beat_window.pop(0)
 
@@ -183,68 +149,44 @@ class Datareader():
           newrow = self.handle_ms(ms)
           A = np.append(A, [newrow], axis=0)
 
-            # if is_missing:
-            #   is_missing = False
-
-          # elif self.current_hr != 0 and (queue == [] or is_missing):
-          #   queue.append(ms)
-          #   queue_avg = (np.sum(queue)+ms)/(len(queue)+1)
-          #   reference_ms = 60000 / self.current_hr
-          #   if reference_ms*0.9 <= queue_avg <= reference_ms*1.1:
-          #     print(f"missed diff: {self.prev_ms - ms}, queue avg: {queue_avg}, reference ms: {reference_ms}, CORRECTING")
-          #     for missed_ms in queue:
-          #       newrow = self.handle_ms(queue_avg)
-          #       A = np.append(A, [newrow], axis=0)
-          #   else:
-          #     print(f"missed diff: {self.prev_ms - ms}, queue avg: {queue_avg}, reference ms: {reference_ms}, CONTINUEING")
-          #     print(queue)
-          #     is_missing = True
-
-          # else:
-          #   print(f"skipped diff: {self.prev_ms - ms}")
-
-
-
     user = [self.resting_hr, self.max_hr]
 
     print(user)
-    #print(A)
     np.save('data.npy', A)
     return A
-
 
   def find_correction(self, ms_7beat_window):
     target = (ms_7beat_window[0] + ms_7beat_window[6]) / 2 
 
     checking_ms = ms_7beat_window[3]
 
-    missed_beat = 0
-    doube_missed_beat
-    incorrect_beat = (ms_7beat_window[2] + checking_ms) / 2
-    incorrect_with_missed_beat = (ms_7beat_window[2] + checking_ms) / 3
+    sudden_change_score = abs(np.average(ms_7beat_window[4:], weights=list(reversed(range(1,len(ms_7beat_window[4:])+1)))) - checking_ms)
 
+    if sudden_change_score < 50:
+      return ms_7beat_window
+    else:
+      missed_beat = ms_7beat_window[:3] + [checking_ms/2, checking_ms/2] + ms_7beat_window[4:]
+      missed_beat_score = abs(np.average(ms_7beat_window[:3]+ms_7beat_window[4:])-(checking_ms/2))
 
-    if future_avg*(1-ACCEPTABLE_RANGE) <= incorrect_beat <= future_avg*(1+ACCEPTABLE_RANGE):
-      print(f"missed ms: {checking_ms}, diff: {ms_diff}, queue avg: {np.average(ms_7beat_window)}, INCORRECT BEAT: {incorrect_beat}")
-      ms_7beat_window[2] = incorrect_beat
-      ms_7beat_window[3] = incorrect_beat
-    
-    elif future_avg*(1-ACCEPTABLE_RANGE) <= incorrect_with_missed_beat <= future_avg*(1+ACCEPTABLE_RANGE):
-      print(f"missed ms: {checking_ms}, diff: {ms_diff}, queue avg: {np.average(ms_7beat_window)}, INCORRECT WITH MISSED BEAT: {incorrect_with_missed_beat}")
-      ms_7beat_window[3] = incorrect_with_missed_beat
-      ms_7beat_window[4] = incorrect_with_missed_beat
-      ms_7beat_window.insert(4, incorrect_with_missed_beat)
+      doube_missed_beat = ms_7beat_window[:3] + [checking_ms/3, checking_ms/3, checking_ms/3] + ms_7beat_window[4:]
+      doube_missed_beat_score = abs(np.average(ms_7beat_window[:3]+ms_7beat_window[4:])-(checking_ms/3))
 
-    elif future_avg*(1-ACCEPTABLE_RANGE) <= checking_ms/2 <= future_avg*(1+ACCEPTABLE_RANGE):
-      print(f"missed ms: {checking_ms}, diff: {ms_diff}, queue avg: {np.average(ms_7beat_window)}, MISSED BEAT: {checking_ms/2}")
-      ms_7beat_window[3] = checking_ms/2
-      ms_7beat_window.insert(4, checking_ms/2)
+      incorrect_beat_ms = (ms_7beat_window[2] + checking_ms) / 2
+      incorrect_beat = ms_7beat_window[:2] + [incorrect_beat_ms, incorrect_beat_ms] + ms_7beat_window[4:]
+      incorrect_beat_score = abs(np.average(ms_7beat_window[:2]+ms_7beat_window[4:])-incorrect_beat_ms)
 
-    elif future_avg*(1-ACCEPTABLE_RANGE) <= checking_ms/3 <= future_avg*(1+ACCEPTABLE_RANGE):
-      print(f"missed ms: {checking_ms}, diff: {ms_diff}, queue avg: {np.average(ms_7beat_window)}, DOUBLE MISSED BEAT: {checking_ms/3}")
-      ms_7beat_window[3] = checking_ms/3
-      ms_7beat_window.insert(4, checking_ms/3)
-      ms_7beat_window.insert(4, checking_ms/3)
+      incorrect_with_missed_beat_ms = (ms_7beat_window[2] + checking_ms) / 3
+      incorrect_with_missed_beat = ms_7beat_window[:2] + [incorrect_with_missed_beat_ms, incorrect_with_missed_beat_ms, incorrect_with_missed_beat_ms] + ms_7beat_window[4:] 
+      incorrect_with_missed_beat_score = abs(np.average(ms_7beat_window[:2]+ms_7beat_window[4:])-incorrect_with_missed_beat_ms)
+
+      windows = [missed_beat, doube_missed_beat, incorrect_beat, incorrect_with_missed_beat]
+      ranking = [missed_beat_score, doube_missed_beat_score, incorrect_beat_score, incorrect_with_missed_beat_score]
+      lowest = min(ranking)
+      if lowest < sudden_change_score:
+        return windows[ranking.index(lowest)]
+      else:
+        print(f"ms_7beat_window {ms_7beat_window}, sudden_change: {sudden_change_score}, missed_beat: {missed_beat_score}, doube_missed_beat: {doube_missed_beat_score}, incorrect_beat: {incorrect_beat_score}, incorrect_with_missed_beat: {incorrect_with_missed_beat_score}")
+        return ms_7beat_window
 
 if __name__ == "__main__":
   reader = Datareader()
