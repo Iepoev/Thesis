@@ -4,6 +4,12 @@ import math
 import operator
 import matplotlib.pyplot as plt
 
+import scipy
+
+# Import packages
+import pyhrv
+import pyhrv.frequency_domain as fd
+
 ACCEPTABLE_RANGE = 0.1
 
 class Datareader():
@@ -40,6 +46,26 @@ class Datareader():
     self.ms_300s_window = []
     self.total_ms = 0
 
+    self.vlf_power_60s = 0
+    self.lf_power_60s = 0
+    self.hf_power_60s = 0
+    self.lf_hf_ratio_60s = 0
+
+    self.vlf_power_300s = 0
+    self.lf_power_300s = 0
+    self.hf_power_300s = 0
+    self.lf_hf_ratio_300s = 0
+
+    # categories:
+    # 0: resting
+    # 1: active
+    # 2: intense
+    # 3: maximal exertion
+    # 4: recovering (fast)
+    # 5: recovering (slow)
+    self.cur_cat = 0
+
+
 
   def save_to_npy(self, data, fname="data.npy"):
     np.save(fname, data)
@@ -49,15 +75,23 @@ class Datareader():
     self.draw(data, output_fname)
 
   def draw(self, data, output_fname="graph.png"):
-    plt.plot(data[:,0]/60000,data[:,1], linewidth=0.5) # ms
+    # plt.plot(data[:,0]/60000,data[:,1], linewidth=0.5) # ms
     # plt.plot(data[:,0]/60000,data[:,2], linewidth=0.5) # HR
     # plt.plot(data[:,0]/60000,data[:,3], linewidth=0.5) # HRV (weighted moving average)
-    # plt.plot(data[:,0]/60000,data[:,4], linewidth=0.5) # self.SDNN
-    # plt.plot(data[:,0]/60000,data[:,5], linewidth=0.5) # self.SDSD
-    # plt.plot(data[:,0]/60000,data[:,6], linewidth=0.5) # self.NN50
-    # plt.plot(data[:,0]/60000,data[:,7], linewidth=0.5) # self.rMSSD
+    # plt.plot(data[:,0]/60000,data[:,4], linewidth=0.5) # SDNN
+    # plt.plot(data[:,0]/60000,data[:,5], linewidth=0.5) # SDSD
+    # plt.plot(data[:,0]/60000,data[:,6], linewidth=0.5) # NN50
+    # plt.plot(data[:,0]/60000,data[:,7], linewidth=0.5) # rMSSD
+    # plt.plot(data[:,0]/60000,data[:,8], linewidth=0.5) # 60s VLF
+    # plt.plot(data[:,0]/60000,data[:,9], linewidth=0.5) # 60s LF
+    # plt.plot(data[:,0]/60000,data[:,10], linewidth=0.5) # 60s HF
+    # plt.plot(data[:,0]/60000,data[:,11], linewidth=0.5) # 60s LF/HF
+    # plt.plot(data[:,0]/60000,data[:,12], linewidth=0.5) # 300s VLF
+    plt.semilogy(data[:,0]/60000,data[:,13], linewidth=0.5) # 300s LF
+    # plt.semilogy(data[:,0]/60000,data[:,14], linewidth=0.5) # 300s HF
+    # plt.plot(data[:,0]/60000,data[:,15], linewidth=0.5) # 300s LF/HF
     plt.ylabel('dinken')
-    plt.ylim((0,1000))
+    # plt.ylim((0,1000))
     plt.savefig(output_fname, bbox_inches='tight', dpi=300)
 
   def handle_ms(self, ms):
@@ -71,9 +105,16 @@ class Datareader():
       if sum(self.ms_120s_window) < 120000:
         self.current_hr = 60000 / np.average(self.ms_10s_window, weights=range(len(self.ms_10s_window)))
 
-    # self.ms_60s_window.append(ms)
-    # while sum(self.ms_60s_window) > 60000: #
-    #   self.ms_60s_window.pop(0)
+    self.ms_60s_window.append(ms)
+    while sum(self.ms_60s_window) > 60000: #
+      self.ms_60s_window.pop(0)
+
+      f, Pxx_den_60s = scipy.signal.welch(self.ms_60s_window, 0.8, nperseg=5280)
+
+      self.vlf_power_60s = sum(Pxx_den_60s[21:253])
+      self.lf_power_60s = sum(Pxx_den_60s[253:948])
+      self.hf_power_60s = sum(Pxx_den_60s[948:-1])
+      self.lf_hf_ratio_60s = self.lf_power_60s/self.hf_power_60s if self.hf_power_60s > 0 else 0
 
     self.ms_120s_window.append(ms)
     while sum(self.ms_120s_window) > 120000: #
@@ -83,7 +124,6 @@ class Datareader():
 
       #60000 ms in 1 minute
       self.current_hr = 60000 / np.average(self.ms_120s_window, weights=range(len(self.ms_120s_window)))
-
 
       # max_hr is een momentopname
       if self.current_hr > self.max_hr:
@@ -98,15 +138,40 @@ class Datareader():
       self.nn50 = np.count_nonzero(deltas_120s >= 50)
       self.rmssd = math.sqrt(np.average(np.square(deltas_120s)))
 
-    # self.ms_300s_window.append(ms)
-    # while sum(self.ms_300s_window) > 300000: #
-    #   self.ms_300s_window.pop(0)
+    self.ms_300s_window.append(ms)
+    while sum(self.ms_300s_window) > 300000: #
+      self.ms_300s_window.pop(0)
 
-    return [self.total_ms, ms, self.current_hr, self.current_hrv, self.sdnn, self.sdsd, self.nn50, self.rmssd]
+      f, Pxx_den_300s = scipy.signal.welch(self.ms_300s_window, 0.8, nperseg=5280)
+
+      self.vlf_power_300s = sum(Pxx_den_300s[21:253])
+      self.lf_power_300s = sum(Pxx_den_300s[253:948])
+      self.hf_power_300s = sum(Pxx_den_300s[948:-1])
+      self.lf_hf_ratio_300s = self.lf_power_300s/self.hf_power_300s if self.hf_power_300s > 0  else 0
 
 
-  def read_raw(self, fname='raw/2020-06-30 18-00-07 - felix.txt'):
-    A = np.empty((0,8), dtype=float)
+    return [
+      self.total_ms, 
+      ms, 
+      self.current_hr,
+      self.current_hrv,
+      self.sdnn,
+      self.sdsd,
+      self.nn50,
+      self.rmssd,
+      self.vlf_power_60s,
+      self.lf_power_60s,
+      self.hf_power_60s,
+      self.lf_hf_ratio_60s,
+      self.vlf_power_300s, 
+      self.lf_power_300s, 
+      self.hf_power_300s, 
+      self.lf_hf_ratio_300s, 
+    ]
+
+
+  def read_raw(self, fname, correct=True):
+    data = np.empty((0,16), dtype=float)
 
     with open(fname, 'r') as file:
 
@@ -147,13 +212,31 @@ class Datareader():
 
           self.total_ms += ms
           newrow = self.handle_ms(ms)
-          A = np.append(A, [newrow], axis=0)
+          data = np.append(data, [newrow], axis=0)
 
     user = [self.resting_hr, self.max_hr]
 
+
+    f, Pxx_den = scipy.signal.welch(data[:,1], 0.8, nperseg=5280)
+
+    print(sum(Pxx_den[21:253]))
+
+    print(sum(Pxx_den[253:948]))
+
+    print(sum(Pxx_den[948:-1]))
+
+    # plt.semilogy(f, Pxx_den)
+
+    # plt.xlabel('frequency [Hz]')
+
+    # plt.ylabel('PSD [V**2/Hz]')
+
+    # plt.show()
+
+
     print(user)
-    np.save('data.npy', A)
-    return A
+    np.save('data.npy', data)
+    return data
 
   def find_correction(self, ms_7beat_window):
     target = (ms_7beat_window[0] + ms_7beat_window[6]) / 2 
@@ -190,7 +273,19 @@ class Datareader():
 
 if __name__ == "__main__":
   reader = Datareader()
-  # data = reader.read_raw("/raw/2020-07-01 11-06-32 - arnhoudt")
-  data = reader.read_raw()
+  # data = reader.read_raw("raw/2020-06-27 22-08-21 - poef 1.txt")
+  # data = reader.read_raw("raw/2020-06-28 17-34-47 - poef 2.txt")
+  # data = reader.read_raw("raw/2020-06-29 14-37-18 - marcon.txt")
+  # data = reader.read_raw("raw/2020-06-29 15-21-44 - wouwt.txt")
+  # data = reader.read_raw("raw/2020-06-30 18-00-07 - felix.txt")
+  # data = reader.read_raw("raw/2020-06-30 18-43-53 - charlotte.txt")
+  data = reader.read_raw("raw/2020-06-30 19-27-41 - francis.txt")
+  # data = reader.read_raw("raw/2020-07-01 11-06-32 - arnhoudt.txt")
+  # data = reader.read_raw("raw/2020-07-02 22-23-08 - poef - interval.txt")
+
+  # data = reader.read_raw("raw/squat_3x5.txt")
+  # data = reader.read_raw("raw/squat_rest.txt")
+  # data = reader.read_raw("raw/squat_warmup.txt")
+
   reader.draw(data, output_fname="graph.png")
 

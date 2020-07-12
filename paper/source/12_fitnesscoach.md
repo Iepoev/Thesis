@@ -79,3 +79,5 @@ Neural history compressor
 Sequence Classification
 
 FitzHugh Nagumo model [@Madl2016]
+
+cycle length dependence (1).
