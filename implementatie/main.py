@@ -1,15 +1,14 @@
 
 import argparse
-import numpy
-
-import tensorflow as tf
-
 from keras.datasets import imdb
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
 from keras.layers.embeddings import Embedding
 from keras.preprocessing import sequence
+import numpy as np
+from sklearn.metrics import classification_report
+import tensorflow as tf
 
 from src.user import User
 from src.baecke import baecke
@@ -21,33 +20,31 @@ def tensorflow():
 
   # Generators
   training_generator = DataGenerator(train_test_split=train_test_split)
-  validation_generator = DataGenerator(train=False, train_test_split=train_test_split)
+  validation_generator = DataGenerator(train=False, train_test_split=train_test_split, batch_size=128)
+
+  (inp, outp) = training_generator.__getitem__(0)
+  print(inp.shape)
+  print(outp.shape)
 
 
-  # LSTM for sequence classification in the IMDB dataset
-
-  # # fix random seed for reproducibility
-  # numpy.random.seed(7)
-  # # load the dataset but only keep the top n words, zero the rest
-  # top_words = 5000
-  # (X_train, y_train), (X_test, y_test) = imdb.load_data(num_words=top_words)
-  # # truncate and pad input sequences
-  # max_review_length = 500
-  # X_train = sequence.pad_sequences(X_train, maxlen=max_review_length)
-  # X_test = sequence.pad_sequences(X_test, maxlen=max_review_length)
-  # # create the model
-  # print(X_train[:50])
-  # print(y_train[:50])
-  # embedding_vecor_length = 32
-
+  # LSTM for sequence classification 
   model = Sequential()
-  model.add(LSTM(64,return_sequences=True))
-  model.add(LSTM(64))
-  model.add(Dense(1, activation='sigmoid'))
-  model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-  model.fit(training_generator, epochs=2, batch_size=128)
+  model.add(LSTM(32,return_sequences=True, input_shape=(training_generator.seq_len,16)))
+  model.add(LSTM(5,return_sequences=True, input_shape=(training_generator.seq_len,16)))
+  # model.add(Dense(training_generator.n_classes, activation='softmax'))
+  model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
   print(model.summary())
-  # Final evaluation of the model
+  model.fit(training_generator, epochs=5)
+
+  # (X_eval, y_true) = validation_generator.__getitem__(0)
+
+  # y_true = np.argmax(y_true, axis=1) # Convert one-hot to index
+  # y_pred = np.argmax(model.predict(X_eval), axis=1)
+
+  # print(y_pred)
+
+  # print(classification_report(y_true, y_pred))
+
   scores = model.evaluate(validation_generator, verbose=1)
   print(scores)
   print("Accuracy: %.2f%%" % (scores[1]*100))

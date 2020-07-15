@@ -153,6 +153,7 @@ class Datareader():
     if self.total_ms < 120000:
       cur_cat = 0 # 2 minutes rest
     elif self.total_ms < 420000:
+      # cur_cat = 0 # 5 minutes rest
       cur_cat = 1 # 5 minutes moving
     elif self.total_ms < 720000:
       cur_cat = 2 # 5 minutes active
@@ -168,6 +169,35 @@ class Datareader():
       cur_cat = 4 # 1 minute maximal exertion
     else:
       cur_cat = 6
+
+
+    # categories:
+    # 0: resting
+    # 1: active
+    # 2: intense
+    # 3: maximal exertion
+    # 4: recovering (fast)
+
+    if self.total_ms < 120000:
+      cur_cat = 0 # 2 minutes rest
+    elif self.total_ms < 420000:
+      cur_cat = 0 # 5 minutes almost not active
+    elif self.total_ms < 720000:
+      cur_cat = 1 # 5 minutes active
+    elif self.total_ms < 840000:
+      cur_cat = 4 # 2 minute recovering
+    elif self.total_ms < 1140000:
+      cur_cat = 1 # 5 minute active
+    elif self.total_ms < 1260000:
+      cur_cat = 4 # 2 minute recovering
+    elif self.total_ms < 1560000:
+      cur_cat = 2 # 5 minute intense
+    elif self.total_ms < 1620000:
+      cur_cat = 3 # 1 minute maximal exertion
+    else:
+      cur_cat = 3
+
+
 
     return [
       self.total_ms, 
@@ -186,7 +216,7 @@ class Datareader():
       self.lf_power_300s, 
       self.hf_power_300s, 
       self.lf_hf_ratio_300s,
-      cur_cat,
+      cur_cat
     ]
 
 
@@ -280,16 +310,17 @@ class Datareader():
 if __name__ == "__main__":
   reader = Datareader()
 
-  # Datareader().read_raw("raw/2020-06-27 22-08-21 - poef 1.txt", oname="poef_1.npy")
-  # Datareader().read_raw("raw/2020-06-28 17-34-47 - poef 2.txt", oname="poef_2.npy")
+  Datareader().read_raw("raw/2020-06-27 22-08-21 - poef 1.txt", oname="poef_1.npy")
+  Datareader().read_raw("raw/2020-06-28 17-34-47 - poef 2.txt", oname="poef_2.npy")
   Datareader().read_raw("raw/2020-06-29 14-37-18 - marcon.txt", oname="marcon.npy")
-  # Datareader().read_raw("raw/2020-06-29 15-21-44 - wouwt.txt", oname="wouwt.npy")
-  # Datareader().read_raw("raw/2020-06-30 18-00-07 - felix.txt", oname="felix.npy")
-  # Datareader().read_raw("raw/2020-06-30 18-43-53 - charlotte.txt", oname="charlotte.npy")
-  # Datareader().read_raw("raw/2020-06-30 19-27-41 - francis.txt", oname="francis.npy")
-  # Datareader().read_raw("raw/2020-07-01 11-06-32 - arnhoudt.txt", oname="arnhoudt.npy")
-  # Datareader().read_raw("raw/2020-07-04 15-23-00 - maxime.txt", oname="maxime.npy")
+  Datareader().read_raw("raw/2020-06-29 15-21-44 - wouwt.txt", oname="wouwt.npy")
+  Datareader().read_raw("raw/2020-06-30 18-00-07 - felix.txt", oname="felix.npy")
+  Datareader().read_raw("raw/2020-06-30 18-43-53 - charlotte.txt", oname="charlotte.npy")
+  Datareader().read_raw("raw/2020-06-30 19-27-41 - francis.txt", oname="francis.npy")
+  Datareader().read_raw("raw/2020-07-01 11-06-32 - arnhoudt.txt", oname="arnhoudt.npy")
+  Datareader().read_raw("raw/2020-07-04 15-23-00 - maxime.txt", oname="maxime.npy")
   Datareader().read_raw("raw/2020-07-09 11-25-59 - karolina.txt", oname="karolina.npy")
+  Datareader().read_raw("raw/2020-07-14 17-38-27 - jochen.txt", oname="jochen.npy")
 
   # Datareader().read_raw("raw/2020-07-02 22-23-08 - poef - interval.txt", oname="poef_interval.npy")
   
