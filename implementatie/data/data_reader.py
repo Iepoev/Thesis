@@ -68,7 +68,7 @@ class Datareader():
     self.draw(data, output_fname)
 
   def draw(self, data, output_fname="graph.png"):
-    # plt.plot(data[:,0]/60000,data[:,1], linewidth=0.5) # ms
+    plt.plot(data[:,0]/60000,data[:,1], linewidth=0.5) # ms
     plt.plot(data[:,0]/60000,data[:,2], linewidth=0.5) # HR
     plt.plot(data[:,0]/60000,data[:,3], linewidth=0.5) # HRV (weighted moving average)
     # plt.plot(data[:,0]/60000,data[:,4], linewidth=0.5) # SDNN
@@ -153,21 +153,21 @@ class Datareader():
     if self.total_ms < 120000:
       cur_cat = 0 # 2 minutes rest
     elif self.total_ms < 420000:
-      cur_cat = 10 # 10 minutes active
+      cur_cat = 1 # 5 minutes moving
     elif self.total_ms < 720000:
-      cur_cat = 20 # 10 minutes active
+      cur_cat = 2 # 5 minutes active
     elif self.total_ms < 840000:
-      cur_cat = 50 # 2 minute recovering
+      cur_cat = 5 # 2 minute recovering
     elif self.total_ms < 1140000:
-      cur_cat = 20 # 5 minute rest
+      cur_cat = 2 # 5 minute active
     elif self.total_ms < 1260000:
-      cur_cat = 50 # 2 minute recovering
+      cur_cat = 5 # 2 minute recovering
     elif self.total_ms < 1560000:
-      cur_cat = 30 # 5 minute intense
+      cur_cat = 3 # 5 minute intense
     elif self.total_ms < 1620000:
-      cur_cat = 40 # 1 minute maximal exertion
+      cur_cat = 4 # 1 minute maximal exertion
     else:
-      cur_cat = 60
+      cur_cat = 6
 
     return [
       self.total_ms, 
@@ -208,7 +208,7 @@ class Datareader():
 
           ms_diff = abs(ms_7beat_window[2]-ms_7beat_window[3])
 
-          if ms_diff >= 30 or (self.current_hrv >=10 and ms_diff >= self.current_hrv * 2):
+          if correct and (ms_diff >= 30 or (self.current_hrv >=10 and ms_diff >= self.current_hrv * 2)):
             ms_7beat_window = self.find_correction(ms_7beat_window)
 
           ms = ms_7beat_window.pop(0)
@@ -278,15 +278,17 @@ class Datareader():
         return ms_7beat_window
 
 if __name__ == "__main__":
-  Datareader().read_raw("raw/2020-06-27 22-08-21 - poef 1.txt", oname="poef_1.npy")
-  Datareader().read_raw("raw/2020-06-28 17-34-47 - poef 2.txt", oname="poef_2.npy")
+  reader = Datareader()
+
+  # Datareader().read_raw("raw/2020-06-27 22-08-21 - poef 1.txt", oname="poef_1.npy")
+  # Datareader().read_raw("raw/2020-06-28 17-34-47 - poef 2.txt", oname="poef_2.npy")
   Datareader().read_raw("raw/2020-06-29 14-37-18 - marcon.txt", oname="marcon.npy")
-  Datareader().read_raw("raw/2020-06-29 15-21-44 - wouwt.txt", oname="wouwt.npy")
-  Datareader().read_raw("raw/2020-06-30 18-00-07 - felix.txt", oname="felix.npy")
-  Datareader().read_raw("raw/2020-06-30 18-43-53 - charlotte.txt", oname="charlotte.npy")
-  Datareader().read_raw("raw/2020-06-30 19-27-41 - francis.txt", oname="francis.npy")
-  Datareader().read_raw("raw/2020-07-01 11-06-32 - arnhoudt.txt", oname="arnhoudt.npy")
-  Datareader().read_raw("raw/2020-07-04 15-23-00 - maxime.txt", oname="maxime.npy")
+  # Datareader().read_raw("raw/2020-06-29 15-21-44 - wouwt.txt", oname="wouwt.npy")
+  # Datareader().read_raw("raw/2020-06-30 18-00-07 - felix.txt", oname="felix.npy")
+  # Datareader().read_raw("raw/2020-06-30 18-43-53 - charlotte.txt", oname="charlotte.npy")
+  # Datareader().read_raw("raw/2020-06-30 19-27-41 - francis.txt", oname="francis.npy")
+  # Datareader().read_raw("raw/2020-07-01 11-06-32 - arnhoudt.txt", oname="arnhoudt.npy")
+  # Datareader().read_raw("raw/2020-07-04 15-23-00 - maxime.txt", oname="maxime.npy")
   Datareader().read_raw("raw/2020-07-09 11-25-59 - karolina.txt", oname="karolina.npy")
 
   # Datareader().read_raw("raw/2020-07-02 22-23-08 - poef - interval.txt", oname="poef_interval.npy")
@@ -295,5 +297,9 @@ if __name__ == "__main__":
   # Datareader().read_raw("raw/squat_rest.txt")
   # Datareader().read_raw("raw/squat_warmup.txt")
 
-  # reader.draw(data, output_fname="graph.png")
+
+  # reader = Datareader()
+  # data = reader.read_raw("raw/2020-06-29 14-37-18 - marcon.txt", oname="marcon.npy")
+  # data = reader.read_raw("raw/2020-07-09 11-25-59 - karolina.txt", oname="karolina.npy")
+  # reader.draw(data, output_fname="marcon.png")
 

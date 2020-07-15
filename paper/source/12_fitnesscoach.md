@@ -68,6 +68,8 @@ Na afronden van een trainingsessie wordt de intensiteit van de sessie berekend e
 
 ### gebruikte technieken
 
+feature extraction -> feature engineering
+
 Concept drift [@Mulinka2018]
 
 Adaptive learning
