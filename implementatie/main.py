@@ -1,5 +1,6 @@
 
 import argparse
+import keras
 from keras.datasets import imdb
 from keras.models import Sequential
 from keras.layers import Dense
@@ -10,11 +11,17 @@ import numpy as np
 from sklearn.metrics import classification_report
 import tensorflow as tf
 
+import datetime
+
 from src.user import User
 from src.baecke import baecke
 from data.datagenerator import DataGenerator
 
 def tensorflow():
+
+  logdir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+
 
   train_test_split = 0.7
 
@@ -34,7 +41,7 @@ def tensorflow():
   # model.add(Dense(training_generator.n_classes, activation='softmax'))
   model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
   print(model.summary())
-  model.fit(training_generator, epochs=5)
+  model.fit(training_generator, epochs=100,callbacks=[tensorboard_callback])
 
   # (X_eval, y_true) = validation_generator.__getitem__(0)
 
