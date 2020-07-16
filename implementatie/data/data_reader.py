@@ -150,25 +150,25 @@ class Datareader():
     # 5: recovering (fast)
     # 6: recovering (slow)
 
-    if self.total_ms < 120000:
-      cur_cat = 0 # 2 minutes rest
-    elif self.total_ms < 420000:
-      # cur_cat = 0 # 5 minutes rest
-      cur_cat = 1 # 5 minutes moving
-    elif self.total_ms < 720000:
-      cur_cat = 2 # 5 minutes active
-    elif self.total_ms < 840000:
-      cur_cat = 5 # 2 minute recovering
-    elif self.total_ms < 1140000:
-      cur_cat = 2 # 5 minute active
-    elif self.total_ms < 1260000:
-      cur_cat = 5 # 2 minute recovering
-    elif self.total_ms < 1560000:
-      cur_cat = 3 # 5 minute intense
-    elif self.total_ms < 1620000:
-      cur_cat = 4 # 1 minute maximal exertion
-    else:
-      cur_cat = 6
+    # if self.total_ms < 120000:
+    #   cur_cat = 0 # 2 minutes rest
+    # elif self.total_ms < 420000:
+    #   # cur_cat = 0 # 5 minutes rest
+    #   cur_cat = 1 # 5 minutes moving
+    # elif self.total_ms < 720000:
+    #   cur_cat = 2 # 5 minutes active
+    # elif self.total_ms < 840000:
+    #   cur_cat = 5 # 2 minute recovering
+    # elif self.total_ms < 1140000:
+    #   cur_cat = 2 # 5 minute active
+    # elif self.total_ms < 1260000:
+    #   cur_cat = 5 # 2 minute recovering
+    # elif self.total_ms < 1560000:
+    #   cur_cat = 3 # 5 minute intense
+    # elif self.total_ms < 1620000:
+    #   cur_cat = 4 # 1 minute maximal exertion
+    # else:
+    #   cur_cat = 6
 
 
     # categories:
@@ -176,7 +176,33 @@ class Datareader():
     # 1: active
     # 2: intense
     # 3: maximal exertion
-    # 4: recovering (fast)
+    # 4: recovering
+
+    # if self.total_ms < 120000:
+    #   cur_cat = 0 # 2 minutes rest
+    # elif self.total_ms < 420000:
+    #   cur_cat = 0 # 5 minutes almost not active
+    # elif self.total_ms < 720000:
+    #   cur_cat = 1 # 5 minutes active
+    # elif self.total_ms < 840000:
+    #   cur_cat = 4 # 2 minute recovering
+    # elif self.total_ms < 1140000:
+    #   cur_cat = 1 # 5 minute active
+    # elif self.total_ms < 1260000:
+    #   cur_cat = 4 # 2 minute recovering
+    # elif self.total_ms < 1560000:
+    #   cur_cat = 2 # 5 minute intense
+    # elif self.total_ms < 1620000:
+    #   cur_cat = 3 # 1 minute maximal exertion
+    # else:
+    #   cur_cat = 3
+
+
+
+    # categories:
+    # 0: resting
+    # 1: active
+    # 2: recovering
 
     if self.total_ms < 120000:
       cur_cat = 0 # 2 minutes rest
@@ -185,22 +211,20 @@ class Datareader():
     elif self.total_ms < 720000:
       cur_cat = 1 # 5 minutes active
     elif self.total_ms < 840000:
-      cur_cat = 4 # 2 minute recovering
+      cur_cat = 2 # 2 minute recovering
     elif self.total_ms < 1140000:
       cur_cat = 1 # 5 minute active
     elif self.total_ms < 1260000:
-      cur_cat = 4 # 2 minute recovering
+      cur_cat = 2 # 2 minute recovering
     elif self.total_ms < 1560000:
-      cur_cat = 2 # 5 minute intense
+      cur_cat = 1 # 5 minute intense
     elif self.total_ms < 1620000:
-      cur_cat = 3 # 1 minute maximal exertion
+      cur_cat = 1 # 1 minute maximal exertion
     else:
-      cur_cat = 3
-
-
+      cur_cat = 1
 
     return [
-      self.total_ms, 
+      # self.total_ms, 
       ms, 
       self.current_hr,
       self.current_hrv,
@@ -208,20 +232,20 @@ class Datareader():
       self.sdsd,
       self.nn50,
       self.rmssd,
-      self.vlf_power_60s,
-      self.lf_power_60s,
+      # self.vlf_power_60s,
+      # self.lf_power_60s,
       self.hf_power_60s,
-      self.lf_hf_ratio_60s,
+      # self.lf_hf_ratio_60s,
       self.vlf_power_300s, 
       self.lf_power_300s, 
-      self.hf_power_300s, 
+      # self.hf_power_300s, 
       self.lf_hf_ratio_300s,
       cur_cat
     ]
 
 
   def read_raw(self, fname, oname="data.npy", correct=True):
-    data = np.empty((0,17), dtype=float)
+    data = np.empty((0,12), dtype=float)
 
     with open(fname, 'r') as file:
 

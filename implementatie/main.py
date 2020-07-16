@@ -17,20 +17,18 @@ from src.user import User
 from src.baecke import baecke
 from data.datagenerator import DataGenerator
 
-def tensorflow():
+def seq_to_seq_classification():
 
-  logdir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  logdir = "logs/fit/seq_to_seq_classification" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
   tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
 
-  train_test_split = 0.7
-
   # Generators
-  training_generator = DataGenerator(train_test_split=train_test_split)
-  validation_generator = DataGenerator(train=False, train_test_split=train_test_split, batch_size=128)
+  training_generator = DataGenerator()
+  test_generator = DataGenerator(train=False)
 
   (inp, outp) = training_generator.__getitem__(0)
-  print(inp.shape)
+  print(inp[31][0])
   print(outp.shape)
 
 
@@ -41,21 +39,38 @@ def tensorflow():
   # model.add(Dense(training_generator.n_classes, activation='softmax'))
   model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
   print(model.summary())
-  model.fit(training_generator, epochs=100,callbacks=[tensorboard_callback])
+  model.fit(training_generator, epochs=300,callbacks=[tensorboard_callback])
 
-  # (X_eval, y_true) = validation_generator.__getitem__(0)
-
-  # y_true = np.argmax(y_true, axis=1) # Convert one-hot to index
-  # y_pred = np.argmax(model.predict(X_eval), axis=1)
-
-  # print(y_pred)
-
-  # print(classification_report(y_true, y_pred))
-
-  scores = model.evaluate(validation_generator, verbose=1)
+  scores = model.evaluate(test_generator, verbose=1)
   print(scores)
   print("Accuracy: %.2f%%" % (scores[1]*100))
 
+
+def seq_classification():
+  logdir = "logs/fit/seq_classification" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+
+
+  # Generators
+  training_generator = DataGenerator(squash_class=True)
+  test_generator = DataGenerator(train=False, squash_class=True)
+
+  (inp, outp) = training_generator.__getitem__(0)
+  print(inp.shape)
+  print(outp.shape)
+
+  # LSTM for sequence classification 
+  model = Sequential()
+  model.add(Dense(training_generator.seq_len, activation='sigmoid', input_shape=(training_generator.seq_len,16)))
+  model.add(LSTM(training_generator.seq_len,return_sequences=True))
+  model.add(LSTM(16,return_sequences=True))
+  model.add(LSTM(16))
+  model.add(Dense(training_generator.n_classes, activation='softmax'))
+  model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+  print(model.summary())
+  model.fit(training_generator, epochs=300,callbacks=[tensorboard_callback])
+
+  scores = model.evaluate(test_generator, verbose=1)
 
 def main():
   parser = argparse.ArgumentParser(description='Fitness coach.')
@@ -90,8 +105,7 @@ def main():
 
   #print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
-
-  tensorflow()
+  seq_classification()
 
 if __name__ == "__main__":
   main()

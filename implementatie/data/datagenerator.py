@@ -7,11 +7,11 @@ import math
 
 class DataGenerator(keras.utils.Sequence):
   'Generates data for Keras'
-  def __init__(self, train=True, train_test_split=0.7, squash_category=False, batch_size=32, seq_len=64, n_features=16, n_classes=5, shuffle=True):
+  def __init__(self, train=True, train_test_split=0.8, squash_class=False, batch_size=32, seq_len=32, n_features=16, n_classes=5):
     'Initialization'
     self.train = train
     self.train_test_split = train_test_split
-    self.squash_category = squash_category
+    self.squash_class = squash_class
     self.batch_size = batch_size
     self.seq_len = seq_len
     self.n_features = n_features
@@ -26,7 +26,7 @@ class DataGenerator(keras.utils.Sequence):
 
     print(f"generator length: {self.__len__()} batches of {self.batch_size} sequences with length {self.seq_len} (sample total: {len(self.data)})")
 
-    # if self.squash_category:
+    # if self.squash_class:
     #   (x_temp, y_temp) = self._find_squashed_sample(0, len(self.data))
     #   print(f"input shape: {x_temp.shape}, output shape: {y_temp.shape}")
     # else:
@@ -43,20 +43,14 @@ class DataGenerator(keras.utils.Sequence):
 
     batch_indexes = self.indexes[index*self.batch_size:(index+1)*self.batch_size]
 
+    if self.squash_class:
+      y = np.empty((self.batch_size, self.n_classes), dtype=int)
+      for i, data_idx in enumerate(batch_indexes):
+        seq_start = data_idx+self.current_offset
+        seq_end = data_idx+self.current_offset+self.seq_len
 
-    # range_start = 0 if self.train else math.floor(len(self.data)*self.train_test_split)
-    # range_end = math.ceil(len(self.data)*self.train_test_split) - self.seq_len if self.train else len(self.data) - self.seq_len
-
-    if self.squash_category:
-      y = np.empty((self.batch_size), dtype=int)
-
-      seq_start = data_idx+self.current_offset
-      seq_end = data_idx+self.current_offset+self.seq_len
-
-      X = self.data[seq_start:seq_end,:-1]
-      y = self.data[seq_start,-1]
-
-      return X, keras.utils.to_categorical(y, num_classes=self.n_classes)
+        X[i,] = self.data[seq_start:seq_end,:-1]
+        y[i,] = keras.utils.to_categorical(self.data[seq_end,-1], num_classes=self.n_classes)
     else:
       y = np.empty((self.batch_size, self.seq_len, self.n_classes), dtype=int)
 
@@ -70,28 +64,6 @@ class DataGenerator(keras.utils.Sequence):
 
     return X, y
 
-  # def _find_sample(self, batch_indexes):
-  #   idx = random.randrange(range_start, range_end)
-  #   x_temp = self.data[idx:idx+self.seq_len]
-  #   y_temp = self.data[idx:idx+self.seq_len,-1]
-
-  #   for i in batch_indexes:
-
-
-  #   return (x_temp[:,:-1], keras.utils.to_categorical(y_temp, num_classes=self.n_classes))
-
-  # def _find_squashed_sample(self, range_start, range_end):
-  #   idx = random.randrange(range_start, range_end)
-  #   x_temp = self.data[idx:idx+self.seq_len]
-  #   y_temp = self.data[idx,-1]
-
-  #   while not np.all(x_temp[:,-1] == y_temp):
-  #     idx = random.randrange(range_start, range_end)
-  #     x_temp = self.data[idx:idx+self.seq_len]
-  #     y_temp = self.data[idx,-1]
-
-  #   return (x_temp[:,:-1], keras.utils.to_categorical(y_temp, num_classes=self.n_classes))
-
   def read_data(self):
 
     dataArray = np.empty((0,self.n_features+1), dtype=float)
@@ -101,6 +73,11 @@ class DataGenerator(keras.utils.Sequence):
       # Load file
       data = np.load(npfile)
       dataArray = np.append(dataArray, data, axis=0)
+
+    if self.train:
+      dataArray = dataArray[:math.floor(len(dataArray)*self.train_test_split)]
+    else:
+      dataArray = dataArray[math.floor(len(dataArray)*self.train_test_split):]
 
     return dataArray
 
