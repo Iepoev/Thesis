@@ -10,7 +10,8 @@ h5py = "*"
 tensorflow = "*"
 keras = "*"
 matplotlib = "*"
-pyhrv = "*"
+keras-tcn = "*"
+sklearn = "*"
 
 [requires]
 python_version = "3.8"

@@ -271,8 +271,6 @@ class Datareader():
           newrow = self.handle_ms(ms)
           data = np.append(data, [newrow], axis=0)
 
-
-
     f, Pxx_den = scipy.signal.welch(data[:,1], 0.8, nperseg=5280)
 
     user = [self.resting_hr, self.max_hr, sum(Pxx_den[21:253]), sum(Pxx_den[253:948]), sum(Pxx_den[948:-1])]

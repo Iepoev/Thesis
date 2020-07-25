@@ -1,13 +1,14 @@
 import numpy as np
 import keras
+import tensorflow
 from glob import glob
 
 import random
 import math
 
-class DataGenerator(keras.utils.Sequence):
+class DataGenerator(tensorflow.keras.utils.Sequence):
   'Generates data for Keras'
-  def __init__(self, train=True, train_test_split=0.8, squash_class=False, batch_size=32, seq_len=32, n_features=16, n_classes=5):
+  def __init__(self, train=True, train_test_split=0.8, squash_class=False, batch_size=16, seq_len=64, n_features=11, n_classes=5):
     'Initialization'
     self.train = train
     self.train_test_split = train_test_split
@@ -18,11 +19,21 @@ class DataGenerator(keras.utils.Sequence):
     self.n_classes = n_classes
     self.data = self.read_data()
 
-    self.indexes = [i*self.seq_len for i in range(math.floor(len(self.data) / self.seq_len))]
+    # 2 sequence lenghts of spare space: one seq_len for the actual sequence and one seql_len for when the offset is equal to seq_len
+    self.indexes = [i*self.seq_len for i in range(math.floor(len(self.data) / self.seq_len)-2)]
     self.max_offset = len(self.data) % self.seq_len
-    self.current_offset = 0
+
+    if (self.max_offset == 0):
+      self.max_offset = seq_len
+      self.indexes = self.indexes[:-1]
+
+    self.current_offset = random.randrange(self.max_offset)
+
+    unique, counts = np.unique(self.data[:,-1], return_counts=True)
+    print(dict(zip(unique, counts)))
 
     self.on_epoch_end()
+
 
     print(f"generator length: {self.__len__()} batches of {self.batch_size} sequences with length {self.seq_len} (sample total: {len(self.data)})")
 
@@ -39,30 +50,67 @@ class DataGenerator(keras.utils.Sequence):
 
   def __getitem__(self, index):
     'Generate one batch of data'
-    X = np.empty((self.batch_size, self.seq_len, self.n_features))
+    # Xx = np.empty((0, self.seq_len, self.n_features),dtype=float)
 
-    batch_indexes = self.indexes[index*self.batch_size:(index+1)*self.batch_size]
+    X = [np.empty((0, self.seq_len, self.n_features+1),dtype=float)] * self.n_classes
+    # Xy = np.empty((self.n_classes, 0, self.seq_len, self.n_features),dtype=float)
+
+    # idx = self.indexes[0]
+    # seq_start = idx+self.current_offset
+    # seq_end = idx+self.current_offset+self.seq_len
+    # clss = int(self.data[seq_end,-1])
+
+
+    # insert = self.data[seq_start:seq_end,:-1]
+    # # Xx = np.append(Xx, [insert], axis=0) # werkt wel
+    # classified_sequences[0] = np.append(classified_sequences[0], [insert], axis=0) # werkt wel
+    # Xy[0] = np.append(Xy[0], [insert], axis=0) # werkt niet
+    # # print(Xx.shape)
+    # print(classified_sequences[0].shape)
+    # print(insert.shape)
+
+
+    # X[clss] = 
+    # print(self.data[seq_start:seq_end,:-1])
+    # print(X[clss])
+
+    #batch_indexes = self.indexes[index*self.batch_size:(index+1)*self.batch_size]
+    #print(batch_indexes)
 
     if self.squash_class:
-      y = np.empty((self.batch_size, self.n_classes), dtype=int)
-      for i, data_idx in enumerate(batch_indexes):
-        seq_start = data_idx+self.current_offset
-        seq_end = data_idx+self.current_offset+self.seq_len
+      for idx in self.indexes:
+        seq_start = idx+self.current_offset
+        seq_end = idx+self.current_offset+self.seq_len
+        clss = int(self.data[seq_end,-1])
 
-        X[i,] = self.data[seq_start:seq_end,:-1]
-        y[i,] = keras.utils.to_categorical(self.data[seq_end,-1], num_classes=self.n_classes)
-    else:
-      y = np.empty((self.batch_size, self.seq_len, self.n_classes), dtype=int)
+        if np.all(self.data[seq_end-10:seq_end,-1] == clss):
+          X[clss] = np.append(X[clss], [self.data[seq_start:seq_end]], axis=0)
 
-      for i, data_idx in enumerate(batch_indexes):
+    # else:
+    #   y = np.empty((self.batch_size, self.seq_len, self.n_classes), dtype=int)
 
-        seq_start = data_idx+self.current_offset
-        seq_end = data_idx+self.current_offset+self.seq_len
+    #   for i, data_idx in enumerate(batch_indexes):
 
-        X[i,] = self.data[seq_start:seq_end,:-1]
-        y[i,] = keras.utils.to_categorical(self.data[seq_start:seq_end,-1], num_classes=self.n_classes)
+    #     seq_start = data_idx+self.current_offset
+    #     seq_end = data_idx+self.current_offset+self.seq_len
 
-    return X, y
+    #     X[i,] = self.data[seq_start:seq_end,:-1]
+    #     y[i,] = keras.utils.to_categorical(self.data[seq_start:seq_end,-1], num_classes=self.n_classes)
+
+    min_class_len = len(X[0])
+
+    for li in X:
+      if (min_class_len > len(li)): min_class_len = len(li)
+
+    resX = np.empty((self.n_classes*min_class_len, self.seq_len, self.n_features))
+    resy = np.empty((self.n_classes*min_class_len, self.seq_len, self.n_classes))
+
+    for i, li in enumerate(X):
+      resX[i*min_class_len:(i+1)*min_class_len,] = li[:min_class_len,:,:-1]
+      resy[i*min_class_len:(i+1)*min_class_len,] = keras.utils.to_categorical(li[:min_class_len,:,-1], num_classes=self.n_classes)
+
+
+    return resX, resy
 
   def read_data(self):
 
