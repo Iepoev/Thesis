@@ -8,7 +8,7 @@ import math
 
 class DataGenerator(tensorflow.keras.utils.Sequence):
   'Generates data for Keras'
-  def __init__(self, train=True, train_test_split=0.8, squash_class=False, batch_size=16, seq_len=64, n_features=11, n_classes=5):
+  def __init__(self, train=True, train_test_split=0.8, squash_class=False, batch_size=8, seq_len=64, n_features=11, n_classes=5):
     'Initialization'
     self.train = train
     self.train_test_split = train_test_split
@@ -20,7 +20,8 @@ class DataGenerator(tensorflow.keras.utils.Sequence):
     self.data = self.read_data()
 
     self.min_class_len = 0
-    self.preclassified_data = []
+    self.preclassified_X = []
+    self.preclassified_y = []
 
     # 2 sequence lenghts of spare space: one seq_len for the actual sequence and one seql_len for when the offset is equal to seq_len
     self.indexes = [i*self.seq_len for i in range(math.floor(len(self.data) / self.seq_len)-2)]
@@ -33,7 +34,7 @@ class DataGenerator(tensorflow.keras.utils.Sequence):
     self.current_offset = random.randrange(self.max_offset)
 
     unique, counts = np.unique(self.data[:,-1], return_counts=True)
-    print(dict(zip(unique, counts)))
+    print(f"class counts of beats: {dict(zip(unique, counts))}")
 
     self.on_epoch_end()
 
@@ -55,10 +56,8 @@ class DataGenerator(tensorflow.keras.utils.Sequence):
   def __getitem__(self, index):
     'Generate one batch of data'
 
-    resX = self.preclassified_data[index*self.batch_size:(index+1)*self.batch_size,:, :-1]
-    resy = keras.utils.to_categorical(
-      self.preclassified_data[index*self.batch_size:(index+1)*self.batch_size,:,-1], 
-      num_classes=self.n_classes)
+    resX = self.preclassified_X[index*self.batch_size:(index+1)*self.batch_size]
+    resy = self.preclassified_y[index*self.batch_size:(index+1)*self.batch_size]
 
     return resX, resy
 
@@ -80,26 +79,53 @@ class DataGenerator(tensorflow.keras.utils.Sequence):
     return dataArray
 
   def on_epoch_end(self):
+
+    # generate a new offset so each sequence is kinda unique
     self.current_offset = random.randrange(self.max_offset)
+    # shuffle the base set of indexes
     np.random.shuffle(self.indexes)
 
-    X = [np.empty((0, self.seq_len, self.n_features+1),dtype=float)] * self.n_classes
+    # for each class, create a numpy array and store it in a python list
+    X = [np.empty((0, self.seq_len, self.n_features),dtype=float)] * self.n_classes
 
+    # for each base index, pick the sequence that starts at (that index plus the offset)
     for idx in self.indexes:
       seq_start = idx+self.current_offset
       seq_end = idx+self.current_offset+self.seq_len
       clss = int(self.data[seq_end,-1])
 
-      if np.all(self.data[seq_end-10:seq_end,-1] == clss):
-        X[clss] = np.append(X[clss], [self.data[seq_start:seq_end]], axis=0)
+      # only use sequences of which the latter half is constant
+      if np.all(self.data[seq_end-(math.floor(self.seq_len/2)):seq_end,-1] == clss):
+        # append the sequence to its respective class array
+        X[clss] = np.append(X[clss], [self.data[seq_start:seq_end,:-1]], axis=0)
 
+
+    cls_count = ""
+    for i, li in enumerate(X):
+      cls_count = cls_count + f"{i}: {len(li)}, "
+
+    print(f"class counts of sequences: {cls_count}")
+
+
+    # balance the data: every class should have the same amount of occurrences per epoch
+
+    # determine the lowest amount of occurences accross all classes
     self.min_class_len = len(X[0])
-
     for li in X:
       if (self.min_class_len > len(li)): self.min_class_len = len(li)
 
-    self.preclassified_data = np.empty((self.n_classes*self.min_class_len, self.seq_len, self.n_features+1))
-    for i, li in enumerate(X):
-      self.preclassified_data[i*self.min_class_len:(i+1)*self.min_class_len,] = li[:self.min_class_len,:,:]
+    # for each class, create
+    self.preclassified_X = np.empty((self.n_classes*self.min_class_len, self.seq_len, self.n_features))
+    self.preclassified_y = np.empty((self.n_classes*self.min_class_len, self.n_classes))
 
-    np.random.shuffle(self.preclassified_data)
+    # one class at a time, pick the first $min_class_len of that class and put them (and their class) in the 
+    # preclassified X and y lists.
+    for i, li in enumerate(X):
+      self.preclassified_X[i*self.min_class_len:(i+1)*self.min_class_len,] = li[:self.min_class_len]
+      self.preclassified_y[i*self.min_class_len:(i+1)*self.min_class_len] = keras.utils.to_categorical(i, num_classes=self.n_classes)
+
+    # shuffle both lists in the same way so every epoch has a non-chronological sequences
+    assert len(self.preclassified_X) == len(self.preclassified_y)
+    p = np.random.permutation(len(self.preclassified_X))
+    self.preclassified_X = self.preclassified_X[p]
+    self.preclassified_y = self.preclassified_y[p]

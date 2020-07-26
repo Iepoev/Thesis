@@ -12,6 +12,7 @@ keras = "*"
 matplotlib = "*"
 keras-tcn = "*"
 sklearn = "*"
+scipy = "*"
 
 [requires]
 python_version = "3.8"

@@ -4,10 +4,11 @@ import datetime
 import keras
 import numpy as np
 import tensorflow as tf
+import math
 
 from tensorflow.keras import Model
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM, Input, Embedding, Dropout, MaxPooling1D, Bidirectional, Conv1D
+from tensorflow.keras.layers import Dense, LSTM, Input, Embedding, Dropout, MaxPooling1D, MaxPooling2D, Bidirectional, Conv1D, Conv2D
 from tensorflow.keras.preprocessing import sequence
 
 from sklearn.metrics import classification_report
@@ -83,7 +84,7 @@ def deepheart():
 
   n_features = 11
   n_classes = 3
-  seq_len = 64
+  seq_len = 128
 
   # Generators
   training_generator = DataGenerator(squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
@@ -94,23 +95,25 @@ def deepheart():
   print(outp.shape)
 
   i = Input(shape=(training_generator.seq_len, n_features))
-  x = TCN(return_sequences=True, kernel_size=12, nb_filters=seq_len,use_batch_norm=True)(i)  # The TCN layers are here.
+  x = Conv1D(seq_len, 12, activation='relu')(i)
   x = Dropout(0.2)(x)
-  # x = MaxPooling1D(pool_size=2)(x)
-  # x = TCN(return_sequences=True, kernel_size=5, nb_filters=seq_len,use_batch_norm=True)(x)  # The TCN layers are here.
-  # x = Dropout(0.2)(x)
-  # x = MaxPooling1D(pool_size=2)(x)
-  # x = TCN(return_sequences=True, kernel_size=5, nb_filters=seq_len,use_batch_norm=True)(x)  # The TCN layers are here.
-  # x = Dropout(0.2)(x)
-  # x = MaxPooling1D(pool_size=2)(x)
-  # x = Bidirectional(LSTM(seq_len, return_sequences=True))(x)
-  # x = Bidirectional(LSTM(seq_len, return_sequences=True))(x)
-  # x = Bidirectional(LSTM(seq_len, return_sequences=True))(x)
-  # x = Bidirectional(LSTM(seq_len, return_sequences=False))(x)
+  x = MaxPooling1D(pool_size=2)(x)
+  x = Conv1D(seq_len, 5, activation='relu')(x)
+  x = Dropout(0.2)(x)
+  x = MaxPooling1D(pool_size=2)(x)
+  x = Conv1D(seq_len, 5, activation='relu')(x)
+  x = Dropout(0.2)(x)
+  x = MaxPooling1D(pool_size=2)(x)
+  x = Bidirectional(LSTM(math.floor(seq_len/2), return_sequences=True))(x)
+  x = Bidirectional(LSTM(math.floor(seq_len/2), return_sequences=True))(x)
+  x = Bidirectional(LSTM(math.floor(seq_len/2), return_sequences=True))(x)
+  x = Bidirectional(LSTM(math.floor(seq_len/2), return_sequences=False))(x)
   x = Dropout(0.2)(x)
   # x = Conv1D(filters=training_generator.n_classes, kernel_size=seq_len, activation='tanh')(x)
-  # x = Dense(training_generator.n_classes, activation='softmax')(i)
   x = Dense(training_generator.n_classes, activation='softmax')(x)
+
+#   x = TCN(return_sequences=True, kernel_size=12, nb_filters=seq_len,use_batch_norm=True)(i)  # The TCN layers are here.
+
 
   model = Model(inputs=[i], outputs=[x])
 

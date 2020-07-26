@@ -4,11 +4,7 @@ import math
 import operator
 import matplotlib.pyplot as plt
 
-import scipy
-
-# Import packages
-import pyhrv
-import pyhrv.frequency_domain as fd
+import scipy.signal
 
 ACCEPTABLE_RANGE = 0.1
 
@@ -101,11 +97,21 @@ class Datareader():
     while sum(self.ms_60s_window) > 60000: #
       self.ms_60s_window.pop(0)
 
+
+      # sample all signals up to (0.8/2 = 4) Hz
+      # nperseg is chosen as a common multiplier of the frequency bands
       f, Pxx_den_60s = scipy.signal.welch(self.ms_60s_window, 0.8, nperseg=5280)
 
-      self.vlf_power_60s = sum(Pxx_den_60s[21:253])
-      self.lf_power_60s = sum(Pxx_den_60s[253:948])
-      self.hf_power_60s = sum(Pxx_den_60s[948:-1])
+      # sometimes welch has not enough inputs and changes the nperseg to fit
+      # so create the frequency bands dynamically
+      n_segs = len(Pxx_den_60s)
+      vlf_lower_lim = math.floor((0.0033/0.4)*n_segs) # 0.0033 Hz is the lower limit of the VLF band
+      vlf_upper_lim = math.floor((0.04/0.4)*n_segs) # 0.04 Hz is the upper limit of the VLF band
+      lf_upper_lim = math.floor((0.15/0.4)*n_segs) # 0.04 Hz is the upper limit of the LF band
+
+      self.vlf_power_60s = sum(Pxx_den_60s[vlf_lower_lim:vlf_upper_lim])
+      self.lf_power_60s = sum(Pxx_den_60s[vlf_upper_lim:lf_upper_lim])
+      self.hf_power_60s = sum(Pxx_den_60s[lf_upper_lim:-1])
       self.lf_hf_ratio_60s = self.lf_power_60s/self.hf_power_60s if self.hf_power_60s > 0 else 0
 
     self.ms_120s_window.append(ms)
@@ -131,11 +137,20 @@ class Datareader():
     while sum(self.ms_300s_window) > 300000: #
       self.ms_300s_window.pop(0)
 
+      # sample all signals up to (0.8/2 = 4) Hz
+      # nperseg is chosen as a common multiplier of the frequency bands
       f, Pxx_den_300s = scipy.signal.welch(self.ms_300s_window, 0.8, nperseg=5280)
 
-      self.vlf_power_300s = sum(Pxx_den_300s[21:253])
-      self.lf_power_300s = sum(Pxx_den_300s[253:948])
-      self.hf_power_300s = sum(Pxx_den_300s[948:-1])
+      # sometimes welch has not enough inputs and changes the nperseg to fit
+      # so create the frequency bands dynamically
+      n_segs = len(Pxx_den_300s)
+      vlf_lower_lim = math.floor((0.0033/0.4)*n_segs) # 0.0033 Hz is the lower limit of the VLF band
+      vlf_upper_lim = math.floor((0.04/0.4)*n_segs) # 0.04 Hz is the upper limit of the VLF band
+      lf_upper_lim = math.floor((0.15/0.4)*n_segs) # 0.04 Hz is the upper limit of the LF band
+
+      self.vlf_power_300s = sum(Pxx_den_300s[vlf_lower_lim:vlf_upper_lim])
+      self.lf_power_300s = sum(Pxx_den_300s[vlf_upper_lim:lf_upper_lim])
+      self.hf_power_300s = sum(Pxx_den_300s[lf_upper_lim:-1])
       self.lf_hf_ratio_300s = self.lf_power_300s/self.hf_power_300s if self.hf_power_300s > 0  else 0
 
     if len(self.ms_120s_window) > 1:
@@ -243,7 +258,6 @@ class Datareader():
       cur_cat
     ]
 
-
   def read_raw(self, fname, oname="data.npy", correct=True):
     data = np.empty((0,12), dtype=float)
 
@@ -258,7 +272,7 @@ class Datareader():
         ms_7beat_window.append(new_ms)
 
         while len(ms_7beat_window) >= 7 and self.total_ms < 2400000:
-          print(f"{ms_7beat_window}, hrv:{self.current_hrv}")
+          # print(f"{ms_7beat_window}, hrv:{self.current_hrv}")
 
           ms_diff = abs(ms_7beat_window[2]-ms_7beat_window[3])
 
@@ -271,9 +285,20 @@ class Datareader():
           newrow = self.handle_ms(ms)
           data = np.append(data, [newrow], axis=0)
 
+
+
+    # sample all signals up to (0.8/2 = 4) Hz
+    # nperseg is chosen as a common multiplier of the frequency bands
     f, Pxx_den = scipy.signal.welch(data[:,1], 0.8, nperseg=5280)
 
-    user = [self.resting_hr, self.max_hr, sum(Pxx_den[21:253]), sum(Pxx_den[253:948]), sum(Pxx_den[948:-1])]
+    # sometimes welch has not enough inputs and changes the nperseg to fit
+    # so create the frequency bands dynamically
+    n_segs = len(Pxx_den)
+    vlf_lower_lim = math.floor((0.0033/0.4)*n_segs) # 0.0033 Hz is the lower limit of the VLF band
+    vlf_upper_lim = math.floor((0.04/0.4)*n_segs) # 0.04 Hz is the upper limit of the VLF band
+    lf_upper_lim = math.floor((0.15/0.4)*n_segs) # 0.04 Hz is the upper limit of the LF band
+
+    user = [self.resting_hr, self.max_hr, sum(Pxx_den[vlf_lower_lim:vlf_upper_lim]), sum(Pxx_den[vlf_upper_lim:lf_upper_lim]), sum(Pxx_den[lf_upper_lim:-1])]
 
     print(user)
     np.save(f'processed/{oname}', data)
@@ -343,6 +368,16 @@ if __name__ == "__main__":
   Datareader().read_raw("raw/2020-07-04 15-23-00 - maxime.txt", oname="maxime.npy")
   Datareader().read_raw("raw/2020-07-09 11-25-59 - karolina.txt", oname="karolina.npy")
   Datareader().read_raw("raw/2020-07-14 17-38-27 - jochen.txt", oname="jochen.npy")
+  Datareader().read_raw("raw/2020-07-24 11-19-17 - jessie.txt", oname="jessie.npy")
+  Datareader().read_raw("raw/2020-07-24 14-08-25 - midgard.txt", oname="midgard.npy")
+  Datareader().read_raw("raw/2020-07-24 17-50-10 - Dorre.txt", oname="Dorre.npy")
+  Datareader().read_raw("raw/2020-07-24 18-37-49 - Anton.txt", oname="Anton.npy")
+  Datareader().read_raw("raw/2020-07-24 19-23-42 - Wolf.txt", oname="Wolf.npy")
+  Datareader().read_raw("raw/2020-07-24 20-07-47 - Sander.txt", oname="Sander.npy")
+  Datareader().read_raw("raw/2020-07-24 20-53-05 - Ward.txt", oname="Ward.npy")
+  Datareader().read_raw("raw/2020-07-25 10-53-46 - Blomme.txt", oname="Blomme.npy")
+  Datareader().read_raw("raw/2020-07-26 10-12-10 - Arthur.txt", oname="Arthur.npy")
+  Datareader().read_raw("raw/2020-07-26 16-08-03 - Silke.txt", oname="Silke.npy")
 
   # Datareader().read_raw("raw/2020-07-02 22-23-08 - poef - interval.txt", oname="poef_interval.npy")
   
