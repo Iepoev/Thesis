@@ -6,9 +6,9 @@ from glob import glob
 import random
 import math
 
-class DataGenerator(tensorflow.keras.utils.Sequence):
+class HR_Classifier_DataGenerator(tensorflow.keras.utils.Sequence):
   'Generates data for Keras'
-  def __init__(self, train=True, train_test_split=0.8, squash_class=False, batch_size=8, seq_len=64, n_features=11, n_classes=5):
+  def __init__(self, train=True, train_test_split=0.8, squash_class=False, batch_size=9, seq_len=64, n_features=11, n_classes=5):
     'Initialization'
     self.train = train
     self.train_test_split = train_test_split
@@ -38,6 +38,11 @@ class DataGenerator(tensorflow.keras.utils.Sequence):
 
     self.on_epoch_end()
 
+    self.len = math.floor((self.min_class_len*self.n_classes) / self.batch_size) - 2
+
+    if (self.batch_size % self.n_classes != 0):
+      print("WARNING: batch size must be multiple of n_classes")
+
 
     print(f"generator length: {self.__len__()} batches of {self.batch_size} sequences with length {self.seq_len} (sample total: {len(self.data)})")
 
@@ -51,7 +56,7 @@ class DataGenerator(tensorflow.keras.utils.Sequence):
   def __len__(self):
     'Denotes the number of batches per epoch'
 
-    return math.floor((self.min_class_len*self.n_classes) / self.batch_size)
+    return self.len
 
   def __getitem__(self, index):
     'Generate one batch of data'
@@ -99,14 +104,6 @@ class DataGenerator(tensorflow.keras.utils.Sequence):
         # append the sequence to its respective class array
         X[clss] = np.append(X[clss], [self.data[seq_start:seq_end,:-1]], axis=0)
 
-
-    cls_count = ""
-    for i, li in enumerate(X):
-      cls_count = cls_count + f"{i}: {len(li)}, "
-
-    print(f"class counts of sequences: {cls_count}")
-
-
     # balance the data: every class should have the same amount of occurrences per epoch
 
     # determine the lowest amount of occurences accross all classes
@@ -129,3 +126,11 @@ class DataGenerator(tensorflow.keras.utils.Sequence):
     p = np.random.permutation(len(self.preclassified_X))
     self.preclassified_X = self.preclassified_X[p]
     self.preclassified_y = self.preclassified_y[p]
+
+
+    cls_count = ""
+    for i, li in enumerate(X):
+      cls_count = cls_count + f"{i}: {len(li)}, "
+    # print(f"class counts of sequences: {cls_count}")
+    # print(f"len of data {self.preclassified_X.shape}")
+    # print(f"len generator {self.__len__()}")
