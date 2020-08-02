@@ -435,7 +435,7 @@ class Datareader():
     np.save(f'processed/{oname}_data.npy', user_data)
 
 
-  def handle_user_profile(self, data, oname):
+  def handle_user_profile(self, data, oname, ex1_max_hr, ex2_max_hr):
 
     ####################
     # SET 1 50W 50 RPM #
@@ -499,7 +499,11 @@ class Datareader():
     baeke_L = input()
 
     user_profile = [
+      self.max_hr,
+      self.resting_hr
+      ex1_max_hr,
       int(rpe_2)-int(rpe_1),
+      ex2_max_hr,
       int(rpe_3)-int(rpe_1),
       int(kcal_3),
       int(dist_3),

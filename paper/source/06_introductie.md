@@ -1,23 +1,22 @@
-# Introduction
+# Abstract
 
-People who practice sports occasionally, often have no or very limited support and guidance. People can download a fitness scheme or app from the internet, but these schemes are often not personalized to the physical capabilities of that person. Moreover, these schemes are often static and do not take into account the real progress that a user has made or personal goals. Nowadays, the technological advances allow a more accurate monitoring of the user. Smart watches are become more and more popular. These are equipped with a bunch of sensors such as heart rate sensor, accelerometer, gyroscope, GPS, … These data can be used to monitor the user in detail, and provide a more personalized sport/fitness experience.
+People who practice sports occasionally, often have no or very limited support and guidance. People can download a fitness scheme or app from the internet, but these schemes are often not personalized to the physical capabilities of that person. Moreover, these schemes are often static and do not take into account the real progress that a user has made or personal goals. Nowadays, the technological advances allow a more accurate monitoring of the user. Smart watches are become more and more popular. Heart rate sensors are becoming cheap and commonplace. Computational power of wearables and smartphones is increasing, which makes running complex tasks such as light-weight machine learning more of a reality.
 
 ## Goal of the thesis
 
-The goal of this master thesis is to design and develop a digital personal coach for sport activities. This personal coach can be implemented as an Android application that uses data from wearables to assess the physical efforts and capabilities of a user. More specifically, in this master thesis the Polar H7 (a chest strap with heart rate sensor) and the Polar M600 (an Android Wear smart watch designed for fitness and sport purposes) can be used. These devices can provide data regarding heart rate and movement (through heart rate sensor, accelerometer and GPS).
+The goal of this master thesis is to research the possibility of using Machine Learning to develop a digital personal coach for sport activities. To achieve this goal, 2 subgoals have been isolated. 
 
-The fitness coach consists of 5 elements:
- - at first, a quick physical exam and questionnaires will be used to determine heart rate and fitness values. By relating heart rate data with the intensity of the physical activities, the physical capabilities of the user will be derived.
- 
- - A detector recognises the current state of the subject, in rest or active, mild of high intensity,... this is able to prompt the user if he/she wants to start a training session when activity is detected.
+ - A model that can classify the state of the user. Is he/she resting, active, recovering, under intense exertion,...
 
- - Once a base fitness level is established, a recommendation system will recommend training sessions based on previously attained result, time since last session,... A variety of possible sessions is presented such as interval training, endurace aerobic training, weight lifting, extra rest day,...
+ - A model to gauge the cardiovascular fitness level of the user.
 
- - During a training session, real-time feedback is provided to guide the user so that the goals of the session are achieved.
+The primary measurement used is Heart Rate Variability. This is the miniscule variability in time between heartbeats and is the result of a multitude of complex interactions between various hormonal and nervous systems of the body. HRV has been a subject of research in the medical community and can be used to predect various cardiovascular diseases or conditions. Current generation heart rate monitors are able to monitor HRV to a respectable degree compared to medical grade electrocardiogram machines, so the timing is right to attempt to reappropriate the existing HRV research for cardiovascular fitness and machine learning.
 
- - When a session completes it is analysed and the fitness model of the subject is updated.
+## Summary
 
-## Summary of chapters
+In this master thesis the Polar H7 (a HRV-capable chest strap) is used to measure heart rate data from test subjects. Healthy young adults were asked to perform a specific fitness regime on a Kettler ergometer x3, their heart rate response was measured and various meta-datapoints were noted. A polar plug-in adapter was used synchronise the measurements between the chest strap and the hometrainer. The heart rate measurements were used as labeled data for the heart rate classifier. A formula is established to give a "fitness score" based on their results and with some post-processing the heart rate measurements are reduced to a fixed amount of datapoints as input for the fitness score regression. Multiple deep neural networks are tested and evaluated for the classifier and regression tasks.
+
+## Overview of chapters
 
 **Chapter \ref{ch:goal}** Describes in detail what the problem entails, the challenges that were faced and how they were overcome.
 

@@ -5,6 +5,8 @@ import keras
 import numpy as np
 import tensorflow as tf
 import math
+from glob import glob
+import os.path
 
 from tensorflow.keras import Model
 from tensorflow.keras.models import Sequential
@@ -18,7 +20,6 @@ from tcn import TCN, tcn_full_summary
 
 from src.user import User
 from src.baecke import baecke
-from data.hr_classifier_datagenerator import HR_Classifier_DataGenerator
 
 def seq_to_seq_classification():
 
@@ -200,8 +201,85 @@ def TempConvN():
   scores = model.evaluate(val_generator, verbose=1, callbacks=[tensorboard_callback])
   print(scores)
 
+def fitness_classifier():
+
+  logdir = "logs/fit/tcn" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  tensorboard_callback = TensorBoard(log_dir=logdir)
+
+  dataArray = np.empty((0,60), dtype=float)
+  profileArray = np.empty((0,16), dtype=float)
+  scores = np.empty(0, dtype=float)
+
+  for data_fname in glob("data/processed/*_data.npy"):
+    # Load file
+    name = os.path.basename(data_fname[:-9]) # strip "_data.npy" from fname
+
+    data = np.load(data_fname)
+    dataArray = np.append(dataArray, [data], axis=0)
+
+    profile_fname = os.path.dirname(data_fname) + "/" + name + "_profile.npy"
+    profile = np.load(profile_fname)
+    score = fitness_score(profile, name)
+    profileArray = np.append(profileArray, [profile], axis=0)
+    scores = np.append(scores, [score], axis=0)
+  print(dataArray.shape)
+  print(profileArray.shape)
+
+  # i = Input(shape=dataArray.shape[1])
+  # x = Dense(dataArray.shape[1], activation='relu')(i)
+  # x = Dense(1, kernel_initializer='normal')(x)
+
+  # model = Model(inputs=[i], outputs=[x])
+
+  # model.summary()
+
+  # # try using different optimizers and different optimizer configs
+  # model.compile(optimizer='adam', loss='mean_squared_error')
+
+  # model.fit(dataArray[:-3], scores[:-3], epochs=10, callbacks=[tensorboard_callback])
+
+  # print(list(zip(scores,model.predict(dataArray))))
+
+  # scores = model.evaluate(val_generator, verbose=1, callbacks=[tensorboard_callback])
+  # print(scores)
+
+def fitness_score(profileArray, name):
+  (resting_hr, max_hr, ex1_max_hr, rpe_2, ex2_max_hr, rpe_3, kcal_3, dist_3, rpe_4, kcal_4, dist_4, kcal_5, dist_5, baeke_W, baeke_S, baeke_L) = profileArray
+
+  np.set_printoptions(precision=3)
+  np.set_printoptions(suppress=True)
+
+  HR_reserve = max_hr - resting_hr
+  baeke_total = (baeke_W+ baeke_S+ baeke_L)/15
+
+
+  # VO2max is the most important metric but can't be measured
+  # instead use Kcal as a substitute 
+  # max exertion kcal is the most important metric because it is generated at peak oxygen consumption (5-25)
+
+  # the other kcal metrics aren't proven to correlate (5-60), but use them nonetheless with a modifier to make them less important
+  # also use the Heart Rate Reserve usage of the first and second session (0-100) 
+
+  # use the Baecke score as a modifier
+
+  kcal5 = kcal_5 * 2
+  kcal_rest = (kcal_3+kcal_4) * baeke_total
+  hr1_score = (100-(((ex1_max_hr-resting_hr)/ (max_hr - resting_hr))*100))/2
+  hr2_score = (100-(((ex2_max_hr-resting_hr)/ (max_hr - resting_hr))*100))/2
+  res = (kcal5 + kcal_rest + hr1_score + hr2_score)
+
+  # print(f"kcal5 {kcal5:.2f}, kcal rest {kcal_rest:.2f}, hr1 score {hr1_score:.2f}, hr2 score {hr2_score:.2f}, baeke_total {baeke_total:.2f}")
+  # print(f"hr1 score {hr1_score:.2f}%, hr2 score {hr2_score:.2f}%")
+  # print(f"hr_rest {resting_hr:.2f}, hr max {max_hr:.2f}, hr1_max {ex1_max_hr:.2f}, hr2_max {ex2_max_hr:.2f}")
+  print(f"{name}: {res:.2f}")
+  # print(profileArray)
+  # print("==============")
+
+  return res
+
 
 def main():
+
   parser = argparse.ArgumentParser(description='Fitness coach.')
 
   parser.add_argument('-f','--file', const='data/user/userdata.hdf5', nargs='?', help='import user data and model from a file')
@@ -235,8 +313,9 @@ def main():
   #print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
   # seq_classification()
-  deepheart()
+  # deepheart()
   # TempConvN()
+  fitness_classifier()
 
 if __name__ == "__main__":
   main()
