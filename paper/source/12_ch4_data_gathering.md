@@ -1,4 +1,4 @@
-# Hardware \ref{ch:hardware}
+# Hardware \label{ch:hardware}
 
 
 ##  smartwatches in context plaatsen

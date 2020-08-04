@@ -1,3 +1,4 @@
+
 # Medical Background \label{ch:med}
 
 ## Anatomy of the heart
@@ -80,7 +81,17 @@ Tranquilizers        Presence of opiates, tranquilizers or other depressants
 
 Table: Major Factors decreasing Heart Rate and force of contraction. [@Openstax] \label{hr_decrease}
 
+### Ectopic Beats
+
+An ectopic or premature heartbeat is when the heart either skips a beat or adds an extra beat. These are usually not a cause for concern (in fact occure commonly in adults), and are not necessarily an indication of irregular heart functionality. Increased stress or anxiety can induce ectopic beats in healthy individuals, but these can also be caused by lack of sleep, various recreative drugs (caffeine, alcohol, smoking,... ) or medicinal drugs (asthma inhalers, antibiotics,...)
+
+There are two types of ectopic heartbeat:
+ - Premature atrial contractions (PAC), which originate in the upper chambers, or atria.
+ - Premature ventricular contractions (PVC), which originate in the lower chambers, or ventricles.
+
 ### Heart Rate
+<!-- TODO RR interval beter uitleggen -->
+
 The maximum heart rate that a healty individual can attain is around 220 bpm. This maximum heart rate is a hard limit due to physiological phenomena (the maximum throughput of the SA node) and will remain constant for a subject, regardless of increased/decreased fitness level or other factors. Due to age this maximum heart rate will slowly deteriorate and can be approximated by taking this 220 bpm maximum and subtracting the age of the subject. 
 
 The lowest heart rate that a healthy individual can attain is called the Resting Heart Rate. It is the heart rate of the subject when it is at complete rest, relaxed but awake, with no external stress factors such as recent exercise, environmental temperature,... For an average person this lies within the interval of 60 to 100 beats per minute, but a few exceptionally trained aerobic athletes demonstrate resting heart rates in the range of 30–40 beats per minute. This is lower for fit individuals because the body has adapted to maintain basic functionality on these lower heart rates.
@@ -91,9 +102,43 @@ Heart rate will quickly reach the equilibrium as described as long as blood lact
 
 [@Zakynthinaki2015]
 
+
+
 ### Heart Rate variability
 
-The time between heartbeats (the RR interval) is not constant but fluctuates ever so slightly between beats. The difference between these intervals is not random but is the result of a multitude of complex interactions between various organs of the body and is best described as "mathematical chaos". HRV diminishes with age and is a marker for parasympathetic activity, with a higher value being in general considered "more healthy". Lower HRV values have been linked to Myocardial Infarction and Myocardial Dysfunction, while raising HRV through exercise to battle cardiovascular mortality risk has been proven beneficial. [@Malik1996]
+The time between heartbeats (the RR interval or Inter Beat Interval - IBI) is not constant but fluctuates ever so slightly between beats. The difference between these intervals is not random but is the result of a multitude of complex interactions between various organs of the body and is best described as "mathematical chaos". Two overlapping processes can be isolated [@Shaffer2017]: 
+ - the interaction between parasympathetic and sympathetic branches of the ANS 
+ - the regulatory mechanisms that also control respiratory sinus arrhythmia (in which the sinus firing rate increases with inspiration and decreases with expiration), baroreceptor reflex (negative-feedback control of blood pressure) and rhythmic changes in vascular tone (degree of restriction in blood vessels).
+
+HRV diminishes with age and is a marker for parasympathetic activity, with a higher value being in general considered "more healthy". Lower HRV values have been linked to Myocardial Infarction and Myocardial Dysfunction, while raising HRV through exercise to battle cardiovascular mortality risk has been proven beneficial. [@Malik1996]
+
+HRV can be measured in various ways, which can be split into either time domain analysis or frequency domain analysis. These measurements also give different results when different measurement epochs are used, so when studying HRV the epoch and metric must be carefully considered.
+
+#### Time Domain
+
+Time Domain analysis is in function of statistical difference in time measurement between heartbeats. Various metrics exist [@Shaffer2017]:
+ - SDNN: The standard deviation of the RR intervals. 24 Hour monitoring of this value is a strong predictor of morbidity and mortality. In short-term measurement while at rest the primary source of variation can be attributed to Respiratory Sinus Arrhythmia
+ - various derivatives of SDNN such as SDSD (stdev of the difference between successive IBI), SDRR (stdev of IBI without filtering abnormal beats), SDANN (stdev of the mean of IBI of 5 minute segments during 24hr recording) and SDNNI (mean of the stdev of IBI of 5 minute segments during 24hr recording)
+ - NN50: The number of adjacent NN intervals that differ from each other by more than 50 ms, requires a 2 minute epoch.
+ - PNN50: The proportion of NN50 over the total number of IBI, requires a 2 minute epoch and is closely correlated to Parasympathetic Nervous System activity.
+ - RMSSD: Root mean square of the difference between successive IBI. RMSSD is strongly backed by research and is considered the most relevant and accurate measure of Autonomic Nervous System activity over the short-term. 
+ - lnRMSSD: log of RMSSD which has been shown to be an acceptable measurement for short-term recordings [@Esco2014]
+
+#### Frequency Domain
+
+Various oscillations have been measured with a frequency ranging from seconds to >24 hours and can be roughly grouped into different bands (see table \ref{hrv_freq}). The LF and HF bands are significant because their oscillations can be affected by breathing rythm. More specifically, the LF band is affected by slow breaths (3 to 9 per minute) and the HF band is affected by fast breathing (9 to 24 per minute).
+
+The VLF frequency band has shown many uses for heart conditions and all-cause mortality, but very little is known of its usefulness regarding cardiovascular fitness. The LF band mainly reflect baroreceptor activity, and is affected by both parasympathetic and sympathetic activity.
+The HF band mainly reflects respiratory sinus arrhythmia because it corresponds to the HR variations related to the respiratory cycle, it also reflect parasympathetic activity. The ratio of LF to HF power (LF/HF ratio) is poorly understood and various interpretations have been given. The most useful intepretation to our goal is that it estimates the ratio between SNS and PNS activity.
+
+Name                            Period                 Frequency
+----                            ------                 ---------
+Ultra Low (ULF)                 5 min - 24 hrs         11 μHz - 3333 μHz
+Very Low (VLF)                  25 sec - 300 sec       0.0033 Hz - 0.04 Hz
+Low (LF)                        7 sec - 25 sec         0.04 Hz - 0.15 Hz
+High (HF) or Respiratory band   2.5sec - 7 sec         0.15 Hz - 0.4 Hz
+
+Table: frequency bands of Heart Rate variability. \label{hrv_freq}
 
 
 ### Heart Rate Recovery \label{hrr}
@@ -130,7 +175,7 @@ PPG sensors are fairly simple devices and have found their way to various wrist-
 
 ## Physical fitness
 
-To model our fitness coach we need to know the distint differences between a fit and unfit subject. We also have to make the distiction between a trained and untrained subject, because these concepts are inherently linked but are not synonyms. To be "fit" is to have a large aerobic capacity, the body has adapted to be able to deliver more oxygen to the muscles which improves aerobic ability. To be "trained" is having the extra muscle and nerval impulses te be able to use this oxygen, converting it into more power than an untrained subject.
+To model our fitness coach we need to know the distinct differences between a fit and unfit subject. We also have to make the distiction between a trained and untrained subject, because these concepts are inherently linked but are not synonyms. To be "fit" is to have a large aerobic capacity, the body has adapted to be able to deliver more oxygen to the muscles which improves aerobic ability. To be "trained" is having the extra muscle and nerval impulses te be able to use this oxygen, converting it into more power than an untrained subject.
 
 Another aspect that is closely linked to "fitness" is cardiovascular health. It is common knowledge that being more fit results in a lesser change to contract cardiovascular problems such as infarcts, but being in good cardiovascular health doesn't necessarily imply being fit. Attempting to alleviate poor cardivascular health through fitness training is however a widely acknowledged and applied therapy.
 
@@ -138,19 +183,21 @@ Another aspect that is closely linked to "fitness" is cardiovascular health. It 
 
 Due to the large amounts of ways to parametrize "fitness", calculating a fitness score involves carefully selecting which metrics to incorporate and which to ignore.
 
-#### Baeke Score
-
-The Baeke Score is a tried and tested [@Florindo2003] self-administered questionaire to evaluate the activity level of the subject. It is a quick way to determine a rudimentary score for the fitness level of an individual, but requires validation from measurements to be a reliable metric.
-
 #### VO$_{2max}$ & Aerobic capacity TODO
 
 Aerobic capacity is the ability to take in oxygen and deliver it to skeletal muscle during exercise. It uses VO$_{2max}$ (or Peak Oxygen Uptake), the maximum rate of oxygen consumption in mL/(kg\*min) - volume of oxygen delivered per minute, per kilogram of body mass - , as a measure because it reflects the capabilities of the circulatory and respiratory systems. It is a gold standard measure for comparing individual subjects and training methods because it correlates with cardiorespiratory fitness and endurance capacity. Erythropoietin (EPO) can significantly increase VO$_{2max}$, so it is no surprise that it has been used extensively as a Performance-Enhancing Drug in aerobic sports such as cycling. Note that higher VO$_{2max}$ doesn't necessarily mean a higher volume of oxygen in the blood. In fact, most VO$_{2max}$ increases can be attributed to a higher capacity of the body to extract the oxygen already present in the blood.
 
-Accurately measuring VO$_{2max}$ is difficult/impossible without specialized medical equipment, but a meta-study revealed that VO$_{2max}$ may be stimulated/extrapolated from Rating of Perceived Exertion (RPE) during a Perceptually Regulated Exercise Test (PRET) test. RPE is a standardised 6-20 scale with 6 meaning no exertion at all and 20 meaning maximal exertion. These ratings can informally be described as "exercise resulting in a heartrate of rating times 10". Furthermore, performance during a Cooper test (maximum distance covered by foot during 12 minutes) can be extrapolated to VO$_{2max}$ using the formula
+Accurately measuring VO$_{2max}$ is difficult/impossible without specialized medical equipment, but a meta-study revealed that VO$_{2max}$ may be stimulated/extrapolated from Rating of Perceived Exertion (RPE) during a Perceptually Regulated Exercise Test (PRET) test. RPE is a standardised 6-20 scale with 6 meaning no exertion at all and 20 meaning maximal exertion. These ratings can informally be described as "exercise resulting in a heartrate of rating times 10". [@Coquart2016] Furthermore, performance during a Cooper test (maximum distance covered by foot during 12 minutes) can be extrapolated to VO$_{2max}$ using the formula
 
 $VO_{2max} \approx \dfrac{dist - 504.9}{44.73}$
 
-Where $dist$ is the distance covered in meters in 12 minutes.
+Where $dist$ is the distance covered in meters in 12 minutes [@Florindo2003].
+
+#### Baecke Score
+
+The Baecke Score is a tried and tested [@Florindo2003] self-administered questionaire to evaluate the activity level of the subject. It is a quick way to determine a rudimentary score for the fitness level of an individual, but requires validation from measurements to be a reliable metric.
+
+The questionnaire includes items about daily worklife, sport, and leisure time activities. The questions classify the subject's activity in each category from inactive to very active. Questions about sport and leisure time activities also include the type of activity, the frequency of performance, and the number of months per year that the activity is performed. All items result in a separate score from 1 to five points that incorporates activity duration, frequency, and an intensity code based on energy costs. Summing the work score, sport score, and leisure score results in a overall unitless activity score ranging from three to fifteen.
 
 #### Blood Lactate levels
 
@@ -160,15 +207,17 @@ Fatigue has an apparent impact on the slow phase of the blood lactate level incr
 
 Heart Rate variability is the variation in time between each heartbeat. This variation is affected by the autonomic nervous system and will increase from parasympathetic/rest-and-digest activity and decrease from sympathetic/fight-or-flight activity. A healthy ANS is one that can quickly activate or deactivate either stimuli, so being able to quickly change from low to high variation and vice-versa is a measure of good physical and mental health and high stress resilience [@Dong2018]. Habitual aerobic exercise appears to aid the maintenance of higher HRV in active subjects when compared with age- and weight-matched sedentary subjects [@DeMeersman], and correlates with VO$_{2max}$ [@Buchheit2006]. 
 
+
+
 Not all HRV measures are created equal; HF, SDNN and RMSSD were statistically significantly higher in athletes than in controls, but other resting HRV parameters were not statistically different between groups [@Danieli2014]. It is equally important to compare HRV measures not in a vaccuum but from longitudinal monitoring. In the case of elite athletes training for an upcoming event, another study found weekly and 7-day rolling averaged Ln rMSSD and the Ln rMSSD to R–R interval ratio as practically useful to represent a meaningful change in fatigue and/or fitness. In the same study, increasing HRV values were shown to be a possible sign of positive adaptation and/or coping with training load, while reductions in HRV in the week/days before pinnacle events may represent increasing freshness and readiness to perform [@Plews2013].
 
 #### Heart Rate Recovery
 
 HRR has become a significant, non-invasive measure of cardiovascular-parasympathetic influence and general cardiovascular health. A large number of studies suggest that slowed HRR is an independent predictor of all-cause mortality [@Qiu2017]. Fast HRR is statistically significantly faster in athletes [@Danieli2014], and is associated with cardiac adaptation to physical activities of various durations and intensities [@Durmic2019]. HRR differs alot from subject to subject, depending on the type of sport the subject is trained in, his/her age, the intensity of the training regime, etc. [@Durmic2019] It is important to use the change in HRR over time as a measure of increased fitness, instead of using it as a baseline fitness metric. 
 
-HRR has a fast phase and a slow phase (see also section \ref{hrr}). Analysis revealed that the fast phase accounts for almost all of the HR decay after a intermediate intensity sessions (≈ 98%), remaining only a minor portion of the decay falling in the slow phase (≈ 2%). On the other hand, slightly different contributions are observed in High Intensity sessions (91% and 9%). For these reasons, percentage values of slow and fast phase might provide complementary information when comparing different exercise intensities. This same study also demonstrated that high-intensity exertion delays both parasympathetic reactivation and sympathetic withdrawal, resulting in a flatter curve [@Bartels2018]. The fast phase HRR correlates with parasympathetic modulation [@Danieli2014]
+HRR has a fast phase and a slow phase (see also section \ref{hrr}). Analysis revealed that the fast phase accounts for almost all of the HR decay after a intermediate intensity sessions (\~98%), remaining only a minor portion of the decay falling in the slow phase. On the other hand, slightly different contributions are observed in High Intensity sessions (91% and 9%). For these reasons, percentage values of slow and fast phase might provide complementary information when comparing different exercise intensities. This same study also demonstrated that high-intensity exertion delays both parasympathetic reactivation and sympathetic withdrawal, resulting in a flatter curve [@Bartels2018]. The fast phase HRR correlates with parasympathetic modulation [@Danieli2014]
 
-Studies have shown no correlation between HRR and HRV [@Esco2010] [@Molina2016], but a correlation exists between HRR and Baeke score [@Buchheit2006], which means that having an active lifestyle results in faster HRR. Fast phase HRR (specifically, the Heart Rate Index, being HR_max minus Heart rate after 1 minute of recovery) also correlates with VO$_{2max}$. As VO$_{2max}$ is primarily influenced by sympathetic activity, this means that an incread in fitness not only means higher parasympathetic modulation, but also enhanced sympathetic activity. In general, HRR can be used as a measure of Autonomic Nervous System adaptation [@Durmic2019]. 
+Studies have shown no correlation between HRR and HRV [@Esco2010] [@Molina2016], but a correlation exists between HRR and Baecke score [@Buchheit2006], which means that having an active lifestyle results in faster HRR. Fast phase HRR (specifically, the Heart Rate Index, being HR_max minus Heart rate after 1 minute of recovery) also correlates with VO$_{2max}$. As VO$_{2max}$ is primarily influenced by sympathetic activity, this means that an incread in fitness not only means higher parasympathetic modulation, but also enhanced sympathetic activity. In general, HRR can be used as a measure of Autonomic Nervous System adaptation [@Durmic2019]. 
 
 ### Hoe wordt fitheid getrained TODO
 

@@ -1,3 +1,4 @@
+
 # Conclusion \label{ch:conclusion}
 
 <!-- 
@@ -16,4 +17,8 @@ There are several potential directions for extending this thesis. Lorem ipsum do
 Vestibulum suscipit tellus risus, faucibus vulputate orci lobortis eget. Nunc varius sem nisi. Nunc tempor magna sapien, euismod blandit elit pharetra sed. In dapibus magna convallis lectus sodales, a consequat sem euismod. Curabitur in interdum purus. Integer ultrices laoreet aliquet. Nulla vel dapibus urna. Nunc efficitur erat ac nisi auctor sodales.
 
 
+
+
+
+Due to the current ministerial decree(s) in relation to covid-19 [..], the number of participants to the study was unfortunately too limited to see any significant results.
 

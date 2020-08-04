@@ -56,7 +56,7 @@ class Datareader():
     self.current_hrv = 0
     self.sdnn = 0
     self.sdsd = 0
-    self.nn50 = 0
+    self.pnn50 = 0
     self.rmssd = 0
 
     self.vlf_power_60s = 0
@@ -86,7 +86,7 @@ class Datareader():
     plt.plot(data[:,0]/60000,data[:,3], linewidth=0.2) # HRV (weighted moving average)
     # plt.plot(data[:,0]/60000,data[:,4], linewidth=0.2) # SDNN
     # plt.plot(data[:,0]/60000,data[:,5], linewidth=0.2) # SDSD
-    # plt.plot(data[:,0]/60000,data[:,6], linewidth=0.2) # NN50
+    # plt.plot(data[:,0]/60000,data[:,6], linewidth=0.2) # pNN50
     # plt.plot(data[:,0]/60000,data[:,7], linewidth=0.2) # rMSSD
     # plt.plot(data[:,0]/60000,data[:,8], linewidth=0.2) # 60s VLF
     # plt.plot(data[:,0]/60000,data[:,9], linewidth=0.2) # 60s LF
@@ -113,6 +113,8 @@ class Datareader():
 
       deltas_10s = np.array(list(map(lambda x, y: abs(x-y), self.ms_10s_window[1:], self.ms_10s_window[:-1])))
       self.current_hrv = np.average(deltas_10s, weights=range(len(self.ms_10s_window)-1))
+      self.current_hr = 60000 / np.average(self.ms_10s_window, weights=range(len(self.ms_10s_window)))
+
 
     self.ms_60s_window.append(ms)
     while sum(self.ms_60s_window) > 60000: #
@@ -136,17 +138,13 @@ class Datareader():
 
       self.sdnn = np.std(self.ms_120s_window)
       self.sdsd = np.std(deltas_120s)
-      self.nn50 = np.count_nonzero(deltas_120s >= 50)
+      self.pnn50 = np.count_nonzero(deltas_120s >= 50)/len(deltas_120s)
       self.rmssd = math.sqrt(np.average(np.square(deltas_120s)))
 
     self.ms_300s_window.append(ms)
     while sum(self.ms_300s_window) > 300000: #
       self.ms_300s_window.pop(0)
       (self.vlf_power_300s, self.lf_power_300s, self.hf_power_300s, self.lf_hf_ratio_300s) = self.handle_powerband(self.ms_300s_window)
-
-
-    if len(self.ms_120s_window) > 1:
-      self.current_hr = 60000 / np.average(self.ms_120s_window, weights=range(len(self.ms_120s_window)))
 
     # categories:
     # 0: resting
@@ -181,7 +179,7 @@ class Datareader():
       self.current_hrv,
       self.sdnn,
       self.sdsd,
-      self.nn50,
+      self.pnn50,
       self.rmssd,
       # self.vlf_power_60s,
       # self.lf_power_60s,

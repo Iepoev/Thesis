@@ -1,4 +1,0 @@
-
-# Validation \ref{ch:val}
-
-

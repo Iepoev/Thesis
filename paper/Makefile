@@ -38,7 +38,7 @@ pdf:
 	--bibliography="$(BIBFILE)" 2>pandoc.log \
 	--csl="$(STYLEDIR)/ref_format.csl" \
 	--highlight-style pygments \
-	-V fontsize=12pt \
+	-V fontsize=11pt \
 	-V papersize=a4paper \
 	-V documentclass=report \
 	-N \
