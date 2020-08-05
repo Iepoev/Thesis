@@ -67,7 +67,7 @@ The following meta-data is noted:
  - the distance traveled during the three "constant heart rate" sessions
  - the Baecke questionnaire scores of the subject
 
-The reasoning behind the methodology of this data gathering session is explained in depth in in chapter \ref{ch:metrics}. In total 27 test subjects were gathered, of which 23 were able to fully complete the session, resulting in \~80.000 heartbeats of data.
+The reasoning behind the methodology of this data gathering session is explained in depth in in chapter \ref{ch:metrics}. In total 27 test subjects were gathered, of which 23 were able to fully complete the session, resulting in \~95.000 heartbeats of data.
 
 ### Machine learning
 

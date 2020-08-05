@@ -246,7 +246,7 @@ class Datareader():
     if userprofile:
       self.handle_user_profile(data, oname)
 
-    np.save(f'processed/{oname}.npy', data[1:])
+    np.save(f'processed/{oname}_sequence.npy', data[1:])
     return data
 
   def find_correction(self, ms_7beat_window):
@@ -497,8 +497,8 @@ class Datareader():
     baeke_L = input()
 
     user_profile = [
+      self.resting_hr,
       self.max_hr,
-      self.resting_hr
       ex1_max_hr,
       int(rpe_2)-int(rpe_1),
       ex2_max_hr,
@@ -524,30 +524,30 @@ if __name__ == "__main__":
 
   reader = Datareader()
 
-  Datareader().read_raw("raw/2020-06-27 22-08-21 - poef 1.txt", oname="poef_1", userprofile=False)
-  Datareader().read_raw("raw/2020-06-28 17-34-47 - poef 2.txt", oname="poef_2", userprofile=False)
-  Datareader().read_raw("raw/2020-06-29 14-37-18 - marcon.txt", oname="marcon", userprofile=False)
-  Datareader().read_raw("raw/2020-06-29 15-21-44 - wouwt.txt", oname="wouwt", userprofile=False)
-  Datareader().read_raw("raw/2020-06-30 18-00-07 - felix.txt", oname="felix", userprofile=False)
-  Datareader().read_raw("raw/2020-06-30 18-43-53 - charlotte.txt", oname="charlotte", userprofile=False)
-  Datareader().read_raw("raw/2020-06-30 19-27-41 - francis.txt", oname="francis", userprofile=False) # niet goed
-  Datareader().read_raw("raw/2020-07-01 11-06-32 - arnhoudt.txt", oname="arnhoudt", userprofile=False) # niet goed
-  Datareader().read_raw("raw/2020-07-04 15-23-00 - maxime.txt", oname="maxime", userprofile=False)
-  Datareader().read_raw("raw/2020-07-09 11-25-59 - karolina.txt", oname="karolina", userprofile=False)
-  Datareader().read_raw("raw/2020-07-14 17-38-27 - jochen.txt", oname="jochen", userprofile=False)
-  Datareader().read_raw("raw/2020-07-24 11-19-17 - jessie.txt", oname="jessie", userprofile=False)
-  Datareader().read_raw("raw/2020-07-24 14-08-25 - midgard.txt", oname="midgard", userprofile=False)
-  Datareader().read_raw("raw/2020-07-24 17-50-10 - Dorre.txt", oname="Dorre", userprofile=False)
-  Datareader().read_raw("raw/2020-07-24 18-37-49 - Anton.txt", oname="Anton", userprofile=False)
-  Datareader().read_raw("raw/2020-07-24 19-23-42 - Wolf.txt", oname="Wolf", userprofile=False)
-  Datareader().read_raw("raw/2020-07-24 20-07-47 - Sander.txt", oname="Sander", userprofile=False)
-  Datareader().read_raw("raw/2020-07-24 20-53-05 - Ward.txt", oname="Ward", userprofile=False)
-  Datareader().read_raw("raw/2020-07-25 10-53-46 - Blomme.txt", oname="Blomme", userprofile=False)
-  Datareader().read_raw("raw/2020-07-26 10-12-10 - Arthur.txt", oname="Arthur", userprofile=False)
-  Datareader().read_raw("raw/2020-07-26 16-08-03 - Silke.txt", oname="Silke", userprofile=False)
-  Datareader().read_raw("raw/2020-07-27 10-09-45 - Leendert.txt", oname="Leendert", userprofile=False)
-  Datareader().read_raw("raw/2020-07-27 10-56-48 - Xeno.txt", oname="Xeno", userprofile=False)
-  Datareader().read_raw("raw/2020-07-28 15-22-10 - Lisa.txt", oname="Lisa", userprofile=False)
+  Datareader().read_raw("raw/2020-06-27 22-08-21 - poef 1.txt", oname="poef_1", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-06-28 17-34-47 - poef 2.txt", oname="poef_2", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-06-29 14-37-18 - marcon.txt", oname="marcon", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-06-29 15-21-44 - wouwt.txt", oname="wouwt", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-06-30 18-00-07 - felix.txt", oname="felix", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-06-30 18-43-53 - charlotte.txt", oname="charlotte", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-06-30 19-27-41 - francis.txt", oname="francis", userprofile=False, userdata=False) # niet goed
+  Datareader().read_raw("raw/2020-07-01 11-06-32 - arnhoudt.txt", oname="arnhoudt", userprofile=False, userdata=False) # niet goed
+  Datareader().read_raw("raw/2020-07-04 15-23-00 - maxime.txt", oname="maxime", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-09 11-25-59 - karolina.txt", oname="karolina", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-14 17-38-27 - jochen.txt", oname="jochen", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-24 11-19-17 - jessie.txt", oname="jessie", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-24 14-08-25 - midgard.txt", oname="midgard", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-24 17-50-10 - Dorre.txt", oname="Dorre", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-24 18-37-49 - Anton.txt", oname="Anton", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-24 19-23-42 - Wolf.txt", oname="Wolf", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-24 20-07-47 - Sander.txt", oname="Sander", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-24 20-53-05 - Ward.txt", oname="Ward", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-25 10-53-46 - Blomme.txt", oname="Blomme", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-26 10-12-10 - Arthur.txt", oname="Arthur", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-26 16-08-03 - Silke.txt", oname="Silke", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-27 10-09-45 - Leendert.txt", oname="Leendert", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-27 10-56-48 - Xeno.txt", oname="Xeno", userprofile=False, userdata=False)
+  Datareader().read_raw("raw/2020-07-28 15-22-10 - Lisa.txt", oname="Lisa", userprofile=False, userdata=False)
 
   # data = Datareader().read_raw("raw/2020-07-02 22-23-08 - poef - interval.txt", oname="poef_interval.npy")
   

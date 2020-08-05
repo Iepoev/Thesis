@@ -21,6 +21,8 @@ from tcn import TCN, tcn_full_summary
 from src.user import User
 from src.baecke import baecke
 
+from data.datagenerator import Datagenerator
+
 def seq_to_seq_classification():
 
   logdir = "logs/fit/seq_to_seq_classification" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -28,8 +30,8 @@ def seq_to_seq_classification():
 
 
   # Generators
-  training_generator = HR_Classifier_DataGenerator()
-  val_generator = HR_Classifier_DataGenerator(train=False)
+  training_generator = Datagenerator()
+  val_generator = Datagenerator(train=False)
 
   (inp, outp) = training_generator.__getitem__(0)
   print(inp[31][0])
@@ -56,8 +58,8 @@ def seq_classification():
   n_classes = 3
 
   # Generators
-  training_generator = HR_Classifier_DataGenerator(squash_class=True, n_features=n_features, n_classes=n_classes)
-  val_generator = HR_Classifier_DataGenerator(train=False, squash_class=True, n_features=n_features, n_classes=n_classes)
+  training_generator = Datagenerator(squash_class=True, n_features=n_features, n_classes=n_classes)
+  val_generator = Datagenerator(train=False, squash_class=True, n_features=n_features, n_classes=n_classes)
 
   (inp, outp) = training_generator.__getitem__(0)
   print(inp.shape)
@@ -92,8 +94,8 @@ def deepheart():
   seq_len = 128
 
   # Generators
-  training_generator = HR_Classifier_DataGenerator(squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
-  val_generator = HR_Classifier_DataGenerator(train=False, squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
+  training_generator = Datagenerator(squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
+  val_generator = Datagenerator(train=False, squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
 
   (inp, outp) = training_generator.__getitem__(0)
   print(inp.shape)
@@ -147,8 +149,8 @@ def TempConvN():
   seq_len = 128
 
   # Generators
-  training_generator = HR_Classifier_DataGenerator(squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
-  val_generator = HR_Classifier_DataGenerator(train=False, squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
+  training_generator = Datagenerator(squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
+  val_generator = Datagenerator(train=False, squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
 
   (inp, outp) = training_generator.__getitem__(0)
   print(inp.shape)
@@ -314,8 +316,8 @@ def main():
 
   # seq_classification()
   # deepheart()
-  # TempConvN()
-  fitness_classifier()
+  TempConvN()
+  # fitness_classifier()
 
 if __name__ == "__main__":
   main()

@@ -1,5 +1,6 @@
 
-# Metrics \label{ch:metrics}
+# Data Gathering \label{ch:metrics}
+
 
 Using the knowledge gained in the previous chapter, various metrics are carefully picked based on how relevant they are to cardiovascular fitness. In an ideal scenario we could measure oxygen levels in the blood, but equipment for this kind of data gathering is expensive and bulky, which makes it hard to perform at the scale required for machine learning applications. 
 
@@ -18,12 +19,6 @@ As a reminder, the subjects were asked to perform the following fitness training
 Test subjects were asked to abstain from alcohol for at least 24 hours, and to abstain from caffeine for at least 12 hours. This is an acceptable compromise between the personal life of the test subjects and the half-life time of the substances in the circulatory system.
 
 The RR-intervals are measured and stored using the Elite HRV android app, which can then be exported to text files where each line contains an integer representing the milliseconds between each beat. These intervals are then sent through a filter and passed on for feature extraction/engineering.
-
-The feature extraction/engineering results in every RR interval being accompanied by 10 extra features:
- 
- - HR
- - HRV
- - 
 
 ## RR-interval filtering and correction
 
@@ -44,6 +39,19 @@ The filter checks for multiple possibilities:
 At first, if the score of the sudden change solution is less than 50ms, it means that there is no faulty measurement, just a sudden change in Heart Rate Variability. however, if this is not the case, the filterer checks for the lowest score of the four proposed solutions. If this score is lower than the score of the "sudden change", it is accepted and the seven-beat window is replaced by the solution. If the cause of the change in IBI timing is still unexplained, the filtering gives up and will simply accept the faulty measurement.
 
 ## Heart Rate metrics feature engineering for the classification task
+
+The feature extraction/engineering results in every RR interval being accompanied by 10 extra features:
+ 
+ - HR
+ - HRV
+ - SDNN
+ - SDSD
+ - pNN50
+ - RMSSD
+ - HF power (60s epoch)
+ - LF power (300s epoch)
+ - VLF power (300s epoch)
+ - LF/HF ratio (300s epoch)
 
 ### RR interval
 
@@ -67,15 +75,13 @@ During the data gathering training session subjects started out with a 2 minute 
 
 Therefore, the resting heart rate is determined to be the global minimum heart rate attained during the session
 
-## Heart Rate Variability metrics
-
-### SDNN, SDSD, RMSSD \& pNN50 (120 second epoch)
+### HRV Time domain
 
 Standard Deviation of Inter Beat Intervals is the most basic way to analyse HRV in the time domain, so we include it in our model inputs. Standard deviation of the successive differences between IBIs is also an easy and basic measurement. [@Danieli2014] also shows that RMSSD and SDNN are higher in athletes so we include both metrics.
 
 pNN50 was chosen over NN50 because the amount of beats in the 120 second window varied greatly depending on the current heart rate of the subject. (at maximum exertion, the RR interval can drop to 350ms resulting in a window of 300-350 beats, while at rest the RR interval can be as high as 1000ms, resulting in a window of 120 beats)
 
-### Frequency domain 
+### HRV Frequency domain 
 
 For extracting Frequency domain statistics Welch's _spectral density estimation_ is used. The resulting periodogram is returned as a list of equally spaced segments, where each element represents the power of that particular segment. For each frequency band we can sum the corresponding segments to achieve the power that band.
 
@@ -95,6 +101,8 @@ Due to the setup of the training session it is easy to classify each heart beat.
 
 For each subject, some extra meta-data is gathered for use in the fitness regression task.
 
+### Fitness score
+
 The following meta-data is noted:
 
  - the Rating of Perceived Exertion of each session
@@ -111,31 +119,13 @@ out of these variables, a fitness score is calculated from the sum of 3 values:
  - The sum of the calories expended during the two constant Heart Rate stages, multiplied by the Baecke score divided by 15. These two stages also reflect the capacity for the subject to produce energy under constant load, but this measure is less reliable. By incorporating the Baecke score at this point we can grade the subject on their lifestyle.
  - The average percentage of the Heart Rate Reserve used by the subject during both constant load stages. Heart Rate reserve is the difference between the Max Heart Rate and Resting Heart Rate of the user. The lower the amount used of this reserve, the better the subject has adapted to exerting this load
 
+The resulting score is a unitless value between 60 and 170. This score is very dependent on gender and should not be used to compare different subjects, as it is intended to monitor the increase or decrease in cardiovascular fitness of the subject.
 
+![Fitness scores of the test subjects \label{fitness_score}](source/figures/fitness_score_boxplot.png){ width=100% }
 
+### Input data
 
+Because of the limitations of Neural Networks, the size of the input must be identical for all subjects. This means that the variable-length heartbeat data can't simple be passed to the machine learning algorithm. The data of the training session must be engineered to fit a constant-length input.
 
-
-#### Heart Rate Recovery
- - Heart rate recovery fast-to-slow phase transition: Influence of physical fitness and exercise intensity
- - Post-exercise heart-rate recovery correlates to resting heart-rate variability in healthy men
- - The relationship between resting heart rate variability and heart rate recovery
- - Estimation of heart rate recovery after stair climbing using a wrist-worn device
-
-Ectopic beat
-
-
-### Zuurstofopname
- - Prediction of maximal or peak oxygen uptake from ratings of perceived exertion
- - Submaximal, Perceptually Regulated Exercise Testing Predicts Maximal Oxygen Uptake: A Meta-Analysis Study 
- - Heart rate and exercise intensity during sports activities. Practical application.
- - Exercise and the autonomic nervous system.
-
-Dit is een andere belangrijke meting, die we helaas niet rechtstreeks kunnen meten. Deze sectie onderzoekt het nut van de zuurstofopname af te leiden uit hartslag (en user input?), maar dit zal waarschijnlijk geen uiteindelijk deel worden van de fitnesscoach. de opgedane kennis is waarschijnlijk wel nutig voor `Physical Load Level` beter te bepalen.
-
-### Physical Load Level
- - Prediction of Physical Load Level by Machine Learning Analysis of Heart Activity after Exercises
- - Heart rate and exercise intensity during sports activities. Practical application.
- - Exercise and the autonomic nervous system.
-
- Het uiteindelijk doel van alle metrieken en metingen. Een maat voor de inspanning die een gebruiker aan het leveren is. We willen dit nauwkeurig kunnen voorspellen, aangezien de fitnesscoach een specifiek trainingsregime zal aanbevelen op basis van de verwachte load level die dit regime teweeg brengt. Duidelijk de distinctie maken tussen absolute load level en de relatieve load level (hoeveel energie een regime vraagt vs hoeveel de gebruiker zich moet inspannen om deze energie te besteden)
+The maximum heart rate, resting heart rate, VLF, LF \& HF power and LF/HF ratio are extracted from the complete session.
+For every active stage of the session the VLF power, LF power, HF power, LF/HF ratio, maximum Heart rate and rMSSD of that 5 minute segment is extracted. For every recovery stage these same paramaters are extracted with the additional Heart Rate Recovery after 1 minute and the Heart Rate Recovery after 2 minutes.

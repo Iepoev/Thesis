@@ -173,6 +173,9 @@ Various biological tissue types (bone, blood, pigments in the skin,...) reflect 
 
 PPG sensors are fairly simple devices and have found their way to various wrist-based wearables, where they measure the pulse rate of the arteries in the wrist.
 
+In HRV analysis, the RR intervals obtained from ECG measurements are required. In principly, any signal providing Inter Beat Interval timing data could be used, as long as the measurements are sufficiently accurate. [@Pinheiro2016] suggest that data from PPG measurements could potentially be used to achieve the same goals as this thesis, but PPG is inherently less accurate than ECG. In the cited study the distinction is made between Heart Rate Variability from ECG measurement and Pulse Rate Variability from PPG measurement. Especially high frequency measurements during periods of intense activity suffer from high inaccuracy ([@Menghini2019])
+
+
 ## Physical fitness
 
 To model our fitness coach we need to know the distinct differences between a fit and unfit subject. We also have to make the distiction between a trained and untrained subject, because these concepts are inherently linked but are not synonyms. To be "fit" is to have a large aerobic capacity, the body has adapted to be able to deliver more oxygen to the muscles which improves aerobic ability. To be "trained" is having the extra muscle and nerval impulses te be able to use this oxygen, converting it into more power than an untrained subject.
@@ -257,8 +260,3 @@ Overtraining, meaning the negative effects of training sessions that are too lon
 
 Diagnosis of OTS can only be made after proper clinical evaluation and exclusion of the much more common medical conditions of endurance athletes. Common conditions with presentations similar to OTS include asthma, anemia, hypothyroidism, immunodeficiency, hypocortisolemia, chronic fatigue syndrome, and depression among others. To accurately diagnose OTS, additional blood screening tests are required to look for markers such as the following: testosterone:cortisol ratio, overnight urinary cortisol:cortisone ratio, maximal heart rate at lactate threshold, and/or decreased maximal lactate concentration [@Kreher2016]. It is therefor advised to take preventive measures to avoid OTS altogether, a general rule in prevention is that training intensity or duration should not increase more than 10% week over week.
 
-
-### Components of a Training session
-
- - voordelen van warmup
- - interval training vs continuous low-intensity vs continuous high-intensity

@@ -6,7 +6,7 @@ from glob import glob
 import random
 import math
 
-class HR_Classifier_DataGenerator(tensorflow.keras.utils.Sequence):
+class Datagenerator(tensorflow.keras.utils.Sequence):
   'Generates data for Keras'
   def __init__(self, train=True, train_test_split=0.8, squash_class=False, batch_size=9, seq_len=64, n_features=11, n_classes=5):
     'Initialization'
@@ -24,7 +24,7 @@ class HR_Classifier_DataGenerator(tensorflow.keras.utils.Sequence):
     self.preclassified_y = []
 
     # 2 sequence lenghts of spare space: one seq_len for the actual sequence and one seql_len for when the offset is equal to seq_len
-    self.indexes = [i*self.seq_len for i in range(math.floor(len(self.data) / self.seq_len)-2)]
+    self.indexes = [i*self.seq_len for i in range(math.floor(len(self.data) / self.seq_len)-1)]
     self.max_offset = len(self.data) % self.seq_len
 
     if (self.max_offset == 0):
@@ -70,11 +70,13 @@ class HR_Classifier_DataGenerator(tensorflow.keras.utils.Sequence):
 
     dataArray = np.empty((0,self.n_features+1), dtype=float)
 
-    for npfile in glob("data/processed/*.npy"):
+    for npfile in glob("data/processed/*_sequence.npy"):
 
       # Load file
       data = np.load(npfile)
-      dataArray = np.append(dataArray, data, axis=0)
+
+      #discard the "total ms" column
+      dataArray = np.append(dataArray, data[:,1:], axis=0)
 
     if self.train:
       dataArray = dataArray[:math.floor(len(dataArray)*self.train_test_split)]
