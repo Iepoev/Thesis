@@ -23,35 +23,23 @@ from src.baecke import baecke
 
 from data.datagenerator import Datagenerator
 
-def seq_to_seq_classification():
 
-  logdir = "logs/fit/seq_to_seq_classification" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-  tensorboard_callback = TensorBoard(log_dir=logdir)
-
+def lstm():
+  logdir = "logs/fit/lstm" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  tboard = TensorBoard(log_dir=logdir)
 
   # Generators
-  training_generator = Datagenerator()
-  val_generator = Datagenerator(train=False)
+  t_gen = Datagenerator(squash_class=True)
+  v_gen = Datagenerator(train=False, squash_class=True)
 
-  (inp, outp) = training_generator.__getitem__(0)
-  print(inp[31][0])
-  print(outp.shape)
+  i = Input(shape=(t_gen.seq_len, t_gen.n_features))
+  x = LSTM(t_gen.n_classes, activation='softmax')(i)
 
-  # LSTM for sequence classification 
-  model = Sequential()
-  model.add(LSTM(32,return_sequences=True, input_shape=(training_generator.seq_len,16)))
-  model.add(LSTM(5,return_sequences=True, input_shape=(training_generator.seq_len,16)))
-  # model.add(Dense(training_generator.n_classes, activation='softmax'))
-  model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
-  print(model.summary())
-  model.fit(training_generator, epochs=300,callbacks=[tensorboard_callback])
+  train_model(i, x, t_gen, v_gen, tboard)
 
-  scores = model.evaluate(val_generator, verbose=1)
-  print(scores)
-  print("Accuracy: %.2f%%" % (scores[1]*100))
 
-def seq_classification():
-  logdir = "logs/fit/seq_classification" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+def deep_lstm():
+  logdir = "logs/fit/deep_lstm" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
   tensorboard_callback = TensorBoard(log_dir=logdir)
 
   n_features = 11
@@ -65,12 +53,13 @@ def seq_classification():
   print(inp.shape)
   print(outp.shape)
 
+  print(inp[0][0])
+
   # LSTM for sequence classification 
   model = Sequential()
-  model.add(Dense(training_generator.seq_len, activation='sigmoid', input_shape=(training_generator.seq_len,n_features)))
-  model.add(LSTM(training_generator.seq_len,return_sequences=True))
-  model.add(LSTM(16,return_sequences=True))
-  model.add(LSTM(16))
+  model.add(LSTM(n_features,return_sequences=True))
+  model.add(LSTM(n_features,return_sequences=True))
+  model.add(LSTM(n_features))
   model.add(Dense(training_generator.n_classes, activation='softmax'))
 
   model.summary()
@@ -101,10 +90,6 @@ def deepheart():
   print(inp.shape)
   print(outp.shape)
 
-  opt = tf.keras.optimizers.Adam(learning_rate=0.00001)
-  reduce_lr = ReduceLROnPlateau(monitor='val_categorical_accuracy', factor=0.9,
-                              patience=50, min_lr=0.0000001)
-
 
   i = Input(shape=(training_generator.seq_len, n_features))
   x = Conv1D(128, 12, activation='relu')(i)
@@ -120,6 +105,63 @@ def deepheart():
   x = Bidirectional(LSTM(64, return_sequences=True))(x)
   x = Bidirectional(LSTM(64, return_sequences=True))(x)
   x = Bidirectional(LSTM(64, return_sequences=False))(x)
+  x = Dropout(0.2)(x)
+  # x = Conv1D(3, 11, activation='tanh')(x)
+  x = Dense(training_generator.n_classes, activation='softmax')(x)
+
+  opt = tf.keras.optimizers.Adam(learning_rate=0.00001)
+  reduce_lr = ReduceLROnPlateau(monitor='val_categorical_accuracy', factor=0.9,
+                              patience=50, min_lr=0.0000001)
+
+
+  model = Model(inputs=[i], outputs=[x])
+  model.summary()
+  model.compile(
+    loss='categorical_crossentropy', 
+    optimizer=opt, 
+    metrics=['categorical_accuracy'])
+  model.fit(
+    training_generator, 
+    epochs=1000, 
+    callbacks=[tensorboard_callback,reduce_lr], 
+    validation_data=val_generator)
+
+  scores = model.evaluate(val_generator, verbose=1)
+  print(scores)
+
+# Ballinger2018
+def deepheartv2():
+  logdir = "logs/fit/deepheartv2" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  tensorboard_callback = TensorBoard(log_dir=logdir)
+
+  n_features = 11
+  n_classes = 3
+  seq_len = 128
+
+  # Generators
+  training_generator = Datagenerator(squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
+  val_generator = Datagenerator(train=False, squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
+
+  (inp, outp) = training_generator.__getitem__(0)
+  print(inp.shape)
+  print(outp.shape)
+
+  opt = tf.keras.optimizers.Adam(learning_rate=0.00001)
+  reduce_lr = ReduceLROnPlateau(monitor='val_categorical_accuracy', factor=0.9,
+                              patience=50, min_lr=0.0000001)
+
+
+  i = Input(shape=(training_generator.seq_len, n_features))
+  x = Conv1D(128, 12, activation='relu', padding="causal")(i)
+  x = Dropout(0.2)(x)
+  x = Conv1D(128, 5, activation='relu', padding="causal")(x)
+  x = Dropout(0.2)(x)
+  x = Conv1D(128, 5, activation='relu', padding="causal")(x)
+  x = Dropout(0.2)(x)
+  x = Bidirectional(LSTM(n_features, return_sequences=True))(x)
+  x = Bidirectional(LSTM(n_features, return_sequences=True))(x)
+  x = Bidirectional(LSTM(n_features, return_sequences=True))(x)
+  x = Bidirectional(LSTM(n_features, return_sequences=False))(x)
   x = Dropout(0.2)(x)
   # x = Conv1D(training_generator.n_classes, 11, activation='tanh')(x)
   x = Dense(training_generator.n_classes, activation='softmax')(x)
@@ -176,18 +218,32 @@ def TempConvN():
   #   )(i)  # The TCN layers are here.
   # x = Dense(training_generator.n_classes, activation='softmax')(x)
 
+
+  # x = TCN(
+  #   nb_filters=seq_len, 
+  #   kernel_size=2,
+  #   nb_stacks=4,
+  #   dilations=[1, 2, 4, 8,16],
+  #   use_skip_connections=True,
+  #   return_sequences=False, 
+  #   # dropout_rate= 0.2,
+  #   # activation="softmax",
+  #   use_batch_norm=True
+  #   )(i)  # The TCN layers are here.
+  # x = Dense(training_generator.n_classes, activation='softmax')(x)
+
+
   x = TCN(
-    nb_filters=seq_len, 
+    nb_filters=n_features, 
     kernel_size=2,
     nb_stacks=4,
-    dilations=[1, 2, 4, 8,16],
+    dilations=[1, 2, 4, 8, 16, 32],
     use_skip_connections=True,
     return_sequences=False, 
     # dropout_rate= 0.2,
-    # activation="softmax",
+    activation="softmax",
     use_batch_norm=True
     )(i)  # The TCN layers are here.
-  x = Dense(training_generator.n_classes, activation='softmax')(x)
 
   model = Model(inputs=[i], outputs=[x])
 
@@ -224,8 +280,6 @@ def fitness_classifier():
     score = fitness_score(profile, name)
     profileArray = np.append(profileArray, [profile], axis=0)
     scores = np.append(scores, [score], axis=0)
-  print(dataArray.shape)
-  print(profileArray.shape)
 
   # i = Input(shape=dataArray.shape[1])
   # x = Dense(dataArray.shape[1], activation='relu')(i)
@@ -244,6 +298,30 @@ def fitness_classifier():
 
   # scores = model.evaluate(val_generator, verbose=1, callbacks=[tensorboard_callback])
   # print(scores)
+
+def train_model(inputs, outputs, training_generator, val_generator, tensorboard_callback,
+  learn_rate=0.00001, epochs=500):
+
+  opt = tf.keras.optimizers.Adam(learning_rate=learn_rate)
+  reduce_lr = ReduceLROnPlateau(monitor='val_categorical_accuracy', factor=0.9,
+                              patience=50, min_lr=0.0000001)
+
+
+  model = Model(inputs=[inputs], outputs=[outputs])
+  model.summary()
+  model.compile(
+    loss='categorical_crossentropy', 
+    optimizer=opt, 
+    metrics=['categorical_accuracy'])
+  model.fit(
+    training_generator, 
+    epochs=epochs, 
+    callbacks=[tensorboard_callback], 
+    validation_data=val_generator)
+
+  scores = model.evaluate(val_generator, verbose=1)
+  print(scores)
+
 
 def fitness_score(profileArray, name):
   (resting_hr, max_hr, ex1_max_hr, rpe_2, ex2_max_hr, rpe_3, kcal_3, dist_3, rpe_4, kcal_4, dist_4, kcal_5, dist_5, baeke_W, baeke_S, baeke_L) = profileArray
@@ -314,9 +392,11 @@ def main():
 
   #print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
-  # seq_classification()
+  lstm()
+  # deep_lstm()
   # deepheart()
-  TempConvN()
+  # deepheartv2()
+  # TempConvN()
   # fitness_classifier()
 
 if __name__ == "__main__":

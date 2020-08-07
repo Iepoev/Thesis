@@ -53,6 +53,12 @@ The feature extraction/engineering results in every RR interval being accompanie
  - VLF power (300s epoch)
  - LF/HF ratio (300s epoch)
 
+
+Figure \ref{user_data} plots these datapoints out for a sample user over time. It is immediately clear that some correlations exist, which means that we should be able to obtain a working Machine Learning classifier.
+
+![Feature extraction from heartbeat data \label{user_data}](source/figures/user_data.png){ width=100% }
+
+
 ### RR interval
 
 The most basic measurement from which all others are derived, the RR interval is the exact time between heartbeats in milliseconds. These values are stored in various sliding windows (of a constant time interval, 10 seconds, 60 seconds, 120 seconds and 300 seconds respectively) for further derivation.
@@ -93,9 +99,9 @@ Due to the low period of VLF and LF power (oscillation periods of up to 300 seco
 
 Due to the setup of the training session it is easy to classify each heart beat. A global time counter keeps track of the absolute time passed since the start of recording, which makes it easy to classify each stage of the session:
 
- - the resting stage is classified as "resting"
- - the recovery stages are classified as "recovery"
- - the remaining stages are classified as "active"
+ - the resting stage is classified as "resting" (class 0)
+ - the active stages are classified as "active" (class 1)
+ - the recovery stages are classified as "recovery" (class 2)
 
 ## Subject Variables for the regression task
 
@@ -103,15 +109,14 @@ For each subject, some extra meta-data is gathered for use in the fitness regres
 
 ### Fitness score
 
-The following meta-data is noted:
+The following meta-data is noted (fig \ref{fitness_subvariables}):
 
- - the Rating of Perceived Exertion of each session
- - the energy spent during the three "constant heart rate" sessions
- - the Baecke questionnaire scores of the subject
- - the Maximum Heart Rate of the subject 
  - the Resting Heart Rate of the subject
  - the maximum heart rate of the subject during the 50W 50RPM stage
  - the maximum heart rate of the subject during the 100W 50RPM stage
+ - the Maximum Heart Rate of the subject 
+ - the energy spent during the three "constant heart rate" sessions
+ - the Baecke questionnaire scores of the subject
 
 out of these variables, a fitness score is calculated from the sum of 3 values:
 
@@ -119,9 +124,11 @@ out of these variables, a fitness score is calculated from the sum of 3 values:
  - The sum of the calories expended during the two constant Heart Rate stages, multiplied by the Baecke score divided by 15. These two stages also reflect the capacity for the subject to produce energy under constant load, but this measure is less reliable. By incorporating the Baecke score at this point we can grade the subject on their lifestyle.
  - The average percentage of the Heart Rate Reserve used by the subject during both constant load stages. Heart Rate reserve is the difference between the Max Heart Rate and Resting Heart Rate of the user. The lower the amount used of this reserve, the better the subject has adapted to exerting this load
 
-The resulting score is a unitless value between 60 and 170. This score is very dependent on gender and should not be used to compare different subjects, as it is intended to monitor the increase or decrease in cardiovascular fitness of the subject.
+The resulting score (\ref{fitness_score}) is a unitless value between 60 and 170. This score is very dependent on gender and should not be used to compare different subjects, as it is intended to monitor the increase or decrease in cardiovascular fitness of the subject.
 
 ![Fitness scores of the test subjects \label{fitness_score}](source/figures/fitness_score_boxplot.png){ width=100% }
+
+![Fitness scores sub-variables of the test subjects \label{fitness_subvariables}](source/figures/user_profile_hr.png){ width=100% }
 
 ### Input data
 

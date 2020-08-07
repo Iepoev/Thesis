@@ -79,3 +79,5 @@ Various sequence learning and established Natural Language Processing techniques
  - a Temporal Convolutional Network (TCN)
 
 Various Convolutional and residual networks are tested for the base level fitness regression task.
+
+These networks are written in Python 3.8.3, created using Keras, which uses the Tensorflow 2 library to train these networks on a GTX 1070Ti CUDA-enabled graphics card.

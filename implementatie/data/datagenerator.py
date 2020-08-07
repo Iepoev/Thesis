@@ -8,7 +8,7 @@ import math
 
 class Datagenerator(tensorflow.keras.utils.Sequence):
   'Generates data for Keras'
-  def __init__(self, train=True, train_test_split=0.8, squash_class=False, batch_size=9, seq_len=64, n_features=11, n_classes=5):
+  def __init__(self, train=True, train_test_split=0.8, squash_class=False, batch_size=9, seq_len=128, n_features=11, n_classes=3):
     'Initialization'
     self.train = train
     self.train_test_split = train_test_split
