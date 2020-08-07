@@ -33,65 +33,39 @@ def lstm():
   v_gen = Datagenerator(train=False, squash_class=True)
 
   i = Input(shape=(t_gen.seq_len, t_gen.n_features))
-  x = LSTM(t_gen.n_classes, activation='softmax')(i)
+  x = LSTM(t_gen.n_features)(i)
+  x = Dense(t_gen.n_classes, activation='softmax')(x)
 
-  train_model(i, x, t_gen, v_gen, tboard)
+  train_model(i, x, t_gen, v_gen, tboard, learn_rate=0.001)
 
 
 def deep_lstm():
   logdir = "logs/fit/deep_lstm" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-  tensorboard_callback = TensorBoard(log_dir=logdir)
-
-  n_features = 11
-  n_classes = 3
+  tboard = TensorBoard(log_dir=logdir)
 
   # Generators
-  training_generator = Datagenerator(squash_class=True, n_features=n_features, n_classes=n_classes)
-  val_generator = Datagenerator(train=False, squash_class=True, n_features=n_features, n_classes=n_classes)
+  t_gen = Datagenerator(squash_class=True)
+  v_gen = Datagenerator(train=False, squash_class=True)
 
-  (inp, outp) = training_generator.__getitem__(0)
-  print(inp.shape)
-  print(outp.shape)
+  i = Input(shape=(t_gen.seq_len, t_gen.n_features))
+  x = LSTM(t_gen.n_features,return_sequences=True)(i)
+  x = LSTM(t_gen.n_features,return_sequences=True)(x)
+  x = LSTM(t_gen.n_features)(x)
+  x = Dense(t_gen.n_classes, activation='softmax')(x)
 
-  print(inp[0][0])
-
-  # LSTM for sequence classification 
-  model = Sequential()
-  model.add(LSTM(n_features,return_sequences=True))
-  model.add(LSTM(n_features,return_sequences=True))
-  model.add(LSTM(n_features))
-  model.add(Dense(training_generator.n_classes, activation='softmax'))
-
-  model.summary()
-  model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
-
-  model.fit(
-    training_generator, 
-    epochs=200, 
-    callbacks=[tensorboard_callback], 
-    validation_data=val_generator)
-  scores = model.evaluate(val_generator, verbose=1)
+  train_model(i, x, t_gen, v_gen, tboard, learn_rate=0.001)
 
 
 # Ballinger2018
 def deepheart():
   logdir = "logs/fit/deepheart" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-  tensorboard_callback = TensorBoard(log_dir=logdir)
-
-  n_features = 11
-  n_classes = 3
-  seq_len = 128
+  tboard = TensorBoard(log_dir=logdir)
 
   # Generators
-  training_generator = Datagenerator(squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
-  val_generator = Datagenerator(train=False, squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
+  t_gen = Datagenerator(squash_class=True)
+  v_gen = Datagenerator(train=False, squash_class=True)
 
-  (inp, outp) = training_generator.__getitem__(0)
-  print(inp.shape)
-  print(outp.shape)
-
-
-  i = Input(shape=(training_generator.seq_len, n_features))
+  i = Input(shape=(t_gen.seq_len, t_gen.n_features))
   x = Conv1D(128, 12, activation='relu')(i)
   x = Dropout(0.2)(x)
   x = MaxPooling1D(pool_size=2)(x)
@@ -107,14 +81,111 @@ def deepheart():
   x = Bidirectional(LSTM(64, return_sequences=False))(x)
   x = Dropout(0.2)(x)
   # x = Conv1D(3, 11, activation='tanh')(x)
-  x = Dense(training_generator.n_classes, activation='softmax')(x)
+  x = Dense(t_gen.n_classes, activation='softmax')(x)
 
-  opt = tf.keras.optimizers.Adam(learning_rate=0.00001)
-  reduce_lr = ReduceLROnPlateau(monitor='val_categorical_accuracy', factor=0.9,
-                              patience=50, min_lr=0.0000001)
+  train_model(i, x, t_gen, v_gen, tboard, learn_rate=0.001, factor=0.7)
 
 
-  model = Model(inputs=[i], outputs=[x])
+# Ballinger2018
+def deepheartv2():
+  logdir = "logs/fit/deepheartv2" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  tboard = TensorBoard(log_dir=logdir)
+
+  # Generators
+  t_gen = Datagenerator(squash_class=True)
+  v_gen = Datagenerator(train=False, squash_class=True)
+
+  i = Input(shape=(t_gen.seq_len, t_gen.n_features))
+  x = Bidirectional(LSTM(t_gen.n_features, return_sequences=True))(i)
+  x = Bidirectional(LSTM(t_gen.n_features, return_sequences=True))(x)
+  x = Bidirectional(LSTM(t_gen.n_features, return_sequences=True))(x)
+  x = Bidirectional(LSTM(t_gen.n_features, return_sequences=True))(x)
+  x = Dropout(0.2)(x)
+  x = Conv1D(128, 12, activation='relu', padding="causal")(x)
+  x = Dropout(0.2)(x)
+  x = MaxPooling1D(pool_size=2)(x)
+  x = Conv1D(128, 5, activation='relu', padding="causal")(x)
+  x = Dropout(0.2)(x)
+  x = MaxPooling1D(pool_size=2)(x)
+  x = Conv1D(128, 5, activation='relu', padding="causal")(x)
+  x = Dropout(0.2)(x)
+  x = MaxPooling1D(pool_size=2)(x)
+  x = Bidirectional(LSTM(t_gen.n_features, return_sequences=False))(x)
+  # x = Conv1D(training_generator.n_classes, 11, activation='tanh')(x)
+  x = Dense(t_gen.n_classes, activation='softmax')(x)
+
+  train_model(i, x, t_gen, v_gen, tboard, learn_rate=0.001, factor=0.7)
+
+
+def TempConvN():
+
+  logdir = "logs/fit/tcn" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  tboard = TensorBoard(log_dir=logdir)
+
+  # Generators
+  t_gen = Datagenerator(squash_class=True)
+  v_gen = Datagenerator(train=False, squash_class=True)
+
+  i = Input(shape=(t_gen.seq_len, t_gen.n_features))
+
+  # x = TCN(
+  #   nb_filters=t_gen.seq_len,
+  #   kernel_size=12, 
+  #   return_sequences=False, 
+  #   use_batch_norm=True
+  #   )(i)  # The TCN layers are here.
+
+  x = TCN(
+    nb_filters=t_gen.seq_len, 
+    kernel_size=16, 
+    # dilations=[1, 2, 4, 8, 16, 32],
+    # use_skip_connections=True,
+    return_sequences=False, 
+    # dropout_rate= 0.2,
+    # activation="softmax",
+    use_batch_norm=True
+    )(i)  # The TCN layers are here.
+  x = Dense(t_gen.n_classes, activation='softmax')(x)
+
+
+  # x = TCN(
+  #   nb_filters=t_gen.seq_len, 
+  #   kernel_size=2,
+  #   nb_stacks=4,
+  #   dilations=[1, 2, 4, 8, 16],
+  #   use_skip_connections=True,
+  #   return_sequences=False, 
+  #   # dropout_rate= 0.2,
+  #   # activation="softmax",
+  #   use_batch_norm=True
+  #   )(i)  # The TCN layers are here.
+  # x = Dense(t_gen.n_classes, activation='softmax')(x)
+
+
+  # x = TCN(
+  #   nb_filters=t_gen.n_classes, 
+  #   kernel_size=2,
+  #   nb_stacks=4,
+  #   dilations=[1, 2, 4, 8, 16, 32],
+  #   use_skip_connections=True,
+  #   return_sequences=False, 
+  #   # dropout_rate= 0.2,
+  #   # activation="softmax",
+  #   use_batch_norm=True
+  #   )(i)  # The TCN layers are here.
+  # x = Dense(t_gen.n_classes, activation='softmax')(x)
+
+  train_model(i, x, t_gen, v_gen, tboard, learn_rate=0.0001)
+
+def train_model(inputs, outputs, training_generator, val_generator, tensorboard_callback,
+  learn_rate=0.01, epochs=500, factor=0.1):
+
+  opt = tf.keras.optimizers.Adam(learning_rate=learn_rate)
+  reduce_lr = ReduceLROnPlateau(monitor='categorical_accuracy', factor=factor,
+                              patience=50, min_lr=0.0000001, min_delta=0.0001)
+
+
+  model = Model(inputs=[inputs], outputs=[outputs])
   model.summary()
   model.compile(
     loss='categorical_crossentropy', 
@@ -122,142 +193,88 @@ def deepheart():
     metrics=['categorical_accuracy'])
   model.fit(
     training_generator, 
-    epochs=1000, 
-    callbacks=[tensorboard_callback,reduce_lr], 
+    epochs=epochs, 
+    callbacks=[tensorboard_callback, reduce_lr], 
     validation_data=val_generator)
 
   scores = model.evaluate(val_generator, verbose=1)
   print(scores)
 
-# Ballinger2018
-def deepheartv2():
-  logdir = "logs/fit/deepheartv2" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-  tensorboard_callback = TensorBoard(log_dir=logdir)
+def main():
 
-  n_features = 11
-  n_classes = 3
-  seq_len = 128
+  parser = argparse.ArgumentParser(description='Fitness coach.')
 
-  # Generators
-  training_generator = Datagenerator(squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
-  val_generator = Datagenerator(train=False, squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
+  parser.add_argument('-f','--file', const='data/user/userdata.hdf5', nargs='?', help='import user data and model from a file')
+  parser.add_argument('-i','--init', default='fromscratch', nargs='?', choices=['fromscratch', 'inactive', 'active', 'elite'], help='initialize user data, either from scratch or a basic fit/unfit user)')
 
-  (inp, outp) = training_generator.__getitem__(0)
-  print(inp.shape)
-  print(outp.shape)
+  args = parser.parse_args()
+  print(args)
 
-  opt = tf.keras.optimizers.Adam(learning_rate=0.00001)
-  reduce_lr = ReduceLROnPlateau(monitor='val_categorical_accuracy', factor=0.9,
-                              patience=50, min_lr=0.0000001)
+  if args.file:
+    u = User.fromfile(fname=args.file)
+    print(u)
+  else:
+    if args.init == 'fromscratch':
+      (work_index,sport_index,leisure_index) = baecke()
+      u = User(work_index,sport_index,leisure_index)
+      print(u)
+      u.export_hdf5()
+    elif args.init == 'inactive':
+      u = User(2.0, 2.0, 1.0)
+      print(u)
+      u.export_hdf5()
+    elif args.init == 'active':
+      u = User(2.0, 4.0, 3.0)
+      print(u)
+      u.export_hdf5()
+    elif args.init == 'elite':
+      u = User(4.5, 5.0, 4.0)
+      print(u)
+      u.export_hdf5()
 
+  #print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
-  i = Input(shape=(training_generator.seq_len, n_features))
-  x = Conv1D(128, 12, activation='relu', padding="causal")(i)
-  x = Dropout(0.2)(x)
-  x = Conv1D(128, 5, activation='relu', padding="causal")(x)
-  x = Dropout(0.2)(x)
-  x = Conv1D(128, 5, activation='relu', padding="causal")(x)
-  x = Dropout(0.2)(x)
-  x = Bidirectional(LSTM(n_features, return_sequences=True))(x)
-  x = Bidirectional(LSTM(n_features, return_sequences=True))(x)
-  x = Bidirectional(LSTM(n_features, return_sequences=True))(x)
-  x = Bidirectional(LSTM(n_features, return_sequences=False))(x)
-  x = Dropout(0.2)(x)
-  # x = Conv1D(training_generator.n_classes, 11, activation='tanh')(x)
-  x = Dense(training_generator.n_classes, activation='softmax')(x)
+  # lstm()
+  # deep_lstm()
+  # deepheart()
+  # deepheartv2()
+  TempConvN()
+  # fitness_classifier()
 
-  model = Model(inputs=[i], outputs=[x])
-  model.summary()
-  model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['categorical_accuracy'])
+def fitness_score(profileArray, name):
+  (resting_hr, max_hr, ex1_max_hr, rpe_2, ex2_max_hr, rpe_3, kcal_3, dist_3, rpe_4, kcal_4, dist_4, kcal_5, dist_5, baeke_W, baeke_S, baeke_L) = profileArray
 
+  np.set_printoptions(precision=3)
+  np.set_printoptions(suppress=True)
 
-  model.fit(
-    training_generator, 
-    epochs=1000, 
-    callbacks=[tensorboard_callback,reduce_lr], 
-    validation_data=val_generator)
-
-  scores = model.evaluate(val_generator, verbose=1)
-  print(scores)
-
-
-def TempConvN():
-
-  logdir = "logs/fit/tcn" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-  tensorboard_callback = TensorBoard(log_dir=logdir)
-
-  n_features = 11
-  n_classes = 3
-  seq_len = 128
-
-  # Generators
-  training_generator = Datagenerator(squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
-  val_generator = Datagenerator(train=False, squash_class=True, n_features=n_features, seq_len=seq_len, n_classes=n_classes)
-
-  (inp, outp) = training_generator.__getitem__(0)
-  print(inp.shape)
-  print(outp.shape)
-
-  i = Input(shape=(training_generator.seq_len, n_features))
-  # x = TCN(
-  #   nb_filters=seq_len,
-  #   kernel_size=12, 
-  #   return_sequences=False, 
-  #   use_batch_norm=True
-  #   )(i)  # The TCN layers are here.
-
-  # x = TCN(
-  #   nb_filters=seq_len, 
-  #   kernel_size=16, 
-  #   # dilations=[1, 2, 4, 8, 16, 32],
-  #   # use_skip_connections=True,
-  #   return_sequences=False, 
-  #   # dropout_rate= 0.2,
-  #   # activation="softmax",
-  #   use_batch_norm=True
-  #   )(i)  # The TCN layers are here.
-  # x = Dense(training_generator.n_classes, activation='softmax')(x)
+  HR_reserve = max_hr - resting_hr
+  baeke_total = (baeke_W+ baeke_S+ baeke_L)/15
 
 
-  # x = TCN(
-  #   nb_filters=seq_len, 
-  #   kernel_size=2,
-  #   nb_stacks=4,
-  #   dilations=[1, 2, 4, 8,16],
-  #   use_skip_connections=True,
-  #   return_sequences=False, 
-  #   # dropout_rate= 0.2,
-  #   # activation="softmax",
-  #   use_batch_norm=True
-  #   )(i)  # The TCN layers are here.
-  # x = Dense(training_generator.n_classes, activation='softmax')(x)
+  # VO2max is the most important metric but can't be measured
+  # instead use Kcal as a substitute 
+  # max exertion kcal is the most important metric because it is generated at peak oxygen consumption (5-25)
 
+  # the other kcal metrics aren't proven to correlate (5-60), but use them nonetheless with a modifier to make them less important
+  # also use the Heart Rate Reserve usage of the first and second session (0-100) 
 
-  x = TCN(
-    nb_filters=n_features, 
-    kernel_size=2,
-    nb_stacks=4,
-    dilations=[1, 2, 4, 8, 16, 32],
-    use_skip_connections=True,
-    return_sequences=False, 
-    # dropout_rate= 0.2,
-    activation="softmax",
-    use_batch_norm=True
-    )(i)  # The TCN layers are here.
+  # use the Baecke score as a modifier
 
-  model = Model(inputs=[i], outputs=[x])
+  kcal5 = kcal_5 * 2
+  kcal_rest = (kcal_3+kcal_4) * baeke_total
+  hr1_score = (100-(((ex1_max_hr-resting_hr)/ (max_hr - resting_hr))*100))/2
+  hr2_score = (100-(((ex2_max_hr-resting_hr)/ (max_hr - resting_hr))*100))/2
+  res = (kcal5 + kcal_rest + hr1_score + hr2_score)
 
-  model.summary()
+  # print(f"kcal5 {kcal5:.2f}, kcal rest {kcal_rest:.2f}, hr1 score {hr1_score:.2f}, hr2 score {hr2_score:.2f}, baeke_total {baeke_total:.2f}")
+  # print(f"hr1 score {hr1_score:.2f}%, hr2 score {hr2_score:.2f}%")
+  # print(f"hr_rest {resting_hr:.2f}, hr max {max_hr:.2f}, hr1_max {ex1_max_hr:.2f}, hr2_max {ex2_max_hr:.2f}")
+  print(f"{name}: {res:.2f}")
+  # print(profileArray)
+  # print("==============")
 
-  # try using different optimizers and different optimizer configs
-  model.compile('adam', 'categorical_crossentropy', metrics=['categorical_accuracy'])
+  return res
 
-  model.fit(training_generator, epochs=500, callbacks=[tensorboard_callback], validation_data=val_generator)
-
-  # print(model.predict(val_generator.__getitem__(0)))
-
-  scores = model.evaluate(val_generator, verbose=1, callbacks=[tensorboard_callback])
-  print(scores)
 
 def fitness_classifier():
 
@@ -299,105 +316,6 @@ def fitness_classifier():
   # scores = model.evaluate(val_generator, verbose=1, callbacks=[tensorboard_callback])
   # print(scores)
 
-def train_model(inputs, outputs, training_generator, val_generator, tensorboard_callback,
-  learn_rate=0.00001, epochs=500):
-
-  opt = tf.keras.optimizers.Adam(learning_rate=learn_rate)
-  reduce_lr = ReduceLROnPlateau(monitor='val_categorical_accuracy', factor=0.9,
-                              patience=50, min_lr=0.0000001)
-
-
-  model = Model(inputs=[inputs], outputs=[outputs])
-  model.summary()
-  model.compile(
-    loss='categorical_crossentropy', 
-    optimizer=opt, 
-    metrics=['categorical_accuracy'])
-  model.fit(
-    training_generator, 
-    epochs=epochs, 
-    callbacks=[tensorboard_callback], 
-    validation_data=val_generator)
-
-  scores = model.evaluate(val_generator, verbose=1)
-  print(scores)
-
-
-def fitness_score(profileArray, name):
-  (resting_hr, max_hr, ex1_max_hr, rpe_2, ex2_max_hr, rpe_3, kcal_3, dist_3, rpe_4, kcal_4, dist_4, kcal_5, dist_5, baeke_W, baeke_S, baeke_L) = profileArray
-
-  np.set_printoptions(precision=3)
-  np.set_printoptions(suppress=True)
-
-  HR_reserve = max_hr - resting_hr
-  baeke_total = (baeke_W+ baeke_S+ baeke_L)/15
-
-
-  # VO2max is the most important metric but can't be measured
-  # instead use Kcal as a substitute 
-  # max exertion kcal is the most important metric because it is generated at peak oxygen consumption (5-25)
-
-  # the other kcal metrics aren't proven to correlate (5-60), but use them nonetheless with a modifier to make them less important
-  # also use the Heart Rate Reserve usage of the first and second session (0-100) 
-
-  # use the Baecke score as a modifier
-
-  kcal5 = kcal_5 * 2
-  kcal_rest = (kcal_3+kcal_4) * baeke_total
-  hr1_score = (100-(((ex1_max_hr-resting_hr)/ (max_hr - resting_hr))*100))/2
-  hr2_score = (100-(((ex2_max_hr-resting_hr)/ (max_hr - resting_hr))*100))/2
-  res = (kcal5 + kcal_rest + hr1_score + hr2_score)
-
-  # print(f"kcal5 {kcal5:.2f}, kcal rest {kcal_rest:.2f}, hr1 score {hr1_score:.2f}, hr2 score {hr2_score:.2f}, baeke_total {baeke_total:.2f}")
-  # print(f"hr1 score {hr1_score:.2f}%, hr2 score {hr2_score:.2f}%")
-  # print(f"hr_rest {resting_hr:.2f}, hr max {max_hr:.2f}, hr1_max {ex1_max_hr:.2f}, hr2_max {ex2_max_hr:.2f}")
-  print(f"{name}: {res:.2f}")
-  # print(profileArray)
-  # print("==============")
-
-  return res
-
-
-def main():
-
-  parser = argparse.ArgumentParser(description='Fitness coach.')
-
-  parser.add_argument('-f','--file', const='data/user/userdata.hdf5', nargs='?', help='import user data and model from a file')
-  parser.add_argument('-i','--init', default='fromscratch', nargs='?', choices=['fromscratch', 'inactive', 'active', 'elite'], help='initialize user data, either from scratch or a basic fit/unfit user)')
-
-  args = parser.parse_args()
-  print(args)
-
-  if args.file:
-    u = User.fromfile(fname=args.file)
-    print(u)
-  else:
-    if args.init == 'fromscratch':
-      (work_index,sport_index,leisure_index) = baecke()
-      u = User(work_index,sport_index,leisure_index)
-      print(u)
-      u.export_hdf5()
-    elif args.init == 'inactive':
-      u = User(2.0, 2.0, 1.0)
-      print(u)
-      u.export_hdf5()
-    elif args.init == 'active':
-      u = User(2.0, 4.0, 3.0)
-      print(u)
-      u.export_hdf5()
-    elif args.init == 'elite':
-      u = User(4.5, 5.0, 4.0)
-      print(u)
-      u.export_hdf5()
-
-  #print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
-
-  lstm()
-  # deep_lstm()
-  # deepheart()
-  # deepheartv2()
-  # TempConvN()
-  # fitness_classifier()
 
 if __name__ == "__main__":
   main()
