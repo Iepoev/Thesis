@@ -5,9 +5,9 @@
 
 The proposed Machine Learning networks managed to achieve up to \~82\% accuracy on sequenced heartbeat data. This is a fairly positive result, but not yet applicable for real-world scenarios.
 
-Due to the current ministerial decree(s) in relation to the ongoing covid-19 pandemic, the number of participants to the study was unfortunately too limited to see any significant results. The datasets used during training of both subgoals resulted in short epochs, requiring high epoch counts (up to 500 epochs) to achieve a stable result. For the fitness base level regression, this became even more extreme resulting in the failure of the experiment.
+Due to the current ministerial decree(s) with the ongoing covid-19 pandemic, the number of participants to the study was unfortunately too limited to see any significant results. The datasets used during training of both subgoals resulted in short epochs, requiring high epoch counts (up to 500 epochs) to achieve a stable result. For the base-level fitness regression, this became even more extreme resulting in the failure of the experiment.
 
-However, while it is impossible to fully prove the validity of the applied methods until more data is gathered, both subgoals were explored and validated using heavily cited, peer-reviewed studies. The base level fitness goal in particular is a fairly simple computational task (regression), so the the eventual success of the methodology seems likely.
+However, while it is impossible to fully prove the validity of the applied methods until more data is gathered, both subgoals were explored and validated using heavily cited, peer-reviewed studies. The base-level fitness goal in particular is a fairly simple computational task (regression), so the the eventual success of the methodology seems likely.
 
 
 ## Future work
@@ -20,7 +20,7 @@ Currently, the Activity Stage model does not use the potential gains from having
 
 An interesting concept was found but not expanded upon. The FitzHugh Nagumo model is the model of an a biological neuron proposed to account for cardiac impulse propagation. A study was able to achieve promising results by creating a Neural Network Layer based on this model, but these results were unable to be replicated in the experimental models of this thesis [@Madl2016].
 
-The Base Level Fitness regression task is made to combine 2 subgoals (base level fitness \& increase/decrease of fitness) into 1 implementation. The disadvantage now is that tracking increase/decrease of fitness requires performing a predefined training session, which makes the entire coach much less integrable with daily life. Developing a custom solution for this subgoal made to work with unlabeled sequence data would solve this issue.
+The base-level Fitness regression task is made to combine 2 subgoals (base-level fitness \& increase/decrease of fitness) into 1 implementation. The disadvantage now is that tracking increase/decrease of fitness requires performing a predefined training session, which makes the entire coach much less integrable with daily life. Developing a custom solution for this subgoal made to work with unlabeled sequence data would solve this issue.
 
 The implementation of the three remaining subgoals (tracking and coaching the user during a session, compiling a result from past sessions and recommending sessions that optimize fitness training) have not been addressed, but are required for a fully mature fitness coach. Various background information (such as fatigue states) have not been fully applied in the addressed subgoals, but might prove useful when implementing the remaining subgoals.
 
