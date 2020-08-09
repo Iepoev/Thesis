@@ -75,7 +75,7 @@ Het systeem weet de volgende dingen:
  - welke impact ieder type trainingsessie heeft
  - een optimaal trainingschema dat in optimale omstandigheden zo dicht mogelijk gevolgd wordt
 
-Aanbevelingsysteem gebruiken om een top n mogelijke trainingsessie samen te stellen (bvb intensief interval-sprinten, langdurig lopen, hoge-intensiteit cardio-sessie, rustdag, gewichtheffen,...). De gebruiker kan hieruit een kiezen.
+Aanbevelingsysteem gebruiken om een top n mogelijke trainingsessie samen te stellen (bvb intensief interval-sprinten, langdurig lopen, hoge-intensiteit cardio-sessie, rustdag, gewichtheffen, ...). De gebruiker kan hieruit een kiezen.
 
 ### realtime feedback tijdens trainingsessie
  - MiLift: Efficient Smartwatch-Based Workout Tracking Using Automatic Segmentation

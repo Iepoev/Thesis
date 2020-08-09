@@ -43,7 +43,6 @@ class Datagenerator(tensorflow.keras.utils.Sequence):
     if (self.batch_size % self.n_classes != 0):
       print("WARNING: batch size must be multiple of n_classes")
 
-
     print(f"generator length: {self.__len__()} batches of {self.batch_size} sequences with length {self.seq_len} (sample total: {len(self.data)})")
 
     # if self.squash_class:
@@ -102,7 +101,8 @@ class Datagenerator(tensorflow.keras.utils.Sequence):
       clss = int(self.data[seq_end,-1])
 
       # only use sequences of which the latter half is constant
-      if np.all(self.data[seq_end-(math.floor(self.seq_len/2)):seq_end,-1] == clss):
+      if np.all(self.data[seq_end-5:seq_end,-1] == clss):
+      # if np.all(self.data[seq_end-(math.floor(self.seq_len/24)):seq_end,-1] == clss):
         # append the sequence to its respective class array
         X[clss] = np.append(X[clss], [self.data[seq_start:seq_end,:-1]], axis=0)
 

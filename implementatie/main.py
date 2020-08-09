@@ -135,31 +135,31 @@ def TempConvN():
   #   use_batch_norm=True
   #   )(i)  # The TCN layers are here.
 
-  x = TCN(
-    nb_filters=t_gen.seq_len, 
-    kernel_size=16, 
-    # dilations=[1, 2, 4, 8, 16, 32],
-    # use_skip_connections=True,
-    return_sequences=False, 
-    # dropout_rate= 0.2,
-    # activation="softmax",
-    use_batch_norm=True
-    )(i)  # The TCN layers are here.
-  x = Dense(t_gen.n_classes, activation='softmax')(x)
-
-
   # x = TCN(
   #   nb_filters=t_gen.seq_len, 
-  #   kernel_size=2,
-  #   nb_stacks=4,
-  #   dilations=[1, 2, 4, 8, 16],
-  #   use_skip_connections=True,
+  #   kernel_size=16, 
+  #   # dilations=[1, 2, 4, 8, 16, 32],
+  #   # use_skip_connections=True,
   #   return_sequences=False, 
   #   # dropout_rate= 0.2,
   #   # activation="softmax",
   #   use_batch_norm=True
   #   )(i)  # The TCN layers are here.
   # x = Dense(t_gen.n_classes, activation='softmax')(x)
+
+
+  x = TCN(
+    nb_filters=t_gen.seq_len, 
+    kernel_size=2,
+    nb_stacks=4,
+    dilations=[1, 2, 4, 8, 16],
+    use_skip_connections=True,
+    return_sequences=False, 
+    # dropout_rate= 0.2,
+    # activation="softmax",
+    use_batch_norm=True
+    )(i)  # The TCN layers are here.
+  x = Dense(t_gen.n_classes, activation='softmax')(x)
 
 
   # x = TCN(
@@ -198,48 +198,7 @@ def train_model(inputs, outputs, training_generator, val_generator, tensorboard_
     validation_data=val_generator)
 
   scores = model.evaluate(val_generator, verbose=1)
-  print(scores)
 
-def main():
-
-  parser = argparse.ArgumentParser(description='Fitness coach.')
-
-  parser.add_argument('-f','--file', const='data/user/userdata.hdf5', nargs='?', help='import user data and model from a file')
-  parser.add_argument('-i','--init', default='fromscratch', nargs='?', choices=['fromscratch', 'inactive', 'active', 'elite'], help='initialize user data, either from scratch or a basic fit/unfit user)')
-
-  args = parser.parse_args()
-  print(args)
-
-  if args.file:
-    u = User.fromfile(fname=args.file)
-    print(u)
-  else:
-    if args.init == 'fromscratch':
-      (work_index,sport_index,leisure_index) = baecke()
-      u = User(work_index,sport_index,leisure_index)
-      print(u)
-      u.export_hdf5()
-    elif args.init == 'inactive':
-      u = User(2.0, 2.0, 1.0)
-      print(u)
-      u.export_hdf5()
-    elif args.init == 'active':
-      u = User(2.0, 4.0, 3.0)
-      print(u)
-      u.export_hdf5()
-    elif args.init == 'elite':
-      u = User(4.5, 5.0, 4.0)
-      print(u)
-      u.export_hdf5()
-
-  #print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
-
-  # lstm()
-  # deep_lstm()
-  # deepheart()
-  # deepheartv2()
-  TempConvN()
-  # fitness_classifier()
 
 def fitness_score(profileArray, name):
   (resting_hr, max_hr, ex1_max_hr, rpe_2, ex2_max_hr, rpe_3, kcal_3, dist_3, rpe_4, kcal_4, dist_4, kcal_5, dist_5, baeke_W, baeke_S, baeke_L) = profileArray
@@ -316,7 +275,23 @@ def fitness_classifier():
   # scores = model.evaluate(val_generator, verbose=1, callbacks=[tensorboard_callback])
   # print(scores)
 
+def main():
+
+  #print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+
+  # lstm()
+  # deep_lstm()
+  # deepheart()
+  # deepheartv2()
+  # TempConvN()
+  TempConvN()
+  TempConvN()
+  deepheartv2()
+  deepheartv2()
+  deepheartv2()
+  # fitness_classifier()
 
 if __name__ == "__main__":
   main()
+
 
