@@ -8,7 +8,7 @@
 
 ### Methode {.unnumbered}
 
-Het doel van deze masterthesis is om Machine Learning te gebruiken voor een digitale personal coach te ontwikkelen. 2 onderdelen van deze coach zijn geïsoleerd: een model dat de huidige activiteit van een gebruiker kan classificeren en een model dat de cardiovasculaire fitness van de gebruiker kan meten. De belangrijkste metriek gebruikt is hartslagvariabiliteit. HSV is ruim onderzocht in de medische sector in de context van hartziektes en hartaandoeningen. Deze thesis poogt deze bestaande research te hergebruiken en toe te passen op cardiovasculaire fitness en machine learning. 
+Het doel van deze masterthesis is om machine learning te gebruiken voor een digitale personal coach te ontwikkelen. 2 onderdelen van deze coach zijn geïsoleerd: een model dat de huidige activiteit van een gebruiker kan classificeren en een model dat de cardiovasculaire fitness van de gebruiker kan meten. De belangrijkste metriek gebruikt is hartslagvariabiliteit. HSV is ruim onderzocht in de medische sector in de context van hartziektes en hartaandoeningen. Deze thesis poogt deze bestaande research te hergebruiken en toe te passen op cardiovasculaire fitness en machine learning. 
 
 Gezonde jongvolwassenen werden gevraagd om een fitness-regime te fietsen op een hometrainer, hun hartslage werd gemeten en een aantal meta-data punten werden genoteerd. In totaal bestaat de dataset uit 23 testpersonen, voor een totaal van \~95000 hartslagen.
 
@@ -28,7 +28,7 @@ Echter, hoewel het onmogelijk is om de validiteit van de gebruikte methoden voll
 
 ### Method {.unnumbered}
 
-The goal of this master thesis is to use Machine Learning to develop a digital personal coach for sport activities. 2 subgoals have been isolated: A model capable of classifying the activity state of the user and a model to gauge the cardiovascular fitness level of the user. The primary measurement used is Heart Rate Variability. HRV has been a subject of research in the medical community and can be used to predict various cardiovascular diseases or conditions. This thesis attempts to reapproriate the existing HRV research for cardiovascular fitness and machine learning.
+The goal of this master thesis is to use machine learning to develop a digital personal coach for sport activities. 2 subgoals have been isolated: A model capable of classifying the activity state of the user and a model to gauge the cardiovascular fitness level of the user. The primary measurement used is Heart Rate Variability. HRV has been a subject of research in the medical community and can be used to predict various cardiovascular diseases or conditions. This thesis attempts to reapproriate the existing HRV research for cardiovascular fitness and machine learning.
 
 Healthy young adults were asked to perform a specific fitness training session on a stationary bicycle, their heart rate response was measured and various meta-datapoints were noted. In total 23 test subjects were added to the data set, resulting in \~95.000 timesteps of hearbeat data.
 
@@ -53,7 +53,7 @@ People who practice sports occasionally, often have no or very limited support a
 
 ### Method {.unnumbered}
 
-The goal of this master thesis is to research the possibility of using Machine Learning to develop a digital personal coach for sport activities. 5 Subgoals were determined to be required to achieve this goal, 2 of which have been isolated for development. 
+The goal of this master thesis is to research the possibility of using machine learning to develop a digital personal coach for sport activities. 5 Subgoals were determined to be required to achieve this goal, 2 of which have been isolated for development. 
 
  - A model capable of classifying the state of the user. Are they resting, active, recovering, under intense exertion, ...
  - A model to gauge the cardiovascular fitness level of the user.
@@ -94,7 +94,7 @@ Personen die af en toe sporten, krijgen vaak weinig tot geen ondersteuning en be
 
 ### Methode {.unnumbered}
 
-Het doel van deze masterthesis is om Machine Learning te gebruiken voor een digitale personal coach te ontwikkelen. 5 onderdelen werden geïsoleerd, waarven er uiteindelijk 2 uitgewerkt zijn:
+Het doel van deze masterthesis is om machine learning te gebruiken voor een digitale personal coach te ontwikkelen. 5 onderdelen werden geïsoleerd, waarven er uiteindelijk 2 uitgewerkt zijn:
 
  - een model dat de huidige activiteit van een gebruiker kan classificeren. Is de gebruiker in rust, actief, aan het recuperen, onder intense inspanning, ...?
  - een model dat de cardiovasculaire fitness van de gebruiker kan meten. 
@@ -144,7 +144,7 @@ The primary measurement used is Heart Rate Variability. This is the miniscule di
 
 In this master thesis the Polar H7 (a HRV-capable chest strap) is used to measure heart rate data from test subjects. Healthy young adults were asked to perform a specific fitness training session on a Kettler ergometer x3, their heart rate response was measured and various extra information about the subject was noted.  In total 27 test subjects were gathered, of which 23 were able to fully complete the session, resulting in \~95.000 heartbeats data.
 
-### On Machine Learning {.unnumbered}
+### On machine learning {.unnumbered}
 
 Machine learning is a type of artificial intelligence where a stack of mathematical "neuron" layers is made to learn by example. Each of these layers is nothing more than an amount of cells, where each cell is able to receive various inputs, perform a calculation, and pass the result of this calculation on to one or more neurons in the next layer. The sequence of layers are called a "network" and are structured so that the output of the very last layer is a class (in the case of classifying networks) or a score (in case of regression networks). There are more possible use-cases of networks but the thesis is limited to these two.
 

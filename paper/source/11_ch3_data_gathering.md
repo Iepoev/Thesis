@@ -10,9 +10,9 @@ As a reminder, the subjects were asked to perform the following fitness training
  - a 5-minute stage in which the subject provides 50W (0.067 BHP) at 50 rpm
  - a 5-minute stage in which the subject provides 100W (0.134 BHP) at 50 rpm
  - a 2-minute stage of recovery in sedentary rest
- - a 5-minute stage in which the subject tries to maintain 115-120 bpm Heart Rate (equals to around 60% of the maximum heart rate of young adults)
+ - a 5-minute stage in which the subject tries to maintain 115-120 bpm heart rate (equals to around 60% of the maximum heart rate of young adults)
  - a 2-minute stage of recovery in sedentary rest
- - a 5-minute stage in which the subject tries to maintain 155-160 bpm Heart Rate (equals to around 80% of the maximum heart rate of young adults)
+ - a 5-minute stage in which the subject tries to maintain 155-160 bpm heart rate (equals to around 80% of the maximum heart rate of young adults)
  - a 1-minute stage in which the subject cycles at maximum exertion
  - a 4-minute stage of recovery
 
@@ -39,7 +39,7 @@ The filter checks for multiple possibilities:
 
 At first, if the score of the sudden change solution is less than 50ms, it means that there is no faulty measurement, just a sudden change in Heart Rate Variability. however, if this is not the case, the filterer checks for the lowest score of the four proposed solutions. If this score is lower than the score of the "sudden change", it is accepted and the seven-beat window is replaced by the solution. If the cause of the change in IBI timing is still unexplained, the filtering gives up and will simply accept the faulty measurement.
 
-## Heart Rate metrics feature engineering for the classification task
+## Heart rate metrics feature engineering for the classification task
 
 The feature engineering results in every RR interval being accompanied by 10 extra features:
 
@@ -55,7 +55,7 @@ The feature engineering results in every RR interval being accompanied by 10 ext
  - LF/HF ratio (300s epoch)
 
 
-Figure \ref{user_data} plots these datapoints out for a sample user over time. It is immediately clear that some correlations exist, which means that we should be able to obtain a working Machine Learning classifier.
+Figure \ref{user_data} plots these datapoints out for a sample user over time. It is immediately clear that some correlations exist, which means that we should be able to obtain a working machine learning classifier.
 
 ![Feature extraction from heartbeat data \label{user_data}](source/figures/user_data.png){ width=100% }
 
@@ -70,7 +70,7 @@ The beat-to-beat heart rate is the standard way to measure cardiac activity. It 
 
 ### Current Heart Rate Variability
 
-A very simple way to determine the current overall HRV is to simply make the difference between the last 2 beats, but this proved to be a very unstable measurement, again due to the inherent variability of HRV. So just like HR, the linearly weighted moving average of the last 10 seconds of measurements is taken.
+A very easy way to determine the current overall HRV is to simply make the difference between the last 2 beats, but this proved to be a very unstable measurement, again due to the inherent variability of HRV. So just like HR, the linearly weighted moving average of the last 10 seconds of measurements is taken.
 
 ### Maximum Heart Rate
 
@@ -84,7 +84,7 @@ Therefore, the resting heart rate is determined to be the global minimum heart r
 
 ### HRV Time domain
 
-Standard Deviation of Inter Beat Intervals is the most basic way to analyse HRV in the time domain, so it should be included in our model inputs. The standard deviation of the successive differences between IBIs is also an easy and basic measurement. [@Danieli2014] also shows that RMSSD and SDNN are higher in athletes so both metrics are included.
+Standard Deviation of Inter Beat Intervals is the most basic way to analyse HRV in the time domain, so it should be included in our model inputs. The standard deviation of the successive differences between IBIs is also an easy and basic measurement. Danieli et al. [@Danieli2014] also show that RMSSD and SDNN are higher in athletes so both metrics are included.
 
 pNN50 was chosen over NN50 because the number of beats in the 120-second window varies greatly depending on the current heart rate of the subject. (at maximum exertion, the RR interval can drop to 350ms resulting in a window of 300-350 beats, while at rest the RR interval can be as high as 1000ms, resulting in a window of 120 beats)
 
@@ -92,7 +92,7 @@ pNN50 was chosen over NN50 because the number of beats in the 120-second window 
 
 For extracting frequency domain statistics Welch's _spectral density estimation_ is used. The resulting periodogram is returned as a list of equally spaced segments, where each element represents the power of that particular segment. For each frequency band, we can sum the corresponding segments to achieve the power of that band.
 
-[@Danieli2014] shows that HF power is higher in athletes, so it is included. Because it is also a measure of parasympathetic activity, we analyse HF power in a fairly short 60-second epoch otherwise we would not be able to accurately assess HF power during the relatively short recovery and resting segments.
+Danieli et al. [@Danieli2014] show that HF power is higher in athletes, so it is included. Because it is also a measure of parasympathetic activity, we analyse HF power in a fairly short 60-second epoch otherwise we would not be able to accurately assess HF power during the relatively short recovery and resting segments.
 
 Due to the low period of VLF and LF power (oscillation periods of up to 300 seconds and up to 25 seconds respectively), their power is calculated from 300-second epochs. LF/HF ratio is also derived from this 300-second IBI window.
 
@@ -121,8 +121,8 @@ The following meta-data is noted (fig \ref{fitness_subvariables}):
 
 out of these variables, a fitness score is calculated from the sum of 3 values:
 
- - The calories expended during the maximum exertion stage, multiplied by 2. Maximum exertion is a good metric for VO2$_{max}$, but as we can't measure oxygen levels in the blood we use the expended energy as a substitute.
- - The sum of the calories expended during the two constant Heart Rate stages, multiplied by the Baecke score divided by 15. The energy expenditure of these two stages also reflects the capacity for the subject to produce energy under constant load, but this measure is less reliable and not backed by research. By incorporating the Baecke score at this point we can make this measure less important while also grading the subject on their lifestyle which has been shown to correlate with cardiovascular fitness.
+ - The calories expended during the maximum exertion stage, multiplied by 2. Maximum exertion is a good metric for VO2$_{max}$, but as we cannot measure oxygen levels in the blood we use the expended energy as a substitute.
+ - The sum of the calories expended during the two constant heart rate stages, multiplied by the Baecke score divided by 15. The energy expenditure of these two stages also reflects the capacity for the subject to produce energy under constant load, but this measure is less reliable and not backed by research. By incorporating the Baecke score at this point we can make this measure less important while also grading the subject on their lifestyle which has been shown to correlate with cardiovascular fitness.
  - The average percentage of the heart rate reserve used by the subject during both constant load stages. heart rate reserve is the difference between the maximum heart rate and resting heart rate of the user. The lower the amount used of this reserve, the better the subject has adapted to exerting this load
 
 The resulting score (\ref{fitness_score}) is a unitless value between 60 and 170. This score is very dependent on gender and should not be used to compare different subjects, as it is intended to monitor the increase or decrease in cardiovascular fitness of the subject.
@@ -133,7 +133,7 @@ The resulting score (\ref{fitness_score}) is a unitless value between 60 and 170
 
 ### Input data
 
-Because of the limitations of neural networks, the size of the input must be identical for all subjects. This means that the variable-length heartbeat data can't simply be passed to the machine learning algorithm. The data of the training session must be engineered to fit a constant-length input.
+Because of the limitations of neural networks, the size of the input must be identical for all subjects. This means that the variable-length heartbeat data cannot simply be passed to the machine learning algorithm. The data of the training session must be engineered to fit a constant-length input.
 
 The maximum heart rate, resting heart rate, VLF, LF \& HF power, and LF/HF ratio are extracted from the complete session.
 For every active stage of the session the VLF power, LF power, HF power, LF/HF ratio, maximum Heart rate, and rMSSD of that 5-minute segment is extracted. For every recovery stage, these same parameters are extracted with the additional Heart Rate Recovery after 1 minute and the Heart Rate Recovery after 2 minutes.

@@ -1,33 +1,30 @@
 # Appendix B: Abbreviations {.unnumbered}
 
 \begin{tabbing}
-\textbf{HRV}~~~~~~~~~~~~ \=  Heart Rate Variability \\  
-\textbf{RPE} \> Rating of Perceived Exertion \\  
-\textbf{LSTM} \> Long Short Term Memory \\  
-\textbf{TCN} \> Temporal Convolutional Network \\  
 
-\textbf{SA node} \> Sinoatrial node \\  
-\textbf{AV node} \> Atrioventricular node \\  
-\textbf{CNS} \> Central Nervous System \\  
-\textbf{PNS} \> Peripheral Nervous System \\  
+\textbf{AF}~~~~~~~~~~~~ \= Acutely Fatigued \\  
 \textbf{ANS} \> Autonomic Nervous System \\  
-\textbf{SNS} \> Somatic Nervous System \\  
-\textbf{PSNS} \> ParaSympathetic Nervous System \\  
-\textbf{RSA} \> Respiratory Sinus Arrhythmia \\  
-\textbf{CO} \> Cardiac Output \\  
-\textbf{SV} \> Stroke Volume \\  
-
-\textbf{RHR} \> Resting Heart Rate \\  
-\textbf{HRR} \> Heart Rate Recovery \\  
-\textbf{IBI} \> Inter Beat Interval \\  
-
-\textbf{AF} \> Acutely Fatigued \\  
-\textbf{FOR} \> Functionally Overreached \\  
-\textbf{NFOR} \> Non-Functionally Overreached \\  
-\textbf{OTS} \> Overtraining Syndrome \\  
-
-
+\textbf{AV node} \> Atrioventricular node \\  
 \textbf{BHP} \> Brake Horsepower \\  
+\textbf{CBT} \> Current Beat Timing \\  
+\textbf{CNS} \> Central Nervous System \\  
+\textbf{CO} \> Cardiac Output \\  
+\textbf{FOR} \> Functionally Overreached \\  
+\textbf{HRR} \> Heart Rate Recovery \\  
+\textbf{HRV} \> Heart Rate Variability \\  
+\textbf{IBI} \> Inter Beat Interval \\  
+\textbf{LSTM} \> Long Short Term Memory \\  
+\textbf{NFOR} \> Non-Functionally Overreached \\  
+\textbf{PNS} \> Peripheral Nervous System \\  
+\textbf{PSNS} \> ParaSympathetic Nervous System \\  
+\textbf{RHR} \> Resting Heart Rate \\  
+\textbf{RPE} \> Rating of Perceived Exertion \\  
+\textbf{RSA} \> Respiratory Sinus Arrhythmia \\  
+\textbf{OTS} \> Overtraining Syndrome \\  
+\textbf{SA node} \> Sinoatrial node \\  
+\textbf{SNS} \> Somatic Nervous System \\  
+\textbf{SV} \> Stroke Volume \\  
+\textbf{TCN} \> Temporal Convolutional Network \\  
 
 \end{tabbing}
 
