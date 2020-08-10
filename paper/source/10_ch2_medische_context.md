@@ -11,7 +11,7 @@ Both sides of the heart have a distinct function. The right-hand side delivers d
 
 Not every muscle in the heart is equal. The atria only need to pump blood into the ventricles, so they are smaller. The muscle of the left ventricle is much thicker and better developed than that of the right ventricle, to overcome the high resistance required to pump blood into the long systemic circuit. The right ventricle does not need to generate as much pressure, since the path to the lungs is shorter and provides less resistance. With an average chamber volume of 70mL and an average heart rate of 75bpm, each chamber is capable of pumping 5250 mL blood per minute [@Openstax].
 
-![An anatomical overview of the heart [@Openstax] \label{ana_heart}](source/figures/ana_heart.jpg){ width=100% }
+![An anatomical overview of the heart [@Openstax]. \label{ana_heart}](source/figures/ana_heart.jpg){ width=100% }
 
 ## Innervation of the heart
 
@@ -23,7 +23,7 @@ The AV bundle divides into two AV bundle branches, both descending and reaching 
 
 The SA node, without external control, would initiate a heart impulse approximately 80–100 times per minute. While possible in some healthy individuals, rates lower than 50 beats per minute would indicate a condition called bradycardia. With extreme stimulation by the SA node, the AV node can transmit impulses maximally at 220 per minute. This establishes the typical maximum heart rate in a healthy young individual. Higher rates are possible in hearts that are damaged or stimulated by certain drugs, but the heart can no longer effectively pump blood at these rates [@Openstax].
 
-![the innervation and pumping mechanism of the heart [@Openstax] \label{inn_heart}](source/figures/inn_heart.jpg){ width=100% }
+![the innervation and pumping mechanism of the heart [@Openstax]. \label{inn_heart}](source/figures/inn_heart.jpg){ width=100% }
 
 ## Physiological function of the heart
 
@@ -82,8 +82,8 @@ An ectopic or premature heartbeat is when the heart either skips a beat or adds 
 
 There are two types of ectopic heartbeats:
 
- - premature atrial contractions, which originate in the upper chambers, or atria.
- - premature ventricular contractions, which originate in the lower chambers, or ventricles.
+ - Premature atrial contractions, which originate in the upper chambers, or atria.
+ - Premature ventricular contractions, which originate in the lower chambers, or ventricles.
 
 ### Heart Rate
 
@@ -100,8 +100,8 @@ Heart rate will quickly reach the equilibrium as described as long as blood lact
 
 The time between heartbeats (the so-called RR interval or Inter Beat Interval - IBI) is not constant but fluctuates ever so slightly between beats. The difference between these intervals is not random but is the result of a multitude of complex interactions between various organs of the body and is best described as "mathematical chaos". Two overlapping processes can be isolated [@Shaffer2017]:
 
- - the interaction between parasympathetic and sympathetic branches of the ANS; 
- - the regulatory mechanisms that also control respiratory sinus arrhythmia (RSA) (in which the sinus firing rate increases with inspiration and decreases with expiration), baroreceptor reflex (negative-feedback control of blood pressure), and rhythmic changes in vascular tone (degree of restriction in blood vessels).
+ - The interaction between parasympathetic and sympathetic branches of the ANS; 
+ - The regulatory mechanisms that also control respiratory sinus arrhythmia (RSA) (in which the sinus firing rate increases with inspiration and decreases with expiration), baroreceptor reflex (negative-feedback control of blood pressure), and rhythmic changes in vascular tone (degree of restriction in blood vessels).
 
 Heart Rate Variability (HRV) diminishes with age and is a marker for parasympathetic activity, with a higher value being in general considered "more healthy". Lower HRV values have been linked to Myocardial Infarction and Myocardial Dysfunction while raising HRV through exercise to battle cardiovascular mortality risk has been proven beneficial [@Malik1996].
 
@@ -156,7 +156,7 @@ By careful placement of surface electrodes on the body, it is possible to record
 
 The standard electrocardiograph uses multiple electrodes to obtain 3, 5, or 12 leads. The greater the number of leads an electrocardiograph uses, the more information the ECG provides. The term “lead” typically describes the voltage difference between two of the electrodes. Electrocardiographs are also available in a small, portable, battery-operated device known as a Holter monitor, or simply a Holter, that continuously monitors heart electrical activity. Chest strap heart rate monitors (such as the polar H-series used here) are rudimentary electrocardiograms.
 
-![an example ECG tracing \label{ecg}](source/figures/ecg.jpg){ width=100% }
+![an example ECG tracing. \label{ecg}](source/figures/ecg.jpg){ width=100% }
 
 ### Photoplethysmogram (PPG) measurement
 
@@ -180,7 +180,7 @@ Due to the large amounts of ways to parametrize "fitness", calculating a fitness
 
 Aerobic capacity is the ability to take in oxygen and deliver it to skeletal muscle during exercise. It uses VO$_{2max}$ (or Peak Oxygen Uptake), the maximum rate of oxygen consumption in mL/(kg\*min) - the volume of oxygen delivered per minute, per kilogram of body mass - , as a measure because it reflects the capabilities of the circulatory and respiratory systems. It is a gold standard measure for comparing individual subjects and training methods because it correlates with cardiorespiratory fitness and endurance capacity. Erythropoietin (EPO) can significantly increase VO$_{2max}$, so it is no surprise that it has been used extensively as a Performance-Enhancing Drug in aerobic sports such as cycling. Note that higher VO$_{2max}$ does not necessarily mean a higher volume of oxygen in the blood. In fact, most VO$_{2max}$ increases can be attributed to a higher capacity of the body to extract the oxygen already present in the blood.
 
-Accurately measuring VO$_{2max}$ is impossible without specialized medical equipment, but a meta-study revealed that VO$_{2max}$ may be simulated/extrapolated from RPE during a Perceptually Regulated Exercise Test (PRET) test. RPE can be noted using the Borg Scale, a standardised 6-20 scale with 6 meaning no exertion at all and 20 meaning maximal exertion. These ratings can informally be described as "exercise resulting in a heart rate of rating times 10" [@Coquart2016]. Furthermore, performance during a Cooper test (maximum distance covered by foot during 12 minutes) can be extrapolated to VO$_{2max}$ using the formula:
+Accurately measuring VO$_{2max}$ is impossible without specialized medical equipment, but a meta-study [@Coquart2016] revealed that VO$_{2max}$ may be simulated/extrapolated from RPE during a Perceptually Regulated Exercise Test (PRET) test. RPE can be noted using the Borg Scale, a standardised 6-20 scale with 6 meaning no exertion at all and 20 meaning maximal exertion. These ratings can informally be described as "exercise resulting in a heart rate of rating times 10". Furthermore, performance during a Cooper test (maximum distance covered by foot during 12 minutes) can be extrapolated to VO$_{2max}$ using the formula:
 
 $VO_{2max} \approx \dfrac{dist - 504.9}{44.73}$
 
@@ -201,7 +201,7 @@ Fatigue has an apparent impact on the slow phase of the blood lactate level incr
 Heart Rate Variability is the variation in time between each heartbeat. This variation is affected by the autonomic nervous system and will increase from PSNS activity and decrease from SNS activity. A healthy ANS is one that can quickly activate or deactivate either stimulus, so being able to quickly change from low to high variation and vice-versa is a measure of good physical and mental health and high stress resilience [@Dong2018]. Habitual aerobic exercise appears to aid the maintenance of elevated HRV in active subjects when compared with age- and weight-matched sedentary subjects [@DeMeersman], and correlates with VO$_{2max}$ [@Buchheit2006]. 
 
 
-Not all HRV measures are created equal; HF, SDNN, and RMSSD were statistically significantly higher in athletes than in controls, but other resting HRV parameters were not statistically different between groups [@Danieli2014]. It is equally important to compare HRV measures not in a vacuum but from longitudinal monitoring. In the case of elite athletes training for an upcoming event, another study found weekly and 7-day rolling averaged Ln rMSSD and the Ln rMSSD to R–R interval ratio as practically useful to represent a meaningful change in fatigue and/or fitness. In the same study, increasing HRV values were shown to be a possible sign of positive adaptation and/or coping with training load, while reductions in HRV in the week/days before pinnacle events may represent increasing freshness and readiness to perform [@Plews2013].
+Not all HRV measures are created equal; HF, SDNN, and RMSSD were statistically significantly higher in athletes than in controls, but other resting HRV parameters were not statistically different between groups [@Danieli2014]. It is equally important to compare HRV measures not in a vacuum but from longitudinal monitoring. In the case of elite athletes training for an upcoming event, another study [@Plews2013] found weekly and 7-day rolling averaged Ln rMSSD and the Ln rMSSD to R–R interval ratio as practically useful to represent a meaningful change in fatigue and/or fitness. In the same study, increasing HRV values were shown to be a possible sign of positive adaptation and/or coping with training load, while reductions in HRV in the week/days before pinnacle events may represent increasing freshness and readiness to perform.
 
 #### Heart Rate Recovery
 
@@ -215,9 +215,9 @@ Studies have shown no correlation between HRR and HRV [@Esco2010] [@Molina2016],
 
 Fitness training is based on three principles [@Powers1995]: 
 
- - a training effect occurs when the tissue is stressed at a level beyond it is accustomed to (overload)
- - a training effect is limited to the tissue involved in the activity (specifity)
- - the effect of training is quickly lost when training is stopped (reversibility).
+ - A training effect occurs when the tissue is stressed at a level beyond it is accustomed to (overload).
+ - A training effect is limited to the tissue involved in the activity (specifity).
+ - The effect of training is quickly lost when training is stopped (reversibility).
 
 These principles are not limited to muscular tissue, but can also be applied to aerobic capacity. VO$_{2max}$ increases after consistent training sessions of 20 to 60 minutes, at an intensity of 50% to 85% VO$_{2max}$. Recall that VO$_{2max}$ is measured as volume over time (per kg of body mass), which means that an increased Cardiac Output (due to higher preload and lower afterload) accounts for 50% of the VO$_{2max}$ increase. The remaining 50% is due to an increased oxygen intake by organ tissue, resulting from a greater capillary density in the trained tissue [@Powers1995].
 

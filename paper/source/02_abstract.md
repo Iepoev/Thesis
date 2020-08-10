@@ -96,8 +96,8 @@ Personen die af en toe sporten, krijgen vaak weinig tot geen ondersteuning en be
 
 Het doel van deze masterthesis is om machine learning te gebruiken voor een digitale personal coach te ontwikkelen. 5 onderdelen werden geïsoleerd, waarven er uiteindelijk 2 uitgewerkt zijn:
 
- - een model dat de huidige activiteit van een gebruiker kan classificeren. Is de gebruiker in rust, actief, aan het recuperen, onder intense inspanning, ...?
- - een model dat de cardiovasculaire fitness van de gebruiker kan meten. 
+ - Een model dat de huidige activiteit van een gebruiker kan classificeren. Is de gebruiker in rust, actief, aan het recuperen, onder intense inspanning, ...?
+ - Een model dat de cardiovasculaire fitness van de gebruiker kan meten. 
 
 De belangrijkste metriek gebruikt is hartslagvariabiliteit. Dit is de miniscule variabiliteit in tijd tussen hartslagen en is het resultaat van een groot aantal complexe interacties tussen verschillende hormonale systemen en zenuwstelsels. HSV is ruim onderzocht in de medische sector in de context van hartziektes en hartaandoeningen. Nieuwe generatie hartslagmonitoren zijn in staat om deze HSV te meten op een niveau dat medische electrocardiogram-apparatuur bijna evenaart. Het is de opportune tijd om deze bestaande research pogen te hergebruiken en toe te passen op cardiovasculaire fitness en machine learning. 
 

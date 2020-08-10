@@ -6,15 +6,15 @@ Using the knowledge gained in the previous chapter, various metrics are carefull
 
 As a reminder, the subjects were asked to perform the following fitness training session:
 
- - a 2-minute stage in sedentary rest
- - a 5-minute stage in which the subject provides 50W (0.067 BHP) at 50 rpm
- - a 5-minute stage in which the subject provides 100W (0.134 BHP) at 50 rpm
- - a 2-minute stage of recovery in sedentary rest
- - a 5-minute stage in which the subject tries to maintain 115-120 bpm heart rate (equals to around 60% of the maximum heart rate of young adults)
- - a 2-minute stage of recovery in sedentary rest
- - a 5-minute stage in which the subject tries to maintain 155-160 bpm heart rate (equals to around 80% of the maximum heart rate of young adults)
- - a 1-minute stage in which the subject cycles at maximum exertion
- - a 4-minute stage of recovery
+ - A 2-minute stage in sedentary rest.
+ - A 5-minute stage in which the subject provides 50W (0.067 BHP) at 50 rpm.
+ - A 5-minute stage in which the subject provides 100W (0.134 BHP) at 50 rpm.
+ - A 2-minute stage of recovery in sedentary rest
+ - A 5-minute stage in which the subject tries to maintain 115-120 bpm heart rate (equals to around 60% of the maximum heart rate of young adults).
+ - A 2-minute stage of recovery in sedentary rest.
+ - A 5-minute stage in which the subject tries to maintain 155-160 bpm heart rate (equals to around 80% of the maximum heart rate of young adults).
+ - A 1-minute stage in which the subject cycles at maximum exertion.
+ - A 4-minute stage of recovery.
 
 Test subjects were sourced from the student population and were of mixed gender, various fitness levels, aged between 19 and 28 years old. Test subjects were asked to abstain from alcohol for at least 24 hours and to abstain from caffeine for at least 12 hours. This is an acceptable compromise between the personal life of the test subjects and the half-life time of the substances in the circulatory system. In total 27 test subjects were gathered, of which 23 were able to fully complete the session, resulting in \~95.000 timesteps of heartbeat data.
 
@@ -31,11 +31,11 @@ The filterer will assume one of five scenarios happened. For each scenario, it c
 
 The filter checks for multiple possibilities:
 
- - there is a sudden change in HRV, the measured CBT is correct. The future 3 beats are taken and averaged out. The score of this solution is the CBT minus this average.
- - the sensor failed to register a beat. The proposed solution is to replace the CBT with two beats with $CBT / 2$. The score of this solution is the difference between the average of the seven-beat window excluding the CBT, and $CBT / 2$
- - the sensor failed to register two successive beats. The proposed solution is to replace the CBT with three beats with $CBT / 3$. The score of this solution is the difference between the average of the seven-beat window excluding the CBT, and $CBT / 3$
- - the sensor misregistered a beat. The proposed solution is to average out the CBT and its successor. The score of this solution is the difference between the average of the seven-beat window excluding the CBT and its successor, and the averaged timing value
- - the sensor misregistered _and_ missed a beat. The proposed solution is to average out the CBT and its successor and to add an additional beat with this averaged timing. The score of this solution is the difference between the average of the seven-beat window excluding the CBT and its successor, and the averaged timing value.
+ - There is a sudden change in HRV, the measured CBT is correct. The future 3 beats are taken and averaged out. The score of this solution is the CBT minus this average.
+ - The sensor failed to register a beat. The proposed solution is to replace the CBT with two beats with $CBT / 2$. The score of this solution is the difference between the average of the seven-beat window excluding the CBT, and $CBT / 2$
+ - The sensor failed to register two successive beats. The proposed solution is to replace the CBT with three beats with $CBT / 3$. The score of this solution is the difference between the average of the seven-beat window excluding the CBT, and $CBT / 3$.
+ - The sensor misregistered a beat. The proposed solution is to average out the CBT and its successor. The score of this solution is the difference between the average of the seven-beat window excluding the CBT and its successor, and the averaged timing value.
+ - The sensor misregistered _and_ missed a beat. The proposed solution is to average out the CBT and its successor and to add an additional beat with this averaged timing. The score of this solution is the difference between the average of the seven-beat window excluding the CBT and its successor, and the averaged timing value.
 
 At first, if the score of the sudden change solution is less than 50ms, it means that there is no faulty measurement, just a sudden change in Heart Rate Variability. however, if this is not the case, the filterer checks for the lowest score of the four proposed solutions. If this score is lower than the score of the "sudden change", it is accepted and the seven-beat window is replaced by the solution. If the cause of the change in IBI timing is still unexplained, the filtering gives up and will simply accept the faulty measurement.
 
@@ -100,9 +100,9 @@ Due to the low period of VLF and LF power (oscillation periods of up to 300 seco
 
 Due to the setup of the training session, it is easy to classify each heartbeat. A global time counter keeps track of the absolute time passed since the start of recording, which makes it easy to classify each stage of the session:
 
- - the resting stage is classified as "resting" (class 0)
- - the active stages are classified as "active" (class 1)
- - the recovery stages are classified as "recovery" (class 2)
+ - The resting stage is classified as "resting" (class 0).
+ - The active stages are classified as "active" (class 1).
+ - The recovery stages are classified as "recovery" (class 2).
 
 ## Subject Variables for the regression task
 
@@ -112,12 +112,12 @@ For each subject, some extra meta-data is gathered for use in the fitness regres
 
 The following meta-data is noted (fig \ref{fitness_subvariables}):
 
- - the resting heart rate of the subject
- - the maximum heart rate of the subject during the 50W 50 rpm stage
- - the maximum heart rate of the subject during the 100W 50 rpm stage
- - the maximum heart rate of the subject
- - the energy spent during the three "constant heart rate" stages
- - the Baecke questionnaire scores of the subject
+ - The resting heart rate of the subject.
+ - The maximum heart rate of the subject during the 50W 50 rpm stage.
+ - The maximum heart rate of the subject during the 100W 50 rpm stage.
+ - The maximum heart rate of the subject.
+ - The energy spent during the three "constant heart rate" stages.
+ - The Baecke questionnaire scores of the subject.
 
 out of these variables, a fitness score is calculated from the sum of 3 values:
 

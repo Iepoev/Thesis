@@ -49,22 +49,22 @@ The Ergometer is also able to count the energy spent during the various stages o
 
 The session consisted of the following stages:
 
- - a 2-minute stage in sedentary rest
- - a 5-minute stage in which the subject provides 50 Watt (0.067 BHP) at 50 rotations per minute
- - a 5-minute stage in which the subject provides 100 Watt (0.134 BHP) at 50 rpm
- - a 2-minute stage of recovery in sedentary rest
- - a 5-minute stage in which the subject tries to maintain 115-120 bpm heart rate (equals to around 60% of the theoretical maximum heart rate of young adults)
- - a 2-minute stage of recovery in sedentary rest
- - a 5-minute stage in which the subject tries to maintain 155-160 bpm heart rate (equals to around 80% of the theoretical maximum heart rate of young adults)
- - a 1-minute stage in which the subject cycles at maximum exertion
- - a 13-minute stage of recovery, of which 4 minutes are kept for analysis
+ - A 2-minute stage in sedentary rest.
+ - A 5-minute stage in which the subject provides 50 Watt (0.067 BHP) at 50 rotations per minute.
+ - A 5-minute stage in which the subject provides 100 Watt (0.134 BHP) at 50 rpm.
+ - A 2-minute stage of recovery in sedentary rest.
+ - A 5-minute stage in which the subject tries to maintain 115-120 bpm heart rate (equals to around 60% of the theoretical maximum heart rate of young adults).
+ - A 2-minute stage of recovery in sedentary rest.
+ - A 5-minute stage in which the subject tries to maintain 155-160 bpm heart rate (equals to around 80% of the theoretical maximum heart rate of young adults).
+ - A 1-minute stage in which the subject cycles at maximum exertion.
+ - A 13-minute stage of recovery, of which 4 minutes are kept for analysis.
 
 Additionally, the following meta-data is noted:
 
- - the Rating of Perceived Exertion (RPE) of each session
- - the energy spent during the three "constant heart rate" sessions
- - the distance traveled during the three "constant heart rate" sessions
- - the Baecke questionnaire scores of the subject
+ - The Rating of Perceived Exertion (RPE) of each session.
+ - The energy spent during the three "constant heart rate" sessions.
+ - The distance traveled during the three "constant heart rate" sessions.
+ - The Baecke questionnaire scores of the subject.
 
 The reasoning behind the methodology of this data gathering session is explained in-depth in chapter \ref{ch:metrics}. In total 27 test subjects were gathered, of which 23 were able to fully complete the session, resulting in \~95.000 timesteps of heartbeat data.
 
@@ -72,11 +72,11 @@ The reasoning behind the methodology of this data gathering session is explained
 
 Various sequence learning and established Natural Language Processing (NLP) techniques are tested and compared for the activity state classification task:
 
- - a standard Long Short Term Memory (LSTM) network
- - a deeply layered LSTM network
- - an experimental "DeepHeart" network that was successfully used to diagnose various medical conditions [@Ballinger2018]
- - a bespoke evolution of DeepHeart
- - a Temporal Convolutional Network (TCN)
+ - A standard Long Short Term Memory (LSTM) network.
+ - A deeply layered LSTM network.
+ - An experimental "DeepHeart" network that was successfully used to diagnose various medical conditions [@Ballinger2018].
+ - A bespoke evolution of DeepHeart.
+ - A Temporal Convolutional Network (TCN).
 
 Various convolutional and residual networks are tested for the base-level fitness regression task.
 
